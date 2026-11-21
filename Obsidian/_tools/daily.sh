@@ -14,6 +14,8 @@ PY="$(command -v python3 || echo /usr/bin/python3)"
   "$PY" "$DIR/ingest.py"
   echo "---"
   "$PY" "$DIR/graphify.py"
+  echo "---"
+  "$PY" "$DIR/board_sync.py"
 } >> "$LOG" 2>&1
 
 tail -n 14 "$LOG"
