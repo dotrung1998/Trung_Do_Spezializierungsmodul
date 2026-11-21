@@ -149,7 +149,7 @@ def build_table(repo: Path, files: list[Path]) -> str:
 def write_note(body: str, frontmatter_extra: str = "") -> None:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
-    OUT.write_text(
+    text = (
         "---\n"
         'titel: "Codekarte"\n'
         f"stand: {datetime.now():%Y-%m-%d}\n"
@@ -158,9 +158,13 @@ def write_note(body: str, frontmatter_extra: str = "") -> None:
         "---\n\n"
         f"> Automatisch erzeugt von `Obsidian/_tools/graphify.py` am {stamp}.\n"
         "> Nicht von Hand bearbeiten — der nächste Lauf überschreibt die Datei.\n\n"
-        + body,
-        encoding="utf-8",
+        + body
     )
+    if OUT.exists():
+        strip = lambda t: re.sub(r"^> Automatisch erzeugt von .* am .*\.$", "", t, flags=re.M)
+        if strip(OUT.read_text(encoding="utf-8")) == strip(text):
+            return
+    OUT.write_text(text, encoding="utf-8")
 
 
 def main() -> int:

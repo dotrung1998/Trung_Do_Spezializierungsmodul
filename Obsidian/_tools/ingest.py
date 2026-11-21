@@ -98,6 +98,17 @@ def relink(text: str) -> str:
     return text
 
 
+def write_if_changed(path: pathlib.Path, body: str, volatile: str) -> bool:
+    """Schreibt nur, wenn sich ausser der Zeitstempelzeile etwas geaendert hat."""
+    if path.exists():
+        old = path.read_text(encoding="utf-8")
+        strip = lambda t: re.sub(volatile, "", t, flags=re.M)
+        if strip(old) == strip(body):
+            return False
+    path.write_text(body, encoding="utf-8")
+    return True
+
+
 def render_note(src: Path, relative: str, text: str) -> str:
     body = relink(text).strip() + "\n"
     stamp = datetime.fromtimestamp(src.stat().st_mtime).strftime("%Y-%m-%d")
@@ -234,7 +245,7 @@ def write_news(new: list[str], changed: list[str], unchanged: int) -> None:
         "3. Wenn eine Vorgabe kippt (Prüfungsform, Abgabedatum, Format), Eintrag in\n"
         "   [[Entscheidungen]] mit Datum und Grund.\n"
     )
-    NEWS_FILE.write_text(body, encoding="utf-8")
+    write_if_changed(NEWS_FILE, body, r"^Lauf: .*$")
 
 
 def main() -> int:
