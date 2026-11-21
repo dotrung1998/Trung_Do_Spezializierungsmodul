@@ -8,3 +8,16 @@ report/.render/
 
 # Doppelte Archivkopie der Quellen (der Ordner "Project JLU/" ist maßgeblich)
 Project JLU.zip
+
+# Obsidian: maschinenabhaengiger Zustand und installierte Plugins
+Obsidian/.obsidian/workspace.json
+Obsidian/.obsidian/plugins/
+Obsidian/.obsidian/community-plugins.json
+
+# Protokolle des Tageslaufs und der Quelleneinlesung
+Obsidian/_tools/daily.log
+Obsidian/_tools/board.log
+
+# automatisch erzeugte Notizen (ingest.py, graphify.py)
+Obsidian/00 Brain/Neu seit letztem Lauf.md
+Obsidian/10 Thema/Codekarte.md

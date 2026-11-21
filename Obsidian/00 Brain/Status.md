@@ -124,7 +124,8 @@ eigenes `\biburlsetup` wirken nicht, weil biblatex sie pro Eintrag neu setzt.
 
 Board: [[Board]] (`Obsidian/30 Plan/Board.md`), Spalten **To Do · Doing · Done**.
 Karten tragen `#person`, `#team` oder `#ai` und optional `braucht: <IDs>`; Karten ohne
-Abhängigkeit bekommen keine solche Angabe.
+Abhängigkeit bekommen keine solche Angabe. Jede Karte verweist am Zeilenende mit
+`→ [[…]]` auf die Notiz, in der die Arbeit liegt.
 
 **Kette.** Jede erledigte Karte gibt frei, was von ihr abhängt:
 
