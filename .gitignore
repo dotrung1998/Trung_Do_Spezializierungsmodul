@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Werkzeuge und temporäre Ablagen
+.freebuff/
+.cloud-attachments/
+report/.render/
+
+# Doppelte Archivkopie der Quellen (der Ordner "Project JLU/" ist maßgeblich)
+Project JLU.zip

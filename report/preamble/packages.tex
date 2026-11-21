@@ -1,0 +1,48 @@
+% Pakete -- bewusst schlank, damit der Bericht auch auf einer
+% BasicTeX-Installation baut (siehe README.md).
+%
+% Zwei Engines, ein Quelltext: pdfTeX bekommt inputenc, XeTeX/LuaTeX nicht.
+% fontenc[T1] gilt für beide, sonst fehlen den Schriften die Umlaute.
+
+\usepackage{iftex}
+\usepackage[T1]{fontenc}
+\ifPDFTeX
+  \usepackage[utf8]{inputenc}
+\fi
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% XeTeX mit T1-Schriften setzt das direkte Zeichen ß als "SS".
+% ��ber newunicodechar wird es auf \ss{} umgebogen -- wirkt auch unter pdfTeX.
+\usepackage{newunicodechar}
+\newunicodechar{ß}{\ss{}}
+
+% Ohne diese Zeile bleibt die Sprache Englisch: die Klassenoption ngerman
+% reicht bei article nicht, babel wird dadurch nicht geladen.
+\usepackage[ngerman]{babel}
+
+\usepackage[a4paper,left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{csquotes}
+
+\usepackage[
+  backend=bibtex,
+  style=authoryear,
+  sorting=nyt,
+  maxcitenames=2,
+  maxbibnames=99,
+  giveninits=true,
+  uniquename=init,
+  doi=true,
+  url=true
+]{biblatex}
+
+\usepackage[hidelinks]{hyperref}

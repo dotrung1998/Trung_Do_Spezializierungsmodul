@@ -1,0 +1,59 @@
+% =====================================================================
+%  Bericht im Spezialisierungsmodul --- M.Sc. Data Analytics, JLU Gießen
+%  Project JLU, Team Gamma (Projekt 29)
+%
+%  Bauen:   ./build.sh          (oder: latexmk -pdf main.tex)
+%  Aufräumen: ./build.sh clean
+%
+%  Diese Datei ist die Wurzel. Inhalt steht in chapters/, Vorspann in
+%  frontmatter/, Einstellungen in preamble/. Nichts hier hineinschreiben,
+%  was Inhalt ist.
+% =====================================================================
+\documentclass[12pt,a4paper,ngerman]{article}
+
+\input{preamble/packages}
+\input{preamble/settings}
+\input{preamble/commands}
+
+\addbibresource{literatur.bib}
+
+\begin{document}
+
+% ---------- Vorspann -------------------------------------------------
+% Die Titelseite bekommt keinen Seitenanker: sie trägt die Nummer 1, und
+% Kapitel 1 trägt sie später noch einmal -- hyperref würde "page.1" doppelt
+% definieren. Kanonischer Weg laut hyperref-Handbuch.
+\hypersetup{pageanchor=false}
+\input{frontmatter/titelblatt}
+\hypersetup{pageanchor=true}
+
+% Römische Zählung für den Vorspann, arabische für den Text.
+\pagenumbering{roman}
+\input{frontmatter/abstrakt}
+\clearpage
+
+\tableofcontents
+\clearpage
+
+% ---------- Hauptteil ------------------------------------------------
+\pagenumbering{arabic}
+\input{chapters/01_einleitung}
+\input{chapters/02_hintergrund}
+\input{chapters/03_forschungsfrage}
+\input{chapters/04_daten}
+\input{chapters/05_methode}
+\input{chapters/06_ergebnisse}
+\input{chapters/07_diskussion}
+\input{chapters/08_fazit}
+
+% ---------- Nachspann ------------------------------------------------
+\clearpage
+\input{backmatter/anhang}
+
+\clearpage
+\printbibliography[heading=bibintoc,title={Literaturverzeichnis}]
+
+\clearpage
+\input{frontmatter/eigenstaendigkeit}
+
+\end{document}

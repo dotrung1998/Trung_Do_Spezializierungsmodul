@@ -1,0 +1,137 @@
+% Kurzexposé -- genau eine Seite, Anlage zur Mail an die Betreuung.
+% Bauen: ./build.sh expose   ->  expose.pdf
+%
+% Bewusst eigenständig: kein Literaturverzeichnis, keine Kapitelnummern.
+% Inhaltlich auf dem Stand von report/chapters/03-05.
+
+\documentclass[10pt,a4paper,ngerman]{article}
+
+\usepackage{iftex}
+\usepackage[T1]{fontenc}
+\ifPDFTeX
+  \usepackage[utf8]{inputenc}
+\fi
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% XeTeX mit T1-Schriften setzt das direkte Zeichen ß als "SS".
+% ��ber newunicodechar wird es auf \ss{} umgebogen -- wirkt auch unter pdfTeX.
+\usepackage{newunicodechar}
+\newunicodechar{ß}{\ss{}}
+\usepackage[ngerman]{babel}
+
+\usepackage[a4paper,top=1.7cm,bottom=1.6cm,left=1.9cm,right=1.9cm]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2.5pt}
+\pagestyle{empty}
+\setlist[itemize]{leftmargin=1em,itemsep=0.3pt,topsep=1pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.0}
+
+% Abschnittskopf: klein, fett, dünne Linie darunter
+\newcommand{\abschnitt}[1]{%
+  \vspace{3.5pt}%
+  {\small\bfseries #1}\par
+  \vspace{-3pt}{\color{black!30}\rule{\linewidth}{0.4pt}}\par
+  \vspace{-1pt}}
+
+\begin{document}
+
+{\footnotesize\bfseries Kurzexposé\par}
+\vspace{1pt}
+{\Large\bfseries Konsistenz über Quellen\par}
+\vspace{0.5pt}
+{\normalsize Abweichungen zwischen Studieninformationen automatisch finden und bewerten\par}
+\vspace{2pt}
+{\footnotesize
+The Trung Do \textbullet{} M.Sc. Data Analytics, Matrikelnummer [Matrikelnummer] \textbullet{}
+Projekt 29 (Team Gamma) \textbullet{} Betreuung: Dr. Sebastian Busse\\
+Stand: 21. November 2026 \textbullet{} Arbeitstitel \textbullet{} Prüfungsleistung: Bericht
+10--15 Seiten mit Programmcode, ohne Vortrag\par}
+
+% ---------------------------------------------------------------------
+\abschnitt{Fragestellung}
+
+Dieselben Sachverhalte -- Fristen, Leistungspunkte, Modulnummern, Ansprechpartner --
+stehen an mehreren Stellen: in der Speziellen Ordnung, in den Allgemeinen Bestimmungen,
+auf der Studiengangsseite, im Studienführer und auf der Fachbereichsseite. Ob sie
+übereinstimmen, ist offen.
+
+\textbf{Leitfrage.} Welche Sachverhalte werden in mehreren Quellen unterschiedlich
+dargestellt, und wie zuverlässig lässt sich das automatisch finden?
+
+\textbf{H1 (inhaltlich).} Ein großer Teil der Abweichungen ist kein echter Widerspruch,
+sondern Folge unterschiedlicher Fassungen oder Zielgruppen; echte Widersprüche sind
+seltener, treten aber systematisch bei Fristen auf.
+
+\textbf{H2 (methodisch).} Sprachmodellgestützte Extraktion erreicht hohe Precision bei
+begrenztem Recall; regelbasierte Normalisierung erhöht den Recall, ohne die Precision zu
+senken.
+
+% ---------------------------------------------------------------------
+\abschnitt{Daten}
+
+Öffentliche Quellen, \textbf{ein} Stichtag, ein Hash je Dokument, ein Datenblatt mit
+Umfang und Lücken.
+
+\begin{itemize}
+  \item Spezielle Ordnung M.Sc. Data Analytics, Fassung des 3. Änderungsbeschlusses
+        (gültig ab SoSe 2026) \emph{und} die drei früheren Fassungen -- erst sie trennen
+        Versionsartefakte von echten Widersprüchen.
+  \item Allgemeine Bestimmungen (3. Änderungsfassung): dieselbe Frist steht dort allgemein
+        und in der Speziellen Ordnung speziell.
+  \item Studiengangsseite, Studienführer der Zentralen Studienberatung, Fachbereichsseite;
+        für datierbare Fassungen die Wayback Machine (CDX-API).
+\end{itemize}
+
+Nicht erfasst: Login-Bereiche, Scans ohne Textebene, dynamische Inhalte. Korpus und
+Faktkatalog (rund zwölf Typen) lege ich mit Team Gamma bis Mitte Dezember fest.
+
+% ---------------------------------------------------------------------
+\abschnitt{Methode}
+
+\textbf{Analyseeinheit.} Sachverhalt als Tupel aus Entität, Attribut, Wert,
+Gültigkeitsintervall, Quelle und Fundstelle -- die Definition, die
+\glqq{}derselbe Sachverhalt\grqq{} überhaupt prüfbar macht.
+
+\textbf{Extraktion mit Zitatpflicht.} Sprachmodell mit festem Schema; jeder Wert muss eine
+Fundstelle mitliefern, Werte ohne Beleg werden verworfen.
+
+\textbf{Normalisierung.} Datum (ISO 8601), Zahl, Einheit, Entitätsalias, Zielgruppe --
+sonst entstehen falsche Widersprüche.
+
+\textbf{Typologie.} Echter Widerspruch, Versionsartefakt, Scope-Unterschied, Formulierung,
+Extraktionsfehler.
+
+\textbf{Evaluation.} Stratifizierte Stichprobe, Goldstandard mit zwei Durchgängen,
+Krippendorffs $\alpha$; Precision, Recall, F1 je Sachverhaltstyp mit
+Wilson-Konfidenzintervall. Die Übereinstimmung Modell/Mensch wird vor dem Lauf über den
+vollen Korpus berichtet; Fehleranalyse über 20--30 Fälle.
+
+% ---------------------------------------------------------------------
+\abschnitt{Zeitplan}
+
+{\small
+\begin{tabular}{@{}p{3.1cm}p{3.4cm}p{8.6cm}@{}}
+\toprule
+Phase & Zeitraum & Ziel \\
+\midrule
+P1 Grundlage     & 01.12.--20.12.2026 & Literatur, Hypothesen, Korpus, Datenblatt v1 \\
+P2 Plan/Prototyp & 04.01.--17.01.2027 & Projektplan, Meilensteingespräch, Prototyp (3 Dokumente) \\
+P3 Pipeline      & 18.01.--14.02.2027 & Extraktion, Normalisierung, Vergleich, Goldstandard \\
+P4 Evaluation    & 15.02.--14.03.2027 & Annotation, Metriken, Fehleranalyse \\
+P5 Schreiben     & 15.03.--28.03.2027 & Bericht vollständig \\
+P6 Abgabe        & 29.03.--01.04.2027 & Endfassung, Code, Abgabe \\
+\bottomrule
+\end{tabular}}
+
+\vspace{1pt}
+{\footnotesize 21.12.2026--03.01.2027: Weihnachtspause, Korpus eingefroren.
+\textbf{Bitte:} kurze Rückmeldung, ob Fragestellung, Datenzuschnitt und Evaluationsplan so
+tragen -- bevor ich Kapitel 5 und 6 schreibe.\par}
+
+\end{document}

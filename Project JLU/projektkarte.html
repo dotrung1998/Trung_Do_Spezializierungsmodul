@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projekt-Karte Project JLU</title>
+<!-- Interaktive Projekt-Karte für Studierende. Quelle: Planungsmodul Project JLU WiSe 2026/27, Fassung v3. Stand 19.11.2026. -->
+<style>
+:root { --paper: #f3f5f8; --surface: #ffffff; --ink: #142033; --muted: #56637a; --line: #d5dce6; --line-strong: #b6c0cf; --brand: #2b5797;
+  --alpha: #0d7a70; --alpha-soft: #def1ed; --beta: #5f43ad; --beta-soft: #ebe6f7; --gamma: #985808; --gamma-soft: #f7ebd8; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #0e131b; --surface: #151c27; --ink: #e3e9f2; --muted: #9ba8bb; --line: #2a3546; --line-strong: #3d4a61; --brand: #8fb5ee;
+  --alpha: #4cc4b7; --alpha-soft: #12302d; --beta: #a891ee; --beta-soft: #251e3d; --gamma: #e2a64e; --gamma-soft: #35260f; color-scheme: dark; } }
+:root[data-theme="dark"] { --paper: #0e131b; --surface: #151c27; --ink: #e3e9f2; --muted: #9ba8bb; --line: #2a3546; --line-strong: #3d4a61; --brand: #8fb5ee;
+  --alpha: #4cc4b7; --alpha-soft: #12302d; --beta: #a891ee; --beta-soft: #251e3d; --gamma: #e2a64e; --gamma-soft: #35260f; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.55 "IBM Plex Sans", "Segoe UI", system-ui, Arial, sans-serif; }
+main { max-width: 1240px; margin: 0 auto; padding: 24px 16px 40px; }
+h1 { font-size: 26px; margin: 0 0 4px; }
+.lede { color: var(--muted); max-width: 75ch; margin: 0 0 14px; }
+.bar { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 10px; font-size: 14px; }
+.bar label { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+.sw { display: inline-block; width: 26px; border-top: 2px solid var(--line-strong); }
+.sw-n2 { border-top: 3px solid var(--ink); } .sw-n1 { border-top: 2px dashed var(--muted); }
+.wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+svg { display: block; width: 100%; height: auto; min-width: 860px; }
+svg text { font-family: inherit; fill: var(--ink); }
+.bg { fill: var(--surface); }
+.ti, .su0 { display: none; }
+.su { font-size: 13px; fill: var(--muted); }
+.zone { opacity: .6; } .z-alpha { fill: var(--alpha-soft); } .z-beta { fill: var(--beta-soft); } .z-gamma { fill: var(--gamma-soft); }
+.e { fill: none; stroke-linecap: round; transition: opacity .15s; }
+.e-n2 { stroke: var(--ink); stroke-opacity: .5; stroke-width: 2.6; }
+.e-n1 { stroke: var(--muted); stroke-opacity: .7; stroke-width: 1.5; stroke-dasharray: 5 4; }
+.hub text, .work text { text-anchor: middle; pointer-events: none; }
+.h-alpha rect, .lg-alpha { fill: var(--alpha); } .h-beta rect, .lg-beta { fill: var(--beta); } .h-gamma rect, .lg-gamma { fill: var(--gamma); }
+.hub-n { font-size: 17px; font-weight: 600; fill: var(--surface) !important; } .hub-c { font-size: 12px; fill: var(--surface) !important; }
+.work circle { stroke-width: 2.5; }
+.w-alpha circle { stroke: var(--alpha); fill: var(--alpha-soft); } .w-beta circle { stroke: var(--beta); fill: var(--beta-soft); } .w-gamma circle { stroke: var(--gamma); fill: var(--gamma-soft); }
+.wid { font-family: "IBM Plex Mono", Consolas, monospace; font-size: 14px; font-weight: 600; }
+.lab { font-size: 13.5px; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.leg text { font-size: 14px; }
+.kn { transition: opacity .15s; }
+a:hover circle, a:focus-visible circle { stroke-width: 4.5; }
+a:focus { outline: none; }
+svg.fokus .e:not(.an) { opacity: .07; } svg.fokus .kn:not(.an) { opacity: .3; } svg.fokus .e.an { opacity: 1; }
+.ohne-n2 .e-n2, .ohne-n1 .e-n1 { display: none; }
+.liste { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 18px; }
+.liste section { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.liste h2 { font-size: 16px; margin: 0 0 6px; }
+.liste ul { margin: 0; padding-left: 18px; }
+.liste a { color: var(--brand); }
+.t-alpha { border-top: 4px solid var(--alpha) !important; } .t-beta { border-top: 4px solid var(--beta) !important; } .t-gamma { border-top: 4px solid var(--gamma) !important; }
+@media (prefers-reduced-motion: reduce) { .e, .kn { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Project JLU · WiSe 2026/27</h1>
+<p class="lede">Drei Teams, fünfzehn Einzelarbeiten. Farben und Flächen zeigen die Teams, die Verbindungen zeigen, wo sich Arbeiten methodisch nahe sind. Fahren Sie über ein Thema, um seine Bezüge zu sehen. Ein Klick öffnet den Steckbrief.</p>
+<div class="bar" role="group" aria-label="Verbindungen ein- und ausblenden">
+<label><input type="checkbox" data-typ="n2" checked><span class="sw sw-n2"></span>Methodische Nähe, stark</label>
+<label><input type="checkbox" data-typ="n1" checked><span class="sw sw-n1"></span>Methodische Nähe, mittel</label>
+</div>
+<div class="wrap"><svg id="karte" viewBox="46 0 1108 446" role="img" aria-label="Projekt-Karte: drei Teams mit je fünf Einzelarbeiten und ihre methodische Nähe">
+<rect class="bg" x="46" y="0" width="1108" height="446"/>
+<text class="ti" x="62" y="30">Project JLU · WiSe 2026/27</text><text class="su su0" x="62" y="50">Drei Teams, fünfzehn Einzelarbeiten. Ein Klick auf ein Thema öffnet den Steckbrief.</text>
+<ellipse class="zone z-beta" cx="230" cy="230" rx="168" ry="176"/><ellipse class="zone z-alpha" cx="600" cy="230" rx="168" ry="176"/><ellipse class="zone z-gamma" cx="970" cy="230" rx="168" ry="176"/>
+<g class="edges">
+<path class="e e-n2" data-a="1.2" data-b="1.5" d="M598,352 Q677.3,348.7 740,300"><title>1.2 Webseiten und Änderungen und 1.5 Kurs- und Serviceangebote: frühere Fassungen von Webseiten, Änderungserkennung</title></path>
+<path class="e e-n1" data-a="1.3" data-b="1.4" d="M482,250 Q573.0,138.2 712,100"><title>1.3 Bewerbung und Zulassung und 1.4 Internationales: Prosa- und FAQ-Seiten, mehrere Quellen</title></path>
+<path class="e e-n1" data-a="1.1" data-b="1.3" d="M500,100 Q467.0,172.1 482,250"><title>1.1 Ordnungen als PDF und 1.3 Bewerbung und Zulassung: Extraktion strukturierter Angaben</title></path>
+<path class="e e-n2" data-a="2.1" data-b="2.4" d="M362,128 Q203.5,172.1 100,300"><title>2.1 Modul- und Prüfungsgraph und 2.4 Entity Linking: Modulnennungen und Modulliste</title></path>
+<path class="e e-n1" data-a="2.1" data-b="2.2" d="M362,128 Q329.5,212.4 352,300"><title>2.1 Modul- und Prüfungsgraph und 2.2 Regel- und Fristengraph: dieselben Ordnungsdokumente</title></path>
+<path class="e e-n1" data-a="2.5" data-b="2.1" d="M130,105 Q249.7,79.4 362,128"><title>2.5 Ontologie und Schema und 2.1 Modul- und Prüfungsgraph: Kernschema</title></path>
+<path class="e e-n1" data-a="2.5" data-b="2.2" d="M130,105 Q209.8,238.0 352,300"><title>2.5 Ontologie und Schema und 2.2 Regel- und Fristengraph: Kernschema</title></path>
+<path class="e e-n1" data-a="2.5" data-b="2.3" d="M130,105 Q143.9,251.1 240,362"><title>2.5 Ontologie und Schema und 2.3 Zuständigkeiten: Kernschema, Entität für Anliegen</title></path>
+<path class="e e-n1" data-a="3.1" data-b="3.2" d="M808,222 Q863.7,272.0 880,345"><title>3.1 Konsistenz über Quellen und 3.2 Aktualität und Veraltung: Angaben zu Sachverhalten, Veraltung als Abweichungstyp</title></path>
+<path class="e e-n1" data-a="3.2" data-b="3.3" d="M880,345 Q952.6,376.5 1030,360"><title>3.2 Aktualität und Veraltung und 3.3 Auffindbarkeit: Linkprüfung und Linkgraph</title></path>
+<path class="e e-n1" data-a="3.1" data-b="3.5" d="M808,222 Q959.6,225.3 1085,140"><title>3.1 Konsistenz über Quellen und 3.5 Mehrsprachigkeit: Konsistenz zwischen Sprachfassungen</title></path>
+<path class="e e-n2" data-a="1.1" data-b="2.1" d="M500,100 Q426.5,91.9 362,128"><title>1.1 Ordnungen als PDF und 2.1 Modul- und Prüfungsgraph: Modulhandbuch als PDF</title></path>
+<path class="e e-n2" data-a="1.1" data-b="2.2" d="M500,100 Q394.0,176.3 352,300"><title>1.1 Ordnungen als PDF und 2.2 Regel- und Fristengraph: Ordnungen als PDF</title></path>
+<path class="e e-n1" data-a="1.1" data-b="3.1" d="M500,100 Q673.5,111.7 808,222"><title>1.1 Ordnungen als PDF und 3.1 Konsistenz über Quellen: Ordnung als Referenzquelle</title></path>
+<path class="e e-n1" data-a="1.1" data-b="3.4" d="M500,100 Q701.2,31.2 905,92"><title>1.1 Ordnungen als PDF und 3.4 Verständlichkeit: Ordnungstexte als Textsorte</title></path>
+<path class="e e-n2" data-a="1.2" data-b="3.3" d="M598,352 Q812.7,425.1 1030,360"><title>1.2 Webseiten und Änderungen und 3.3 Auffindbarkeit: Crawling und Linkstruktur</title></path>
+<path class="e e-n2" data-a="1.2" data-b="3.2" d="M598,352 Q740.1,393.6 880,345"><title>1.2 Webseiten und Änderungen und 3.2 Aktualität und Veraltung: Änderung und Veraltung</title></path>
+<path class="e e-n1" data-a="1.2" data-b="2.3" d="M598,352 Q420.6,414.3 240,362"><title>1.2 Webseiten und Änderungen und 2.3 Zuständigkeiten: dieselben Webseiten</title></path>
+<path class="e e-n2" data-a="1.3" data-b="2.1" d="M482,250 Q402.5,208.2 362,128"><title>1.3 Bewerbung und Zulassung und 2.1 Modul- und Prüfungsgraph: Verfahrensvergleich LLM gegenüber Regeln</title></path>
+<path class="e e-n1" data-a="1.3" data-b="2.2" d="M482,250 Q409.0,254.2 352,300"><title>1.3 Bewerbung und Zulassung und 2.2 Regel- und Fristengraph: Bedingungen und Fristen</title></path>
+<path class="e e-n1" data-a="1.3" data-b="3.1" d="M482,250 Q649.5,288.2 808,222"><title>1.3 Bewerbung und Zulassung und 3.1 Konsistenz über Quellen: Sachverhalte zur Bewerbung</title></path>
+<path class="e e-n2" data-a="1.4" data-b="3.5" d="M712,100 Q904.9,60.3 1085,140"><title>1.4 Internationales und 3.5 Mehrsprachigkeit: englische Fassungen</title></path>
+<path class="e e-n2" data-a="1.5" data-b="3.2" d="M740,300 Q802.8,344.9 880,345"><title>1.5 Kurs- und Serviceangebote und 3.2 Aktualität und Veraltung: Veraltung terminierter Angaben</title></path>
+<path class="e e-n2" data-a="2.2" data-b="3.1" d="M352,300 Q591.8,330.0 808,222"><title>2.2 Regel- und Fristengraph und 3.1 Konsistenz über Quellen: Konsistenz auf Struktur- und Aussagenebene</title></path>
+<path class="e e-n1" data-a="2.3" data-b="3.3" d="M240,362 Q635.2,431.0 1030,360"><title>2.3 Zuständigkeiten und 3.3 Auffindbarkeit: Zuständigkeitsseiten und ihre Auffindbarkeit</title></path>
+<path class="e e-n1" data-a="2.4" data-b="3.5" d="M100,300 Q581.3,150.9 1085,140"><title>2.4 Entity Linking und 3.5 Mehrsprachigkeit: Bezeichnungen deutsch und englisch</title></path>
+</g>
+<g class="kn hub h-alpha" data-id="team-alpha"><title>Team Alpha α: Team Alpha baut einen Korpus aus den Informationsquellen der Studienorganisation auf. Jede Person übernimmt einen Quellentyp.</title><rect x="512" y="189" width="176" height="52" rx="12"/><text class="hub-n" x="600" y="211">Team Alpha α</text><text class="hub-c" x="600" y="229">JLU-Wissenskorpus</text></g>
+<g class="kn hub h-beta" data-id="team-beta"><title>Team Beta β: Team Beta modelliert das Wissen über die Studienorganisation als Graph. Jede Person übernimmt einen Teilgraphen oder ein Problem der Modellierung.</title><rect x="142" y="189" width="176" height="52" rx="12"/><text class="hub-n" x="230" y="211">Team Beta β</text><text class="hub-c" x="230" y="229">JLU-Wissensgraph</text></g>
+<g class="kn hub h-gamma" data-id="team-gamma"><title>Team Gamma γ: Team Gamma misst die Qualität der Studieninformationen im Pilotbereich Fachbereich 07. Jede Person übernimmt eine Qualitätsdimension.</title><rect x="882" y="189" width="176" height="52" rx="12"/><text class="hub-n" x="970" y="211">Team Gamma γ</text><text class="hub-c" x="970" y="229">JLU-Informationsqualität</text></g>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/1-1-ordnungen-pdf.md" target="_top" aria-label="Steckbrief 1.1 Ordnungen und Modulhandbücher als PDF"><g class="kn work w-alpha" data-id="1.1"><title>1.1 Ordnungen und Modulhandbücher als PDF: Wie lassen sich Paragraphen, Module und Tabellen aus Ordnungs-PDFs strukturtreu extrahieren, und wie lassen sich zwei Fassungen einer Ordnung automatisch vergleichen?</title><circle cx="500" cy="100" r="23"/><text class="wid" x="500" y="104">1.1</text><text class="lab" x="500" y="138">Ordnungen als PDF</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/1-2-webseiten-fb07.md" target="_top" aria-label="Steckbrief 1.2 Webseiten und ihre Änderungen"><g class="kn work w-alpha" data-id="1.2"><title>1.2 Webseiten und ihre Änderungen: Wie lässt sich ein Webauftritt vollständig und schonend erfassen, und wie zuverlässig lassen sich inhaltliche Änderungen an früheren Fassungen der Seiten erkennen?</title><circle cx="598" cy="352" r="23"/><text class="wid" x="598" y="356">1.2</text><text class="lab" x="598" y="390">Webseiten und Änderungen</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/1-3-bewerbung-zulassung.md" target="_top" aria-label="Steckbrief 1.3 Bewerbung, Zulassung, Sprachnachweise"><g class="kn work w-alpha" data-id="1.3"><title>1.3 Bewerbung, Zulassung, Sprachnachweise: Wie lassen sich bedingte Regeln (wer braucht welchen Nachweis bis wann) aus Fließtext- und FAQ-Seiten strukturiert erfassen?</title><circle cx="482" cy="250" r="23"/><text class="wid" x="482" y="254">1.3</text><text class="lab" x="482" y="288">Bewerbung und Zulassung</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/1-4-internationales.md" target="_top" aria-label="Steckbrief 1.4 Internationales: Erasmus, Auslandssemester, Partnerhochschulen"><g class="kn work w-alpha" data-id="1.4"><title>1.4 Internationales: Erasmus, Auslandssemester, Partnerhochschulen: Wie vollständig deckt ein zusammengeführtes Teilkorpus die Informationsbedarfe zum Auslandssemester ab, verglichen mit den Einzelquellen?</title><circle cx="712" cy="100" r="23"/><text class="wid" x="712" y="104">1.4</text><text class="lab" x="712" y="138">Internationales</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/1-5-kurs-und-serviceangebote.md" target="_top" aria-label="Steckbrief 1.5 Kurs- und Serviceangebote (HRZ, ZfbK, Bibliothek)"><g class="kn work w-alpha" data-id="1.5"><title>1.5 Kurs- und Serviceangebote (HRZ, ZfbK, Bibliothek): Wie lassen sich terminierte Angebote aus Webseiten automatisch extrahieren und abgelaufene oder veraltete Einträge zuverlässig erkennen?</title><circle cx="740" cy="300" r="23"/><text class="wid" x="740" y="304">1.5</text><text class="lab" x="740" y="338">Kurs- und Serviceangebote</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/2-1-modulgraph.md" target="_top" aria-label="Steckbrief 2.1 Modul- und Prüfungsgraph"><g class="kn work w-beta" data-id="2.1"><title>2.1 Modul- und Prüfungsgraph: Wie zuverlässig lassen sich Module, Leistungspunkte, Voraussetzungen und Prüfungsformen aus Modulhandbüchern extrahieren?</title><circle cx="362" cy="128" r="23"/><text class="wid" x="362" y="132">2.1</text><text class="lab" x="362" y="166">Modul- und Prüfungsgraph</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/2-2-regelgraph.md" target="_top" aria-label="Steckbrief 2.2 Regel- und Fristengraph"><g class="kn work w-beta" data-id="2.2"><title>2.2 Regel- und Fristengraph: Wie lassen sich Paragraphen, Verweise und Fristen aus Ordnungstexten als Netz abbilden, und wie tief sind die Verweisketten, denen man bis zur eigentlichen Regel folgen muss?</title><circle cx="352" cy="300" r="23"/><text class="wid" x="352" y="304">2.2</text><text class="lab" x="352" y="338">Regel- und Fristengraph</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/2-3-zustaendigkeiten.md" target="_top" aria-label="Steckbrief 2.3 Organisations- und Zuständigkeitsgraph"><g class="kn work w-beta" data-id="2.3"><title>2.3 Organisations- und Zuständigkeitsgraph: Welche Stelle ist für welches Anliegen zuständig, und wie lässt sich das aus Webseiten als Graph von Rollen und Stellen gewinnen?</title><circle cx="240" cy="362" r="23"/><text class="wid" x="240" y="366">2.3</text><text class="lab" x="240" y="400">Zuständigkeiten</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/2-4-entity-linking.md" target="_top" aria-label="Steckbrief 2.4 Entity Linking und Graphqualität"><g class="kn work w-beta" data-id="2.4"><title>2.4 Entity Linking und Graphqualität: Wie lassen sich Bezeichnungen über Quellen hinweg abgleichen, und wie gut wird der zusammengeführte Graph?</title><circle cx="100" cy="300" r="23"/><text class="wid" x="100" y="304">2.4</text><text class="lab" x="100" y="338">Entity Linking</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/2-5-ontologie-schema.md" target="_top" aria-label="Steckbrief 2.5 Ontologie und Schema"><g class="kn work w-beta" data-id="2.5"><title>2.5 Ontologie und Schema: Welche bestehenden Standards eignen sich als Grundlage, und wie sieht ein tragfähiges Schema für die Studienorganisation der JLU aus?</title><circle cx="130" cy="105" r="23"/><text class="wid" x="130" y="109">2.5</text><text class="lab" x="130" y="143">Ontologie und Schema</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/3-1-konsistenz.md" target="_top" aria-label="Steckbrief 3.1 Konsistenz über Quellen"><g class="kn work w-gamma" data-id="3.1"><title>3.1 Konsistenz über Quellen: Welche Sachverhalte werden in mehreren Quellen unterschiedlich dargestellt, und wie lassen sich Abweichungen automatisch finden?</title><circle cx="808" cy="222" r="23"/><text class="wid" x="808" y="226">3.1</text><text class="lab" x="808" y="260">Konsistenz über Quellen</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/3-2-aktualitaet.md" target="_top" aria-label="Steckbrief 3.2 Aktualität und Veraltung"><g class="kn work w-gamma" data-id="3.2"><title>3.2 Aktualität und Veraltung: Wie alt sind die Informationen tatsächlich, und lässt sich Veraltung je Dokumenttyp vorhersagen?</title><circle cx="880" cy="345" r="23"/><text class="wid" x="880" y="349">3.2</text><text class="lab" x="880" y="383">Aktualität und Veraltung</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/3-3-auffindbarkeit.md" target="_top" aria-label="Steckbrief 3.3 Auffindbarkeit und Informationsarchitektur"><g class="kn work w-gamma" data-id="3.3"><title>3.3 Auffindbarkeit und Informationsarchitektur: Wie viele Schritte braucht es von den Einstiegsseiten zu einem Sachverhalt, und wo liegen Doppelungen und Sackgassen?</title><circle cx="1030" cy="360" r="23"/><text class="wid" x="1030" y="364">3.3</text><text class="lab" x="1030" y="398">Auffindbarkeit</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/3-4-verstaendlichkeit.md" target="_top" aria-label="Steckbrief 3.4 Verständlichkeit"><g class="kn work w-gamma" data-id="3.4"><title>3.4 Verständlichkeit: Wie verständlich sind Ordnungstexte, Webseiten und Informationsblätter im Vergleich, und taugen Lesbarkeitsindizes für Verwaltungstexte?</title><circle cx="905" cy="92" r="23"/><text class="wid" x="905" y="96">3.4</text><text class="lab" x="905" y="130">Verständlichkeit</text></g></a>
+<a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/3-5-mehrsprachigkeit.md" target="_top" aria-label="Steckbrief 3.5 Mehrsprachigkeit"><g class="kn work w-gamma" data-id="3.5"><title>3.5 Mehrsprachigkeit: Welche Studieninformationen liegen auf Englisch vor und welche nicht, und wo wäre ein englisches Angebot mit Blick auf die Internationalisierungsstrategie der JLU am sinnvollsten?</title><circle cx="1085" cy="140" r="23"/><text class="wid" x="1085" y="144">3.5</text><text class="lab" x="1085" y="178">Mehrsprachigkeit</text></g></a>
+<g class="leg" transform="translate(62 430)">
+<path class="e e-n2" d="M0,-4 L36,-4"/><text x="46" y="0">Methodische Nähe, stark</text>
+<path class="e e-n1" d="M232,-4 L268,-4"/><text x="278" y="0">Methodische Nähe, mittel</text>
+</g>
+</svg></div>
+<div class="liste">
+<section class="t-alpha"><h2>Team Alpha α: JLU-Wissenskorpus</h2><ul><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/1-1-ordnungen-pdf.md">1.1 Ordnungen und Modulhandbücher als PDF</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/1-2-webseiten-fb07.md">1.2 Webseiten und ihre Änderungen</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/1-3-bewerbung-zulassung.md">1.3 Bewerbung, Zulassung, Sprachnachweise</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/1-4-internationales.md">1.4 Internationales: Erasmus, Auslandssemester, Partnerhochschulen</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/1-5-kurs-und-serviceangebote.md">1.5 Kurs- und Serviceangebote (HRZ, ZfbK, Bibliothek)</a></li></ul></section>
+<section class="t-beta"><h2>Team Beta β: JLU-Wissensgraph</h2><ul><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/2-1-modulgraph.md">2.1 Modul- und Prüfungsgraph</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/2-2-regelgraph.md">2.2 Regel- und Fristengraph</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/2-3-zustaendigkeiten.md">2.3 Organisations- und Zuständigkeitsgraph</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/2-4-entity-linking.md">2.4 Entity Linking und Graphqualität</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/2-5-ontologie-schema.md">2.5 Ontologie und Schema</a></li></ul></section>
+<section class="t-gamma"><h2>Team Gamma γ: JLU-Informationsqualität</h2><ul><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/3-1-konsistenz.md">3.1 Konsistenz über Quellen</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/3-2-aktualitaet.md">3.2 Aktualität und Veraltung</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/3-3-auffindbarkeit.md">3.3 Auffindbarkeit und Informationsarchitektur</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/3-4-verstaendlichkeit.md">3.4 Verständlichkeit</a></li><li><a href="https://gitlab.ub.uni-giessen.de/gm1912/project-jlu/-/blob/main/steckbriefe/3-5-mehrsprachigkeit.md">3.5 Mehrsprachigkeit</a></li></ul></section>
+</div>
+</main>
+<script>
+const svg = document.getElementById('karte');
+const markiere = id => {
+  svg.classList.toggle('fokus', !!id);
+  const nb = new Set(id ? [id] : []);
+  svg.querySelectorAll('.e').forEach(e => { const an = !!id && (e.dataset.a === id || e.dataset.b === id); e.classList.toggle('an', an); if (an) { nb.add(e.dataset.a); nb.add(e.dataset.b); } });
+  svg.querySelectorAll('.kn').forEach(n => n.classList.toggle('an', nb.has(n.dataset.id)));
+};
+svg.querySelectorAll('.kn').forEach(n => {
+  const ziel = n.closest('a') || n;
+  ziel.addEventListener('mouseenter', () => markiere(n.dataset.id));
+  ziel.addEventListener('mouseleave', () => markiere(null));
+  ziel.addEventListener('focus', () => markiere(n.dataset.id));
+  ziel.addEventListener('blur', () => markiere(null));
+});
+document.querySelectorAll('.bar input').forEach(c => c.addEventListener('change', () => svg.classList.toggle('ohne-' + c.dataset.typ, !c.checked)));
+</script>
+</body>
+</html>
