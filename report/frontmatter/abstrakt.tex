@@ -1,9 +1,22 @@
 % Zusammenfassung --- 120 bis 180 Wörter.
-% Erst schreiben, wenn die Ergebnisse stehen (März), nicht vorher.
+% Die Ergebniszahl fehlt noch; sie kommt aus dem Skriptlauf (Kapitel 6).
 
 \section*{Zusammenfassung}
 \addcontentsline{toc}{section}{Zusammenfassung}
 
-\todo{Zusammenfassung: (1) Fragestellung in einem Satz, (2) Datengrundlage und Stichtag,
-(3) Verfahren in zwei Sätzen, (4) die wichtigste Zahl mit Unsicherheit, (5) Einordnung in
-einem Satz. Keine Wertungen, keine Ausblicke ohne Befund.}
+Diese Arbeit untersucht, ob sich widersprüchliche Angaben in den Studieninformationen eines
+Masterstudiengangs automatisch finden und zuverlässig bewerten lassen. Datengrundlage sind
+die Prüfungsordnungen des Studiengangs in ihren vier Fassungen, die Allgemeinen
+Bestimmungen, die Studiengangsseite, der Studienführer und die Einstiegsseite des
+Fachbereichs, eingefroren zu einem Stichtag. Das Verfahren extrahiert Sachverhalte mit einem
+Sprachmodell unter Zitatpflicht, normalisiert Datums-, Zahlen- und Semesterangaben und
+gruppiert sie zu Paaren aus Entität und Attribut. Eine Typologie ordnet jeden Fund als
+echten Widerspruch, Versionsunterschied, Scope-Unterschied, Formulierungsunterschied oder
+Extraktionsfehler ein. Gegen einen von Hand erstellten Goldstandard werden Precision und
+Recall je Sachverhaltstyp sowie die Übereinstimmung zwischen Mensch und Modell berichtet.
+
+\todo{Fehlt: die wichtigste Zahl mit Unsicherheit in einem Satz (Ergebnis aus \mbox{Kapitel~6}).}
+
+Der Beitrag liegt weniger in der Feststellung, dass Informationen altern, als in der Trennung
+der Fälle: Erst wenn Versionsartefakte von echten Widersprüchen unterscheidbar sind, lässt
+sich aus einer Fundliste eine Empfehlung ableiten.

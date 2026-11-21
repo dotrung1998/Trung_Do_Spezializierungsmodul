@@ -44,5 +44,13 @@
   doi=true,
   url=true
 ]{biblatex}
+\AtBeginBibliography{%
+  \setlength{\bibitemsep}{2pt}%
+  \setlength{\bibparsep}{0pt}%
+}
 
 \usepackage[hidelinks]{hyperref}
+
+% URL nicht nach dem Schema trennen: als unteilbare Box setzen,
+% damit sie geschlossen in die naechste Zeile rutscht.
+\DeclareFieldFormat{url}{URL\addcolon\space\mbox{\url{#1}}}

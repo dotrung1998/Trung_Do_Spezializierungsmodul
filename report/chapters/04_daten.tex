@@ -7,22 +7,71 @@
 
 \subsection{Quellen und Stichtag}
 
-\todo{Welche Dokumente, welche Fassungen, ein Abrufdatum. Tabelle mit Quelle, Typ, Anzahl,
-Abrufdatum. Die Fassungen der Speziellen Ordnung einzeln nennen --- sie sind der Zeitstrahl
-der Arbeit.}
+Der Korpus umfasst die Dokumente, in denen Studieninformationen für den Masterstudiengang
+Data Analytics verbindlich oder beratend festgehalten sind. Tabelle~\ref{tab:korpus} nennt
+sie mit ihrer Rolle im Vergleich; die Adressen und Dateikennungen stehen im Datenblatt des
+Repositories.
+
+\begin{table}[ht]
+  \centering
+  \caption{Korpus: Dokumente und ihre Rolle im Vergleich}
+  \label{tab:korpus}
+  \small
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.38\textwidth}>{\raggedright\arraybackslash}p{0.14\textwidth}>{\raggedright\arraybackslash}p{0.38\textwidth}@{}}
+    \toprule
+    Dokument & Typ & Rolle im Vergleich \\
+    \midrule
+    Spezielle Ordnung M.Sc. Data Analytics, Urfassung (18.05.2023) & PDF, Ordnung & Ausgangsfassung \\
+    1., 2.\ und 3.\ Änderungsfassung derselben Ordnung & PDF, Ordnung & Zeitstrahl, Versionsartefakte \\
+    Allgemeine Bestimmungen, 3.\ Änderungsfassung & PDF, Ordnung & Rahmenregeln und Fristen \\
+    Übersichtsseite der Mitteilungen 7.36.07 Nr.~11 & HTML & Geltungsangaben, Fassungsnachweis \\
+    Studienangebotsseite des Studiengangs & HTML & Außendarstellung, Fristen \\
+    Studienführer Data Science/Data Analytics & PDF, Beratung & Zusammenfassung für Bewerbende \\
+    Einstiegsseite Fachbereich 07 & HTML & Verweise und Zuständigkeiten \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Alle Angaben beziehen sich auf einen Stichtag, der beim Einfrieren des Korpus gesetzt wird.
+Zu diesem Zeitpunkt wird jede Datei mit einem Hash festgehalten; das Datenblatt verzeichnet
+Abrufdatum, Umfang und bekannte Lücken je Quelle. Ohne diesen Schnitt wäre die Messung nicht
+wiederholbar, weil sich die Seiten während der Auswertung ändern können. Die vier Fassungen
+der Speziellen Ordnung sind dabei kein Zusatz, sondern Voraussetzung: Sie bilden den
+Zeitstrahl, an dem sich entscheiden lässt, ob eine Abweichung ein Widerspruch oder ein
+Versionsartefakt ist.
 
 \subsection{Faktkatalog}
 
-\todo{Die untersuchten Sachverhaltstypen mit Begründung der Auswahl. Vollständige Tabelle
-in den Anhang, hier nur die Logik: warum diese zwölf und nicht vierzig.}
+Untersucht werden zwölf Sachverhaltstypen. Die Auswahl folgt vier Kriterien. Der Typ muss in
+mindestens zwei Dokumenten genannt sein, sonst gibt es nichts zu vergleichen. Er muss für eine
+Studienentscheidung relevant sein --- eine Angabe, die niemand zur Entscheidung braucht, misst
+nichts. Er muss sich in seiner erwarteten Änderungsrate unterscheiden, damit H1 überhaupt
+prüfbar ist. Und er muss sich mit Belegstelle extrahieren lassen; weiche Werte wie
+Einschätzungen zur Studierbarkeit scheiden damit aus.
+
+Zwölf Typen und nicht vierzig: Jeder Typ kostet Annotation im Goldstandard, und eine
+Stichprobe, die über vierzig Typen streut, hat je Typ zu wenige Fälle für ein
+Konfidenzintervall. Die Beschränkung ist also keine Vereinfachung aus Bequemlichkeit, sondern
+die Bedingung dafür, dass die Raten je Typ belastbar sind. Die vollständige Liste mit
+Beispielen und erwarteter Änderungsrate steht in Anhang~\ref{app:faktkatalog}.
 
 \subsection{Ausschlüsse und Grenzen der Erhebung}
 
-\todo{Was nicht erfasst wurde: Seiten hinter Login, PDFs ohne Textebene, dynamische
-Inhalte. Ehrlich und vollständig --- dieser Absatz entscheidet mit über die Bewertung
-der Belastbarkeit.}
+Nicht erfasst werden Seiten hinter einem Login (StudIP, Prüfungsverwaltung), PDFs ohne
+Textebene, die nur per OCR zugänglich wären, und Inhalte, die erst im Browser dynamisch
+geladen werden. Englische Fassungen werden nicht systematisch verglichen, weil sie zur
+Dimension Mehrsprachigkeit gehören (3.5).
+
+Diese Ausschlüsse sind keine Nebenbemerkung: Sie begrenzen, worauf sich die Abweichungsraten
+beziehen. Eine Abwesenheit von Abweichungen in einem nicht erfassten Bereich ist keine
+Konsistenz, sondern eine Lücke. Deshalb steht im Datenblatt zu jeder Quelle, was fehlt und
+warum es fehlt.
 
 \subsection{Erhebung und Höflichkeitsregeln}
 
-\todo{robots.txt, Rate, User-Agent, Ankündigung bei der Webredaktion. Kurz, aber
-nachweisbar.}
+Abgerufen wird mit einem klaren User-Agent und Kontaktangabe, sequenziell mit höchstens einer
+Anfrage pro Sekunde und unter Beachtung der \texttt{robots.txt}. Auf Massenabrufe und das
+Umgehen von Sperren wird verzichtet. Die Webredaktion wird über die Betreuung vorab
+informiert. Für frühere Fassungen von Webseiten wird die Wayback Machine genutzt; sie ist
+lückenhaft, und ein fehlender Snapshot wird als Lücke dokumentiert, nicht als Unverändertheit
+gedeutet.

@@ -361,6 +361,57 @@ Bericht als Konvention kennzeichnen.
 Suche jeweils über Semantic Scholar, ACM Digital Library, ACL Anthology, arXiv und
 Google Scholar; die Suchbegriffe stehen in den Steckbriefen.
 
+## Prüfprotokoll 21.11.2026 — alle 13 zitierten Einträge am Original
+
+Anlass: Das Literaturverzeichnis war zuletzt nur gegen Sekundärquellen und Erinnerung
+geprüft. Jetzt wurde jeder der 13 im Bericht zitierten Einträge an seiner Verlags-,
+Norm- oder Repository-Seite geöffnet und mit dem Satz abgeglichen, an dem er hängt.
+
+| Eintrag | geöffnet bei | Befund | Korrektur |
+|---|---|---|---|
+| Bavaresco u. a. 2025 | ACL Anthology 2025.acl-short.20 | existiert; 20 Verfasser:innen, S. 238–255, ACL 2025 Vol. 2 | keine |
+| Bowman u. a. 2015 | ACL Anthology D15-1075 | existiert; S. 632–642, EMNLP 2015 | DOI ergänzt |
+| Cho & Garcia-Molina 2000 | ACM, DOI 10.1145/342009.335391 | existiert; SIGMOD '00, S. 117–128. Abstract: Refresh-Policies, 270 Websites über 4 Monate — **keine** Änderungsraten nach Domain oder Seitentyp | Zitat in 2.3 umformuliert |
+| Conneau u. a. 2018 | ACL Anthology D18-1269 | existiert; 7 Verfasser, S. 2475–2485 | DOI ergänzt |
+| Fetterly u. a. 2003 | ACM, DOI 10.1145/775152.775246 | existiert; WWW '03, S. 669–678. Abstract belegt: Änderungsrate variiert stark nach Top-Level-Domain, größere Seiten ändern sich öfter | Zitat präzisiert (Domain + Seitengröße) |
+| ISO/IEC 25012 | iso.org/standard/35736.html | existiert; Edition 1, 2008-12, 2025 bestätigt | Prüfvermerk aus der Angabe entfernt |
+| ISO/IEC 25024 | iso.org/standard/35749.html | existiert; Edition 1, 2015-10, 45 Seiten, 2022 bestätigt | Prüfvermerk gekürzt |
+| Jones u. a. 2016 | PLOS ONE 11(12): e0167475 | existiert; 76,35 % Content Drift | keine |
+| Klein u. a. 2014 | PLOS ONE 9(12): e115253 | existiert; Reference Rot | keine |
+| Krippendorff 2004 | Sage / Katalog | existiert; 2. Aufl., Thousand Oaks, ISBN 0761915443, 413 S. | keine |
+| Pielka u. a. 2022 | arXiv:2210.10434 | existiert. Abstract beschreibt eine linguistische Analyse zweier NLI-Datensätze — **nicht** „synthetische Daten enthalten andere Widerspruchstypen“; Proceedings-Seiten nirgends belegbar | Zitat in 2.2 auf den echten Befund umgeschrieben; Eintrag auf die arXiv-Fassung umgestellt, `pages = {1--5}` entfernt |
+| Thorne u. a. 2018 | ACL Anthology N18-1074 | existiert; NAACL-HLT 2018, Vol. 1 (Long Papers), S. 809–819 | DOI und Band ergänzt |
+| Wang & Strong 1996 | Taylor & Francis, DOI 10.1080/07421222.1996.11518099 | existiert; JMIS 12(4), S. 5–33; 15 Dimensionen in vier Kategorien (intrinsic, contextual, representational, accessibility) | DOI ergänzt |
+
+**Zwei echte Fehlzuschreibungen** (nicht nur Metadaten):
+
+1. **Pielka u. a. 2022** stand für die Behauptung, synthetische Daten enthielten andere
+   Widerspruchstypen als echte Texte. Die Arbeit sagt etwas anderes: Widerspruchsmodelle
+   scheitern an Präpositionen und Verben, Antonymen und Homonymen, unvollständigen Sätzen,
+   langen Absätzen und seltenen Wörtern; ein crowdsourced-maschinell übersetztes Set (SNLI)
+   unterscheidet sich sprachlich von Textpaaren aus Internetquellen. Die Folgerung im Bericht
+   (eigener Goldstandard statt SNLI) bleibt gültig, steht jetzt aber auf dem, was die Quelle
+   tatsächlich zeigt.
+2. **Cho & Garcia-Molina 2000** war zusammen mit Fetterly für „Änderungsraten nach Domain und
+   Seitentyp“ zitiert. Diese Beobachtung stammt von Fetterly u. a. 2003. Cho & Garcia-Molina
+   liefern die Refresh-/Freshness-Policy und stehen jetzt in einem eigenen Halbsatz.
+
+**Wie geprüft wurde:** DOI-Resolver bzw. Verlags-/Repository-Seite je Eintrag, Abgleich von
+Verfasserliste, Jahr, Titel, Venue, Band, Seiten und DOI; bei inhaltlichen Zweifeln zusätzlich
+das Abstract gelesen. ISO-Normtexte sind kostenpflichtig — die beiden Definitionen in 2.1
+(Consistency, Currentness) wurden deshalb über drei unabhängige, wörtlich zitierende
+Dokumente gegengeprüft (DAMA-NL 2020, iso25000.com, González u. a. arXiv:2102.11527); der
+Normtext selbst wurde nicht gekauft.
+
+**Offen / bewusst nicht angefasst:**
+
+- `amstad1978` und die übrigen unzitierten Reserve-Einträge in `report/literatur.bib`
+  (`batini2009`, `li2016truth`, `bleiholder2009`, `cho2003refresh`, `mallawaarachchi2020`, `pew2024`, `massicotte2017`, `amstad1978`, `bamberger1984`, `bjornsson1968`, `redish1985`, `davison1988`, `redish2000`, `weiss2022`, `ruohonen2021`, `dinspec33429`, `pirolli1999`, `rosenfeld2015`, `googlehreflang`) sind weiterhin nicht am Original geprüft. Sie erscheinen nicht im PDF,
+  weil biblatex nur zitierte Einträge druckt — vor einer Verwendung in 3.2–3.5 müssen sie
+  durch dasselbe Protokoll.
+- Die 38 `\todo`-Lücken, die Titel-/Sprachfragen und die offene 3.5-Quelle bleiben unberührt.
+- Kein Commit in diesem Schritt.
+
 ## Prüfregel für neue Einträge
 
 Ein Eintrag gilt erst als aufgenommen, wenn Verfasser, Titel, Jahr, Erscheinungsort und

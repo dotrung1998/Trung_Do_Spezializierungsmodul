@@ -1,7 +1,7 @@
 ---
 titel: LaTeX-Bericht
 stand: 2026-11-21
-status: baut sauber (tectonic); Inhalt ist noch Gerüst
+status: baut sauber; Textteil geschrieben, Messkapitel offen
 ---
 
 # LaTeX-Bericht
@@ -15,17 +15,17 @@ Der Vault ist Denkablage, `report/` ist Satz und später Abgabe.
 |---|---|
 | Engine | **tectonic 0.17.0** (XeTeX), auf diesem Rechner installiert und gelaufen |
 | Befehl | `cd report && ./build.sh` → intern `tectonic -X compile --keep-logs main.tex` |
-| Ergebnis | `main.pdf`, **12 Seiten**, **0 Fehler** |
+| Ergebnis | `main.pdf`, **22 Seiten gesamt / 13 Textseiten**, **0 Fehler** |
 | Offene Zitate/Verweise | **keine** — `main.log` ohne `undefined`, kein `??`, kein `[?]` |
 | Literaturverzeichnis | **13 von 13** zitierten Schlüsseln gerendert |
-| Inhalt | **nur Gerüst**: 38 `\todo`-Platzhalter stehen noch im PDF |
+| Inhalt | **Textteil geschrieben** (Kap. 1–8, A.2, A.4, A.5); **9 `\todo`** offen (6.1–6.4, 7.2, 8, Zusammenfassung, A.1, A.3) |
 | Titel | Arbeitstitel, noch nicht abgestimmt |
 | Selbstständigkeitserklärung | Platzhalter, Wortlaut aus Modulvorlage nötig |
 
-**Das PDF ist ein Bau-Nachweis, kein Abgabestand.** Es beweist, dass Satz, Gliederung,
-Tabellen, Zitate und Seitenzählung funktionieren — nicht, dass der Bericht geschrieben ist.
-Die roten `\todo`-Klammern sind Absicht und bleiben, bis die Betreuung die Richtung
-bestätigt hat.
+**Der Text ist geschrieben, die Messzahlen fehlen.** Kapitel 1–8 tragen Argument, Methode
+und Auswertungslogik; A.2, A.4 und A.5 sind als Entwurf ausformuliert. Rot bleiben neun
+Stellen: sieben, deren Kern eine Zahl aus dem Lauf ist (6.1–6.4, 7.2, 8, Zusammenfassung),
+und zwei Nutzerentscheidungen (A.1 Faktentypen, A.3 Modell/Prompt/Umgebung).
 
 ## Bauen
 
@@ -78,6 +78,8 @@ Warnung. Das per Homebrew installierte biber 2.22 ist derzeit ungenutzt und kann
    Vorspann und arabische ab Kapitel 1.
 5. **biblatex-Optionskonflikt.** `giveninits=true` kollidierte mit `uniquename=full`,
    jetzt `uniquename=init`.
+6. **Tabellenspalten.** `p{}`-Spalten setzen im Blocksatz breite Lücken zwischen Wörtern;
+   alle Tabellenzellen sind jetzt `>{\raggedright\arraybackslash}p{...}`.
 
 ## Aufbau
 
@@ -128,7 +130,7 @@ Abgabeordner `gamma-3-1-konsistenz/` des Abgaberepos legen. Details im Leitfaden
 
 ## Was noch fehlt
 
-- Text: 38 `\todo`-Stellen füllen (Kapitel 5 und 6 zuerst, sie tragen die Note).
+- Text: 9 `\todo`-Stellen füllen (7 Messzahlen, 2 Entscheidungen A.1/A.3).
 - Titel mit der Betreuung abstimmen.
 - Wortlaut der Selbstständigkeitserklärung beschaffen.
 - Sprache des Berichts klären (Frage 2 in [[E-Mail 1 – Themenwünsche]]). Bei Englisch:
@@ -137,3 +139,22 @@ Abgabeordner `gamma-3-1-konsistenz/` des Abgaberepos legen. Details im Leitfaden
 ## Bezug
 
 [[Prüfungsleistung ohne Vortrag]] · [[Literatur]] · [[Person]]
+
+## URL-Umbruch im Literaturverzeichnis (gelöst 21.11.2026)
+
+Die ISO-Einträge brachen die Adresse nach `https:` um. Drei Hebel wurden am gerenderten PDF
+getestet und wirkten **nicht**: `\def\UrlBreaks`/`\def\UrlBigBreaks` (auch in
+`\AtBeginDocument` und `\AtBeginBibliography`) und ein ersetztes `\biburlsetup` — biblatex
+setzt die Umbruchregeln pro Eintrag neu. Auch url.sty und hyperref waren unschuldig: in
+Minimaldokumenten brachen dieselben Adressen korrekt nach `/`.
+
+**Lösung** in `preamble/packages.tex`, nach dem Laden von biblatex:
+
+```latex
+\DeclareFieldFormat{url}{URL\addcolon\space\mbox{\url{#1}}}
+```
+
+Die URL ist damit unteilbar und rutscht als Ganzes in die nächste Zeile. Das Label steht als
+normales `URL` statt `\mkbibacro{URL}`, weil die beiden ISO-Einträge sonst unterschiedlich
+gesetzt wurden (einmal Kapitälchen, einmal Normalbuchstaben). Geprüft bei 200 dpi: beide
+Adressen vollständig, 0 Overfull. Wer die Zeile später ändert, prüft die ISO-Einträge erneut.

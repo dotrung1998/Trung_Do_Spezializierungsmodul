@@ -7,35 +7,150 @@
 
 \subsection{Analyseeinheit: der Sachverhalt}
 
-\todo{Definition als Tupel aus Entität, Attribut, Wert, Gültigkeitsintervall, Quelle und
-Fundstelle. Ein Beispiel ausgeschrieben. Begründung: Ohne diese Definition bleibt
-\enquote{derselbe Sachverhalt} Alltagssprache und die Messung wird nicht prüfbar.}
+Die Einheit der Messung ist der Sachverhalt, definiert als Tupel aus Entität, Attribut, Wert,
+Gültigkeitsintervall, Quelle und Fundstelle:
+\begin{equation}
+  \fakt{Fakt} = (\fakt{entität},\ \fakt{attribut},\ \fakt{wert},\ \fakt{gültigkeit},\
+  \fakt{quelle},\ \fakt{fundstelle}).
+\end{equation}
+Tabelle~\ref{tab:fakt} schreibt ein Beispiel aus, das im Korpus tatsächlich vorkommt: den
+Geltungsbeginn der 1.~Änderungsfassung.
+
+\begin{table}[ht]
+  \centering
+  \caption{Ein Sachverhalt als Tupel, ausgeschrieben am Beispiel des Geltungsbeginns}
+  \label{tab:fakt}
+  \small
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.74\textwidth}@{}}
+    \toprule
+    Feld & Wert \\
+    \midrule
+    entität & M.Sc. Data Analytics \\
+    attribut & Geltungsbeginn der 1.~Änderungsfassung \\
+    wert & WiSe 2023/24 bzw.\ WiSe 2024/25 \\
+    gültigkeit & ab WiSe 2023/24 bzw.\ ab WiSe 2024/25 \\
+    quelle & Übersichtsseite 7.36.07 Nr.~11; PDF der 1.~Änderungsfassung \\
+    fundstelle & \enquote{gültig ab dem Wintersemester 2023/24} bzw.\
+      \enquote{gilt ab dem Wintersemester 2024/25} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Die Definition ist keine Formalie. Ohne sie bleibt \enquote{derselbe Sachverhalt}
+Alltagssprache, und zwei Prüfer können zu verschiedenen Ergebnissen kommen, ohne einander zu
+widersprechen. Mit ihr ist entscheidbar, ob zwei Angaben überhaupt verglichen werden dürfen:
+Nur wenn Entität und Attribut übereinstimmen und sich die Gültigkeitsintervalle überlappen,
+ist eine Abweichung möglich. Alles Weitere --- Normalisierung, Gruppierung, Typzuordnung ---
+setzt auf dieser Entscheidung auf.
 
 \subsection{Extraktion mit Zitatpflicht}
 
-\todo{Sprachmodell mit festem Schema, jeder Wert mit Belegstelle; Werte ohne Fundstelle
-gelten als nicht extrahiert. Begründung: Ein Modell liefert plausible Werte auch dort,
-wo keine stehen. Temperatur, Prompt-Version, Modellversion --- gehört in den Anhang.}
+Die Extraktion erfolgt mit einem Sprachmodell, das ein festes Schema erzeugt: Entität,
+Attribut, Wert, Scope, Gültigkeitsintervall und Fundstelle. Jeder Wert muss eine Fundstelle
+mitliefern --- Dokumentkennung, Textausschnitt und Zeichenposition. Werte ohne Fundstelle
+gelten als nicht extrahiert und werden verworfen, nicht geschätzt.
+
+Der Grund ist praktisch: Ein Sprachmodell liefert plausible Werte auch dort, wo keine
+stehen. Die Zitatpflicht macht jede Halluzination in einem Schritt prüfbar, weil das Zitat
+gegen das Original gehalten werden kann, und sie beschleunigt den Goldstandard, weil die
+Prüfung an der Stelle beginnt und nicht beim ganzen Dokument. Für die Reproduzierbarkeit
+werden Temperatur 0, eine feste Prompt-Version und ein Lauf je Korpusversion festgelegt;
+Modellname, Version, Temperatur, Prompt-Version und Datum stehen in
+Anhang~\ref{app:modelle}. Prompt-Änderungen sind Eingriffe in das Messinstrument und werden
+als solche dokumentiert, nicht stillschweigend nachgezogen.
 
 \subsection{Normalisierung}
 
-\todo{Datum, Zahl, Einheit, Entitätsalias, Scope. Tabelle der Regeln mit je einem
-Beispiel. Hinweis: Die Aliasliste ist selbst ein Ergebnis, weil sie zeigt, wie viele
-Schreibweisen derselbe Studiengang hat.}
+Ohne Normalisierung entstehen falsche Widersprüche, weil derselbe Wert verschieden
+geschrieben wird. Tabelle~\ref{tab:norm} nennt die Regeln mit je einem Beispiel.
+
+\begin{table}[ht]
+  \centering
+  \caption{Normalisierungsregeln}
+  \label{tab:norm}
+  \small
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth}>{\raggedright\arraybackslash}p{0.40\textwidth}>{\raggedright\arraybackslash}p{0.29\textwidth}@{}}
+    \toprule
+    Problem & Beispiel & Regel \\
+    \midrule
+    Datumsformate & 15.01.2027, 2027-01-15, \enquote{15. Januar} & ISO 8601 \\
+    Zahlen und Einheiten & \enquote{6 LP}, \enquote{sechs Leistungspunkte} & Zahl und Einheit getrennt \\
+    Semesterangaben & \enquote{WiSe 2023/24}, \enquote{Wintersemester 2023/24} & kanonische Form \\
+    Entitätsnamen & \enquote{Data Analytics}, \enquote{M.Sc. Data Analytics} & Aliasliste \\
+    Scope & \enquote{EU-Bewerbende} gegenüber allen & eigenes Feld \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Zwei Punkte daran sind mehr als Technik. Die Aliasliste wird von Hand gepflegt und ist selbst
+ein Ergebnis: Sie zeigt, wie viele Schreibweisen derselbe Studiengang hat, und jede
+Schreibweise ist eine potenzielle Quelle für eine falsch zugeordnete Angabe. Das Scope-Feld
+verhindert den häufigsten falschen Widerspruch: Zwei Aussagen über verschiedene Zielgruppen
+sind kein Widerspruch, sondern zwei Sachverhalte. Wer den Scope erst bei der Interpretation
+berücksichtigt, hat ihn im Datensatz bereits verloren.
 
 \subsection{Abweichungstypologie}
+\label{sec:typologie}
 
-\todo{Die fünf Typen (echter Widerspruch, Versionsunterschied, Scope-Unterschied,
-Formulierung, Extraktionsfehler) mit Entscheidungsregel je Typ. Das ist der eigene
-Beitrag --- hier ausführlich werden.}
+Die Typologie ist der eigene Beitrag der Arbeit. Sie ordnet jeden Fund einem von fünf Typen
+zu und wird in dieser Reihenfolge geprüft, weil die früheren Typen die späteren erklären
+können.
+
+\begin{description}[style=nextline]
+  \item[Extraktionsfehler]
+  Die Fundstelle trägt den extrahierten Wert nicht. Prüfregel: Zitat gegen Original lesen.
+  Der Fall wird nicht als Abweichung gezählt, sondern als Fehler des Verfahrens und geht in
+  die Fehleranalyse ein.
+  \item[Formulierungsunterschied]
+  Nach der Normalisierung sind die Werte gleich; nur die Darstellung unterscheidet sich.
+  Prüfregel: Gleichheit der normalisierten Werte. Der Fall ist kein Befund über die Quellen,
+  sondern ein Beleg dafür, dass die Normalisierung greift.
+  \item[Scope-Unterschied]
+  Die Aussagen betreffen verschiedene Zielgruppen, Programme oder Studienformen. Prüfregel:
+  Das Scope-Feld unterscheidet sich, und beide Angaben sind für ihren Scope zutreffend.
+  \item[Versionsunterschied]
+  Die Gültigkeitsintervalle sind disjunkt, und die ältere Angabe war zum Zeitpunkt ihrer
+  Fassung richtig. Prüfregel: Abgleich mit den Fassungen der Ordnung und mit dem
+  Redaktionsschluss des Dokuments.
+  \item[Echter Widerspruch]
+  Gleicher Scope, überlappende Gültigkeit, verschiedene Werte. Nur dieser Typ ist ein Befund
+  über die Informationsqualität im engeren Sinn.
+\end{description}
+
+Die Reihenfolge ist entscheidend. Wer zuerst \enquote{Widerspruch} ruft und danach erklärt,
+produziert falsche Positive und macht die Precision unbrauchbar. Die Typologie dreht die
+Beweislast um: Eine Abweichung gilt erst dann als Widerspruch, wenn die vier anderen
+Erklärungen geprüft und verworfen sind.
 
 \subsection{Goldstandard und Reliabilität}
 
-\todo{Stichprobe, zwei Durchgänge, Konfliktlösung, Krippendorffs Alpha mit Konvention
-\parencite{krippendorff2004}. Und die Validierung des Modells gegen menschliche Labels
-\parencite{bavaresco2025llms}.}
+Der Goldstandard wird als stratifizierte Stichprobe über die zwölf Sachverhaltstypen gezogen
+und nicht zufällig über alle Zeilen, weil er sonst überwiegend aus leicht prüfbaren Typen
+bestünde und die schweren Fälle nicht abdeckte. Zwei unabhängige Durchgänge werden
+gegeneinander gehalten; Konflikte werden dokumentiert und aufgelöst. Die Übereinstimmung wird
+als Krippendorffs $\alpha$ berichtet, mit der üblichen Konvention: Werte ab 0,8 gelten als
+belastbar, Werte ab 0,667 als vorläufig vertretbar, darunter ist das Label zu unscharf und
+nicht die Codierung schlecht \parencite{krippendorff2004}.
+
+Zusätzlich wird das Sprachmodell gegen menschliche Labels validiert, bevor es auf den vollen
+Korpus angewendet wird. Ohne diesen Schritt wäre die Gesamtauswertung nicht belastbar, weil
+das Modell zugleich Messinstrument und Gegenstand der Messung ist. Die Literatur zu
+sprachmodellgestützten Urteilen zeigt, dass die Übereinstimmung mit menschlichen Urteilen je
+nach Aufgabe und Modell stark schwankt \parencite{bavaresco2025llms}; ein pauschales
+\enquote{das Modell versteht den Text} ersetzt diese Prüfung nicht.
 
 \subsection{Metriken}
 
-\todo{Precision, Recall, F1 je Sachverhaltstyp; Wilson-Konfidenzintervall; Formeln
-hinschreiben, nicht nur nennen. Warum je Typ und nicht global.}
+Precision, Recall und F1 werden gegen denselben Goldstandard berechnet:
+\begin{equation}
+  P = \frac{TP}{TP+FP}, \qquad R = \frac{TP}{TP+FN}, \qquad F_1 = \frac{2PR}{P+R}.
+\end{equation}
+Für Anteile wird das Wilson-Konfidenzintervall berichtet, weil die übliche Normalapproximation
+bei kleinem Stichprobenumfang zu schmale Intervalle liefert und die Unsicherheit dann
+kleiner aussieht, als sie ist.
+
+Berichtet wird je Sachverhaltstyp und nicht nur global. Ein globaler F1 von 0,8 kann aus 0,95
+bei Modulnummern und 0,45 bei Ansprechpartnern bestehen; die Aussage \enquote{das Verfahren
+funktioniert} wäre dann falsch, obwohl die Zahl stimmt. Die Aufschlüsselung nach Typ ist
+zugleich die Verbindung zur inhaltlichen Frage, weil sie zeigt, wo die automatische Prüfung
+trägt und wo sie noch Handarbeit braucht.

@@ -136,3 +136,31 @@ Verfahren versteht.
 ## Bezug
 
 [[3.1 Konsistenz]] · [[3.2 Aktualität]] · [[Hypothesen 3.1]] · [[Literatur]]
+
+## Datenmodell und Fehlertaxonomie (21.11.2026)
+
+Beide Artefakte stehen jetzt ausformuliert im Bericht und sind hier festgehalten, damit sie
+nicht neu erfunden werden:
+
+**Extraktionsschema (Bericht A.2).** 16 Felder in drei Ebenen: Dokument (`doc_id`,
+`doc_hash`), Fakt (`entitaet`, `attribut`, `wert_raw`, `wert_norm`, `einheit`, `scope`,
+`gueltig_von`, `gueltig_bis`), Fundstelle (`fundstelle_text`, `fundstelle_start`,
+`fundstelle_ende`) plus Laufmetadaten (`status`, `prompt_version`, `modell`). Pflicht sind
+alle außer `wert_norm`, `einheit` und den beiden Gültigkeitsdaten: Die Normalisierung darf
+scheitern, ohne den Fakt zu verlieren; ein Fakt ohne Fundstelle wird dagegen nicht
+geschrieben. `doc_hash` trennt Fassungen — ein zweiter Abruf ist eine neue Dokumentversion,
+keine Korrektur.
+
+**Fehlertaxonomie (Bericht A.4).** Fünf Klassen, jeweils mit Folge für die Kennzahl:
+Extraktion (falscher Wert → Precision/Recall), erfundene Angabe (Precision),
+Normalisierung (falsch vereinheitlicht → Precision), Gruppierung (beides), Scope
+(Precision), Urteil (Precision bzw. Recall). Jeder Fall bekommt **eine** Hauptursache;
+Nebenursachen nur im Protokoll. Die Klassen werden vor der Auswertung festgelegt, sonst
+passt man sie dem Ergebnis an.
+
+**Abgrenzung.** Die Abweichungstypologie (5.4) sagt, was ein Fund bedeutet; die
+Fehlertaxonomie sagt, wodurch das Verfahren danebenliegt. Ein Extraktionsfehler ist in
+beiden Systemen vorhanden, aber mit anderer Funktion: Ausschlussgrund dort, Kennzahl hier.
+
+**Offen.** Häufigkeiten je Fehlerklasse und alle Abweichungsraten sind Messzahlen; sie
+stehen in Kapitel 6, sobald der Lauf existiert.

@@ -14,25 +14,73 @@ unter anderem \emph{Consistency} als Freiheit von Widerspruch und Kohärenz mit 
 Daten sowie \emph{Currentness} als richtiges Alter im Nutzungskontext. ISO/IEC 25024
 \parencite{iso25024} ergänzt Messgrößen zu diesen Merkmalen.
 
-\todo{Ein Absatz zur Einordnung: Welche der fünf Team-Dimensionen sind das, und warum
-wird hier Consistency gewählt? Der Standard definiert, was gemessen wird --- nicht, wie.
-Die Operationalisierung ist der Beitrag dieser Arbeit.}
+Das Projekt untersucht fünf dieser Dimensionen getrennt: Konsistenz, Aktualität,
+Auffindbarkeit, Verständlichkeit und Mehrsprachigkeit. Die vorliegende Arbeit bearbeitet die
+Konsistenz, aus drei Gründen. Sie ist normativ verankert und braucht keine eigene Definition
+des Qualitätsbegriffs; sie hat eine natürliche Analyseeinheit, den Sachverhalt, der sich
+zählen lässt; und sie ist quellenübergreifend, lässt sich also nicht durch die Prüfung eines
+einzelnen Dokuments erledigen. Wichtig ist dabei die Arbeitsteilung: Der Standard sagt,
+\emph{was} gemessen wird, nicht \emph{wie}. Die Operationalisierung --- Extraktion,
+Normalisierung, Typologie, Goldstandard --- ist der Beitrag dieser Arbeit und nicht aus der
+Norm ableitbar.
 
 \subsection{Widersprüche automatisch erkennen}
 
-\todo{FEVER \parencite{thorne2018fever} als Referenzrahmen: Aussage, Belegstelle, Urteil.
-NLI als Baustein \parencite{bowman2015snli,conneau2018xnli}. Wichtig: der Befund von
-\textcite{pielka2022}, dass synthetische Daten andere Widerspruchstypen enthalten als echte
-Texte --- daraus folgt die Notwendigkeit eines eigenen Goldstandards.}
+Der Referenzrahmen für automatische Widerspruchsprüfung ist die Aufgabenstellung von FEVER
+\parencite{thorne2018fever}: Zu einer Behauptung wird eine Belegstelle gesucht und daraus ein
+Urteil abgeleitet --- gestützt, widerlegt oder nicht entscheidbar. Der Datensatz umfasst
+185.445 Behauptungen, die gegen Absätze aus Wikipedia geprüft werden. Für diese Arbeit ist
+nicht der Umfang entscheidend, sondern die Struktur: Das Urteil hängt an einer zitierbaren
+Stelle und nicht an der Überzeugung des Prüfers. Genau diese Struktur braucht die
+Konsistenzmessung, denn sie vergleicht nicht eine Aussage mit Weltwissen, sondern zwei
+Dokumente miteinander.
+
+Für Fließtext, in dem Werte nicht exakt übereinstimmen, ist Natural Language Inference ein
+Baustein. SNLI stellt rund 570.000 Satzpaare mit den Urteilen \emph{Implikation}, \emph{neutrale
+Aussage} und \emph{Widerspruch} bereit \parencite{bowman2015snli}; XNLI erweitert das
+Verfahren auf fünfzehn Sprachen \parencite{conneau2018xnli}. Der Nutzen für diese Arbeit ist
+begrenzt und klar umrissen: NLI entscheidet, ob zwei Sätze einander widersprechen, wenn sie
+verschieden formuliert sind. Die Prüfung, ob sie denselben Sachverhalt betreffen, ersetzt es
+nicht.
+
+Die Grenzen sind empirisch belegt. \textcite{pielka2022} zeigen, dass Widerspruchsmodelle an
+Präpositionen und Verben, an Antonymen und Homonymen, an unvollständigen Sätzen, an langen
+Absätzen und an seltenen Wörtern scheitern, und dass sich crowdsourced-maschinell übersetzte
+Daten sprachlich von Textpaaren aus Internetquellen unterscheiden. Daraus folgt für diese
+Arbeit zweierlei: Der Goldstandard muss aus dem eigenen Korpus stammen, und ein
+SNLI-trainiertes Urteil ist kein Beleg für einen Widerspruch zwischen zwei JLU-Seiten. Es ist
+ein Hinweis, der an der Fundstelle geprüft werden muss.
 
 \subsection{Veraltung und Content Drift}
 
-\todo{Link Rot und Content Drift trennen \parencite{klein2014,jones2016}. Änderungsraten
-nach Domain und Seitentyp \parencite{cho2000freshness,fetterly2003}. Warum das für diese
-Arbeit zählt: Ein Teil der gefundenen Abweichungen ist kein Widerspruch, sondern eine
-nicht mitgezogene Aktualisierung.}
+Zwei Phänomene werden häufig vermischt. \emph{Link Rot} bezeichnet Verweise, die ins Leere
+führen; \emph{Content Drift} bezeichnet Verweise, die weiter funktionieren, aber auf
+veränderten Inhalt zeigen \parencite{klein2014,jones2016}. Für diese Arbeit ist der zweite
+Fall der relevante: Eine Seite bleibt erreichbar und sieht gepflegt aus, während die Angabe
+darauf nicht mehr stimmt.
+
+Wie ungleich solche Änderungen verteilt sind, zeigt \textcite{fetterly2003} an 150.836.209
+HTML-Seiten über elf Wochen: Die Änderungsrate variiert stark zwischen Top-Level-Domains, und
+größere Seiten ändern sich häufiger als kleinere. \textcite{cho2000freshness} zeigen
+anschließend, wie sich Abrufpläne an die gemessene Änderungsrate anpassen lassen. Übertragen
+auf Studieninformationen heißt das: Nicht jede Angabe veraltet gleich schnell, und ein
+Vergleich über alle Angaben hinweg mischt schnelle und langsame Typen. Ob Fristen tatsächlich
+häufiger abweichen als Modulnummern, ist eine der Hypothesen dieser Arbeit
+(Abschnitt~\ref{sec:frage}); die Literatur zeigt nur, dass solche Unterschiede zu erwarten
+sind.
+
+Für die Fragestellung folgt daraus eine Unterscheidung, die die ganze Auswertung trägt: Ein
+Teil der gefundenen Abweichungen ist kein Widerspruch, sondern eine nicht mitgezogene
+Aktualisierung. Beide Fälle sehen im Datensatz gleich aus --- zwei verschiedene Werte für
+denselben Sachverhalt --- und müssen dennoch verschieden behandelt werden. Die Typologie in
+Abschnitt~\ref{sec:methode} trennt sie.
 
 \subsection{Abgrenzung}
 
-\todo{Abgrenzung zu 2.2 (Verweise innerhalb der Ordnungen), 2.4 (Entity Linking) und 3.2
-(Veraltung als eigene Dimension). Ein Absatz, drei Sätze --- nicht mehr.}
+Drei Abgrenzungen sind wichtig. Verweise und Fristen \emph{innerhalb} der Ordnungen --- ob
+eine Ordnung auf eine andere verweist und dabei die richtige Fassung nennt --- prüft die
+Arbeit 2.2 desselben Projekts; hier geht es ausschließlich um Abweichungen \emph{zwischen}
+Dokumenten. Ob zwei Erwähnungen dieselbe Entität meinen, ist Gegenstand von 2.4 (Entity
+Linking); diese Arbeit setzt die Entitätsauflösung über eine gepflegte Aliasliste voraus,
+statt sie zu bewerten. Und die Veraltung als eigene Dimension mit Zeitreihe und Vorhersage
+ist 3.2 --- hier ist sie nur ein Erklärungsmuster für einen Teil der Abweichungen.

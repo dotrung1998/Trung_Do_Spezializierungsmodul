@@ -7,21 +7,94 @@
 
 \subsection{Abweichungsraten je Sachverhaltstyp}
 
-\todo{Tabelle mit Typ, Anzahl Sachverhalte, Abweichungen, Anteil, 95-Prozent-Intervall.
-Ein Satz je Zeile, der die Zahl einordnet. Die Tabelle ist das Ergebnis, nicht die
-Vorbereitung darauf.}
+Die Abweichungsrate eines Typs ist der Anteil der Sachverhalte dieses Typs, für die
+mindestens zwei Quellen verschiedene Werte nennen, an allen Sachverhalten des Typs. Sie
+wird je Typ und nicht global berichtet, weil ein Gesamtwert zwei sehr verschiedene Dinge
+verdeckt: einen Typ, der fast nie abweicht, und einen, der fast immer abweicht. Für jeden
+Typ stehen deshalb vier Angaben nebeneinander: die Zahl der Sachverhalte, die Zahl der
+Abweichungen, der Anteil und sein Wilson-Konfidenzintervall.
+
+Die Leseregel ist streng: Zwei Raten gelten nur dann als verschieden, wenn sich ihre
+Intervalle nicht überlappen. Bei zwölf Typen und kleinen Fallzahlen ist ein Unterschied von
+zehn Prozentpunkten sonst schnell nur Rauschen. Diese Regel ist unbequem, weil sie manche
+plausible Geschichte zurückweist; sie ist aber der Grund, warum die Raten überhaupt etwas
+aussagen.
+
+Für H1 ist der Vergleich zwischen instabilen und stabilen Typen entscheidend. Ist die Rate
+bei Fristen und Ansprechpartnern hoch und bei Leistungspunkten und Modulnummern nahe null,
+stützt das die Hypothese; sind die Raten über die Typen hinweg nicht unterscheidbar, ist sie
+widerlegt. Der Test ist zweiseitig, das Signifikanzniveau wird vor der Auswertung
+festgelegt und nicht nachträglich an das Ergebnis angepasst.
+
+\todo{Fehlt: die Tabelle der Abweichungsraten je Typ (Sachverhalte, Abweichungen, Anteil,
+95-Prozent-Wilson-Intervall) aus dem Skriptlauf, ein Satz je Zeile. Sie entscheidet, ob das
+Profil steil oder flach ist, und damit H1; ohne Lauf keine Zeile.}
 
 \subsection{Verfahrensvergleich}
 
-\todo{Nur Sprachmodell, nur Regeln, Hybrid: Precision, Recall, F1 gegen denselben
-Goldstandard. Aussage: Was bringt die Normalisierung wirklich?}
+Verglichen werden drei Varianten auf demselben Goldstandard und derselben Stichprobe. Die
+erste extrahiert ausschließlich mit dem Sprachmodell und übernimmt dessen Werte unverändert.
+Die zweite arbeitet ohne Sprachmodell: reguläre Ausdrücke für Datums- und Zahlenmuster, die
+Aliasliste für Entitäten, ein festes Vokabular für Attribute. Sie findet viele Werte, ordnet
+sie aber häufig dem falschen Attribut zu --- ein Grenzfall, der den Vergleich erst
+aussagekräftig macht, weil er die Schwäche des reinen Regelwegs zeigt. Die dritte kombiniert
+beides: Extraktion mit dem Sprachmodell, Normalisierung und Gruppierung mit den Regeln, NLI
+nur für Fließtext.
+
+Berichtet werden Precision, Recall und F1 je Typ sowie die Differenz im Recall zwischen
+Hybrid und reiner Modellvariante mit Konfidenzintervall. Die entscheidende Frage ist nicht,
+welche Variante den höchsten F1 erreicht, sondern ob die Normalisierung den Recall erhöht,
+ohne die Precision zu senken. Ein Precision-Verlust, der größer ist als das Intervall
+zulässt, gilt als echter Verlust und nicht als Rauschen; ein Recallgewinn innerhalb des
+Intervalls gilt als nicht nachgewiesen. Was der Vergleich nicht zeigt, ist die Wirkung eines
+besseren Prompts: Alle Varianten arbeiten mit derselben Prompt-Version, damit der Unterschied
+der Architektur und nicht der Formulierung zugerechnet wird.
+
+\todo{Fehlt: Precision, Recall und F1 je Verfahrensvariante sowie die Recall-Differenz
+Hybrid minus reine Modellvariante mit Intervall. Diese Zahlen entscheiden H2; ohne Lauf kein
+Eintrag.}
 
 \subsection{Fehleranalyse}
 
-\todo{20 bis 30 Fehlfälle, kategorisiert und gezählt. Diese Tabelle zeigt, dass das
-eigene Verfahren verstanden wird --- sie ist oft der stärkste Abschnitt einer Arbeit.}
+Die Fehleranalyse prüft nicht die Quellen, sondern das Verfahren. Aus den Fehlfällen der
+Stichprobe werden 20 bis 30 zufällig gezogen und blind gegen das Original kodiert, mit den
+Klassen aus Anhang~\ref{app:fehlertaxonomie}. Blind heißt: Die kodierende Person sieht das
+Urteil des Verfahrens erst nach der eigenen Entscheidung. Jeder Fall bekommt eine
+Hauptursache; Nebenursachen werden vermerkt, aber nicht doppelt gezählt.
+
+Berichtet wird die Häufigkeit je Klasse mit einem Beispiel. Die Verteilung ist der Ansatzpunkt
+für Verbesserungen: Überwiegen Extraktionsfehler, ist das Schema zu grob oder der Prompt zu
+unspezifisch; überwiegen Gruppierungsfehler, fehlt Scope-Information; überwiegen
+Urteilsfehler, ist die Schwelle des Fließtextvergleichs falsch gesetzt. Ohne diese Zuordnung
+wäre \enquote{das Verfahren funktioniert} eine Behauptung ohne Adresse. Bleibt die Verteilung
+dagegen flach, liegt der Engpass nicht in einer Klasse, sondern in der Abdeckung der
+Stichprobe; dann ist die Stichprobe zu klein und nicht das Verfahren falsch.
+
+\todo{Fehlt: die Häufigkeit je Fehlerklasse aus Anhang~\ref{app:fehlertaxonomie} mit je einem
+Beispiel aus dem Lauf. Die Verteilung zeigt, ob Schema, Gruppierung oder Urteil der Engpass
+ist.}
 
 \subsection{Beispiele}
 
-\todo{Zwei Fälle ausgeschrieben: ein echter Widerspruch und ein Versionsartefakt, jeweils
-mit Fundstellen und Typzuordnung. Nicht mehr als zwei.}
+Zwei Fälle werden ausgeschrieben, je einer der beiden Typen, die den Unterschied tragen: ein
+echter Widerspruch und ein Versionsartefakt. Ausgewählt werden Fälle, die sich vollständig
+belegen lassen und für ihren Typ typisch sind; ein spektakulärer Einzelfall wäre als
+Illustration schlecht geeignet, weil er die Häufigkeit verzerrt.
+
+\paragraph{Fall 1: Geltungsbeginn der 1. Änderungsfassung.}
+Die Übersichtsseite der Mitteilungen nennt für die Fassung des 1. Änderungsbeschlusses
+\enquote{gültig ab dem Wintersemester 2023/24}, die Titelseite derselben Fassung
+\enquote{gilt ab dem Wintersemester 2024/25}. Die Prüfregeln aus
+Abschnitt~\ref{sec:typologie} werden der Reihe nach angewendet: Die Fundstellen tragen die
+zitierten Werte, also liegt kein Extraktionsfehler vor; nach der Normalisierung bleiben zwei
+verschiedene Semesterangaben, also kein Formulierungsunterschied; beide Aussagen betreffen
+denselben Studiengang und dieselbe Zielgruppe, also kein Scope-Unterschied; die
+Gültigkeitsintervalle überlappen, denn beide Angaben bezeichnen den Beginn derselben Fassung,
+also kein Versionsunterschied. Damit ist der Fall ein echter Widerspruch. Bemerkenswert ist
+seine Lage: Er steht nicht zwischen zwei weit entfernten Dokumenten, sondern zwischen der
+Zusammenfassung und dem amtlichen Text derselben Ordnung, und er betrifft ausgerechnet die
+Angabe, die über die Gültigkeit aller übrigen Angaben entscheidet.
+
+\todo{Fehlt: der zweite Fall --- ein Versionsartefakt aus dem klassifizierten Fundbestand des
+eingefrorenen Korpus, mit beiden Fundstellen und derselben Prüfregel-Kette wie Fall 1. Ein
+von Hand ausgewählter Fall würde die Methode umgehen; er muss aus dem Lauf stammen.}

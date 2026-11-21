@@ -5,21 +5,141 @@
 \section{Anhang}
 
 \subsection{Faktkatalog}
+\label{app:faktkatalog}
 \todo{Tabelle der untersuchten Sachverhaltstypen: Typ, Beispiel, erwartete
 Änderungsrate, Quellen. Aus dem Team-Repo übernehmen, sobald es steht.}
 
 \subsection{Extraktionsschema}
-\todo{Das JSON-Schema, mit dem das Sprachmodell arbeitet, plus zwei Beispiele
-für vollständige und für verworfene Extraktionen.}
+\label{app:schema}
+
+Das Schema ist die technische Form des Sachverhalts-Tupels aus
+Abschnitt~\ref{sec:methode}. Es hat drei Ebenen: das Dokument, den Fakt und die Fundstelle.
+Tabelle~\ref{tab:schema} nennt die Felder.
+
+\begin{table}[ht]
+  \centering
+  \caption{Felder des Extraktionsschemas}
+  \label{tab:schema}
+  \small
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.24\textwidth}>{\raggedright\arraybackslash}p{0.22\textwidth}c>{\raggedright\arraybackslash}p{0.34\textwidth}@{}}
+    \toprule
+    Feld & Typ & Pflicht & Regel \\
+    \midrule
+    doc\_id & Zeichenkette & ja & Kennung aus dem Datenblatt, z.\,B.\ \texttt{ord\_3ae} \\
+    doc\_hash & SHA-256 & ja & bindet den Fakt an die eingefrorene Fassung \\
+    entitaet & Zeichenkette & ja & kanonisch nach Aliasliste \\
+    attribut & kontrolliertes Vokabular & ja & z.\,B.\ \texttt{bewerbungsfrist\_wise} \\
+    wert\_raw & Zeichenkette & ja & wörtlich, wie im Dokument \\
+    wert\_norm & Datum, Zahl, Text & nein & Ergebnis der Normalisierung \\
+    einheit & Zeichenkette & nein & LP, Minuten, EUR \\
+    scope & Zeichenkette & ja & Zielgruppe oder Programm; Vorgabe \texttt{alle} \\
+    gueltig\_von & Datum & nein & Beginn des Gültigkeitsintervalls \\
+    gueltig\_bis & Datum & nein & Ende des Gültigkeitsintervalls \\
+    fundstelle\_text & Zeichenkette & ja & wörtliches Zitat \\
+    fundstelle\_start & ganze Zahl & ja & Zeichenoffset im segmentierten Text \\
+    fundstelle\_ende & ganze Zahl & ja & Zeichenoffset im segmentierten Text \\
+    status & Aufzählung & ja & \texttt{ok} oder \texttt{verworfen} \\
+    prompt\_version & Zeichenkette & ja & Reproduzierbarkeit des Laufs \\
+    modell & Zeichenkette & ja & Name und Version des Modells \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Die Pflichtfelder sind so geschnitten, dass jeder Fakt ohne Rückfrage prüfbar ist:
+\texttt{doc\_hash} und die beiden Offsets verweisen auf eine Stelle in einer eingefrorenen
+Datei, nicht auf ein Dokument, das sich inzwischen geändert haben kann. \texttt{wert\_norm}
+ist bewusst nicht Pflicht. Die Normalisierung darf scheitern, ohne den Fakt zu verlieren:
+Der Rohwert bleibt erhalten, der Fall wird als nicht normalisierbar markiert und in der
+Stichprobe manuell geprüft. Ein Fakt ohne Fundstelle wird dagegen nicht geschrieben --- er
+gilt als nicht extrahiert.
+
+Die Prüfung erfolgt beim Schreiben. Ein Datensatz, der ein Pflichtfeld nicht erfüllt, wird
+verworfen und protokolliert, nicht korrigiert; damit ist die Datenbank eine Teilmenge des
+tatsächlich Gelesenen und keine Interpretation. \texttt{wert\_raw} und \texttt{wert\_norm}
+stehen nebeneinander, sodass sich jede Regel aus Abschnitt~\ref{sec:methode} am Einzelfall
+nachvollziehen lässt; wird eine Regel geändert, entstehen neue normalisierte Werte, ohne
+dass die Extraktion wiederholt werden muss. Der Hash schließlich trennt Dokumentversionen:
+Ein zweiter Abruf derselben Adresse ist eine neue Fassung und keine Korrektur der alten ---
+genau die Unterscheidung, die für Versionsartefakte gebraucht wird.
 
 \subsection{Verwendete Sprachmodelle und Prompts}
+\label{app:modelle}
 \todo{Modellname, Version, Temperatur, Prompt-Version, Datum. Pflicht, wenn ein
 Sprachmodell im Spiel ist --- sonst ist die Arbeit nicht reproduzierbar.}
 
 \subsection{Fehlertaxonomie}
-\todo{Die Kategorien aus der Fehleranalyse mit je einem Beispiel und der
-Häufigkeit.}
+\label{app:fehlertaxonomie}
+
+Die Taxonomie beschreibt Fehler des Verfahrens, nicht Abweichungen der Quellen. Sie ist von
+der Typologie in Abschnitt~\ref{sec:typologie} zu unterscheiden: Dort geht es darum, was ein
+Fund bedeutet; hier darum, wodurch das Verfahren danebenliegt. Tabelle~\ref{tab:fehler}
+nennt die fünf Klassen.
+
+\begin{table}[ht]
+  \centering
+  \caption{Fehlerklassen des Verfahrens}
+  \label{tab:fehler}
+  \small
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.20\textwidth}>{\raggedright\arraybackslash}p{0.44\textwidth}>{\raggedright\arraybackslash}p{0.26\textwidth}@{}}
+    \toprule
+    Klasse & Definition & Folge für die Kennzahl \\
+    \midrule
+    Extraktion & Der Wert steht so nicht im Dokument; das Zitat trägt ihn nicht & falscher Widerspruch (Precision) oder fehlender Fakt (Recall) \\
+    Erfundene Angabe & Wert ohne Deckung im Text; trotz Zitatpflicht möglich, wenn das Zitat nicht zum Wert passt & Precision \\
+    Normalisierung & richtig gelesen, falsch vereinheitlicht, etwa 1,5 Stunden als 90 statt 150 Minuten & Precision (falscher Widerspruch) \\
+    Gruppierung & verschiedene Sachverhalte zusammengeworfen oder derselbe getrennt & Precision und Recall \\
+    Scope & Zielgruppe übersehen, etwa EU-Bewerbende gegen alle & Precision \\
+    Urteil & Widerspruch gesehen, wo keiner ist, oder einen übersehen & Precision bzw.\ Recall \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Die Klassen sind vor der Auswertung festgelegt, nicht danach. Der Grund ist methodisch: Wer
+die Kategorien erst nach dem Blick auf die Fehlfälle bildet, passt sie unmerklich dem
+Ergebnis an, und die Fehleranalyse verliert ihre Funktion als Kontrolle. Jeder Fall bekommt
+eine Hauptursache, weil sonst ein einziger Fehler mehrfach gezählt würde; Nebenursachen
+werden im Protokoll vermerkt.
+
+Die Abgrenzung zur Abweichungstypologie ist wichtig. Ein Extraktionsfehler ist dort der
+erste Typ und führt zum Ausschluss des Falls; in der Fehlertaxonomie ist er eine Messung der
+Verfahrensqualität. Dieselbe Beobachtung kann also an zwei Stellen auftauchen, aber mit
+verschiedener Funktion: einmal als Grund, einen Fund zu verwerfen, einmal als Kennzahl
+dafür, wie oft das nötig war. Die Häufigkeit je Klasse wird erst nach dem Lauf berichtet;
+sie ist eine Messzahl und steht deshalb in Kapitel~\ref{sec:ergebnisse} und nicht hier.
 
 \subsection{Code-Verzeichnis}
-\todo{Wo der Code liegt, wie man ihn startet, welche Ausgabe er erzeugt.
-Ein Verweis auf das Repository genügt, wenn der Code dort vollständig ist.}
+\label{app:code}
+
+Der Bericht wird aus dem Verzeichnis \texttt{report/} gesetzt. Die Auswertungswerkzeuge
+entstehen in den Arbeitspaketen P2 und P3; die Verzeichnisse für Korpus, Code und Tests sind
+noch nicht angelegt. Tabelle~\ref{tab:dateien} verzeichnet deshalb den heutigen Bestand und
+keinen geplanten.
+
+\begin{table}[ht]
+  \centering
+  \caption{Dateien und Verzeichnisse des Berichts}
+  \label{tab:dateien}
+  \small
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.30\textwidth}>{\raggedright\arraybackslash}p{0.62\textwidth}@{}}
+    \toprule
+    Datei oder Verzeichnis & Rolle \\
+    \midrule
+    \texttt{build.sh} & baut \texttt{main.pdf}; Ziele \texttt{expose} und \texttt{clean} \\
+    \texttt{main.tex} & Wurzel; bindet Vorspann, Kapitel, Anhang und Literatur ein \\
+    \texttt{literatur.bib} & Literaturangaben; 32 Einträge, davon 13 im Bericht zitiert \\
+    \texttt{preamble/} & Pakete, Satzspiegel und Kommandos (drei Dateien) \\
+    \texttt{frontmatter/} & Titelseite, Zusammenfassung, Selbstständigkeitserklärung \\
+    \texttt{chapters/} & acht Kapiteldateien, \texttt{01\_einleitung} bis \texttt{08\_fazit} \\
+    \texttt{backmatter/} & Anhang A.1 bis A.5 \\
+    \texttt{figures/}, \texttt{tables/} & Ablage für Abbildungen und Tabellen; derzeit leer \\
+    \texttt{expose.tex} & Ein-Seiten-Exposé als eigenes Dokument mit derselben Präambel \\
+    \texttt{README.md} & Bauanleitung und Hinweise zur Engine \\
+    \texttt{.gitignore} & Build-Artefakte; \texttt{main.pdf} wird mitgeführt \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Ein Code-Verzeichnis im engeren Sinn ist dieser Anhang noch nicht. Solange die Pipeline nicht
+läuft, wäre eine Liste von Modulen eine Behauptung über Dateien, die es nicht gibt. Sobald
+die Werkzeuge stehen, wird die Tabelle um ihre Einträge ergänzt; die Rollen der vorhandenen
+Dateien bleiben dabei unverändert.

@@ -7,23 +7,70 @@
 
 \subsection{Problem}
 
-\todo{Ausgangsbeobachtung in zwei bis drei Sätzen, dann ein konkretes Beispiel mit
-Fundstellen: derselbe Sachverhalt, zwei Quellen, zwei Werte. Nicht abstrakt bleiben ---
-ein Leser muss nach dem Absatz wissen, worum es geht.}
+Studieninformationen stehen nicht an einer Stelle. Dieselbe Angabe --- eine Bewerbungsfrist,
+eine Zulassungsvoraussetzung, die Zahl der Leistungspunkte eines Moduls --- erscheint in der
+Prüfungsordnung, auf der Studiengangsseite und in den Informationsschriften der zentralen
+Studienberatung. Die Dokumente entstehen zu verschiedenen Zeiten, werden von verschiedenen
+Stellen gepflegt und nur selten gemeinsam fortgeschrieben. Für die Leserin ist das
+unsichtbar: Jede Seite wirkt für sich vollständig und aktuell, und es gibt keine Stelle, die
+die Angaben gegeneinander hält.
+
+Ein Beispiel aus dem Korpus dieser Arbeit zeigt, wie unauffällig solche Abweichungen
+entstehen.\footnote{Übersichtsseite der Mitteilungen der JLU 7.36.07 Nr.~11 und PDF der
+1.~Änderungsfassung; die Adressen sind in Abschnitt~\ref{sec:daten} verzeichnet.} Die
+Spezielle Ordnung des Masterstudiengangs Data Analytics liegt in vier Fassungen vor. Für die
+Fassung des 1.~Änderungsbeschlusses nennt die Übersichtsseite der Mitteilungen den
+Geltungsbeginn \enquote{gültig ab dem Wintersemester 2023/24}; die Titelseite derselben
+Fassung formuliert \enquote{gilt ab dem Wintersemester 2024/25}. Beide Angaben stehen auf
+Servern derselben Hochschule, beide sind zitierfähig, und beide können nicht zutreffen. Wer
+die Übersichtsseite liest, hält die Änderung ein Jahr früher für verbindlich als jemand, der
+die Ordnung selbst aufschlägt.
+
+Die Ursache ist strukturell und nicht persönlich: Die Übersichtsseite fasst zusammen, die
+Ordnung ist der verbindliche Text, und beide werden von Hand gepflegt. Solche Stellen sind
+der Gegenstand dieser Arbeit. Sie fragt nicht, ob die Universität ihre Seiten gut pflegt,
+sondern ob sich Abweichungen dieses Typs systematisch finden, zuverlässig bewerten und nach
+ihrer Entstehung unterscheiden lassen.
 
 \subsection{Relevanz}
 
-\todo{Wer ist betroffen und was kostet es: Fehlentscheidungen von Studieninteressierten,
-Rückfragen in der Beratung, Vertrauensverlust in die Seiten. Zwei Belege aus der
-Literatur, keine Behauptungen.}
+Informationsqualität ist keine Geschmacksfrage. ISO/IEC 25012 führt \emph{Consistency} als
+eigenes Qualitätsmerkmal: Daten sind konsistent, wenn sie frei von Widersprüchen und mit
+anderen Daten kohärent sind \parencite{iso25012}. Ein Datenprodukt, das sich selbst
+widerspricht, ist damit unabhängig davon mangelhaft, ob jemand den Widerspruch bemerkt.
+
+Wie schnell solche Widersprüche entstehen, ist für wissenschaftliche Verweise gut
+dokumentiert. \textcite{klein2014} finden Reference Rot in jedem fünften der von ihnen
+untersuchten Artikel; \textcite{jones2016} berichten, dass drei von vier URI-Verweisen auf
+Inhalte zeigen, die sich gegenüber dem Zitat verändert haben. Die Studien betreffen
+Literaturverweise und nicht Studieninformationen, und ihre Zahlen lassen sich nicht
+übertragen. Sie belegen aber den Mechanismus: Dokumente werden überarbeitet, verschoben und
+ersetzt, während die Verweise auf sie stehen bleiben.
+
+Für eine Hochschule kommt ein zweiter Punkt hinzu. Eine Studienentscheidung ist folgenreich
+und wird in der Regel einmal getroffen: Wer sich auf eine überholte Fassung stützt, merkt es
+nicht an der Seite, sondern frühestens im Verfahren. Der Aufwand, solche Stellen zu finden,
+ist heute Handarbeit --- und er wächst mit der Zahl der Dokumente. Genau dort setzt die
+Automatisierung an, die diese Arbeit untersucht.
 
 \subsection{Beitrag dieser Arbeit}
 
-\todo{Drei Sätze, drei Beiträge: (1) ein Verfahren, das Abweichungen findet, (2) eine
-Messung seiner Zuverlässigkeit gegen einen Goldstandard, (3) eine Typologie der
-Abweichungen, die echte Widersprüche von Versionsartefakten trennt.}
+Die Arbeit leistet drei Beiträge. Erstens ein Verfahren, das Angaben aus verschiedenen
+Dokumenten extrahiert, normalisiert und nach Sachverhalten gruppiert, sodass Abweichungen
+systematisch sichtbar werden statt zufällig aufzufallen. Zweitens eine Messung der
+Zuverlässigkeit dieses Verfahrens: Gegen einen von Hand erstellten Goldstandard werden
+Precision und Recall je Sachverhaltstyp sowie die Übereinstimmung zwischen Mensch und Modell
+berichtet. Drittens eine Typologie der Abweichung, die echte Widersprüche von
+Versionsartefakten, Scope-Unterschieden und Extraktionsfehlern trennt --- erst sie macht aus
+einer Fundliste einen Befund.
 
 \subsection{Aufbau}
 
-\todo{Ein Absatz: was in welchem Kapitel steht. Keine Wiederholung der Gliederung
-in ganzen Sätzen.}
+Kapitel~\ref{sec:hintergrund} ordnet die Arbeit in Informationsqualität,
+Widerspruchserkennung und Content Drift ein und grenzt sie von den Nachbardimensionen ab.
+Kapitel~\ref{sec:frage} formuliert Forschungsfrage und Hypothesen samt
+Widerlegungskriterien. Kapitel~\ref{sec:daten} beschreibt Korpus, Faktkatalog und
+Erhebungsgrenzen, Kapitel~\ref{sec:methode} die Analyseeinheit, die Extraktion mit
+Zitatpflicht, die Normalisierung, die Abweichungstypologie und das Evaluationsdesign.
+Kapitel~\ref{sec:ergebnisse} berichtet die Messung, Kapitel~\ref{sec:diskussion} ordnet sie
+ein und benennt die Grenzen, Kapitel~\ref{sec:fazit} fasst das Ergebnis zusammen.

@@ -7,25 +7,52 @@
 
 \subsection{Fragestellung}
 
-\todo{Die Fragestellung aus dem Steckbrief aufnehmen und auf die eigene Operationalisierung
-zuspitzen: Welche Sachverhalte werden in mehreren Quellen unterschiedlich dargestellt, und
-wie zuverlässig lässt sich das automatisch finden?}
+Die Arbeit beantwortet zwei Fragen, die zusammengehören. Die inhaltliche Frage lautet:
+Welche Sachverhalte werden in den Quellen des Studiengangs unterschiedlich dargestellt, und
+welche Arten von Sachverhalten sind davon besonders häufig betroffen? Die methodische Frage
+lautet: Wie zuverlässig lässt sich das automatisch finden? Die erste Frage ohne die zweite
+wäre eine Fundliste mit unbekannter Fehlerquote, die zweite ohne die erste eine Methodenübung
+ohne Gegenstand. Beantwortet werden beide über denselben Korpus und denselben Goldstandard.
 
 \subsection{Hypothesen}
 
 \begin{description}[style=nextline]
   \item[H1 --- Abweichungen konzentrieren sich auf instabile Sachverhaltstypen]
-  \todo{Formulierung, Begründung aus der Literatur, Operationalisierung, und was als
-  Widerlegung gilt.}
+  Die Hypothese behauptet eine schiefe Verteilung: Bei Typen mit hoher Änderungsrate
+  (Fristen, Termine, Ansprechpartner) treten Abweichungen auf, bei stabilen Typen
+  (Leistungspunkte, Modulnummern, Regelstudienzeit) nahezu nicht. Die Begründung stammt aus
+  der Drift-Literatur: Änderungsraten hängen am Inhalt und nicht an der Domain
+  \parencite{fetterly2003}, und Dokumente werden ungleichmäßig fortgeschrieben
+  \parencite{jones2016}. Operationalisiert wird die Hypothese als Abweichungsrate je Typ mit
+  Wilson-Konfidenzintervall und als Vergleich der Raten zwischen instabilen und stabilen
+  Typen (exakter Test nach Fisher bei kleinem Stichprobenumfang).
   \item[H2 --- Sprachmodellgestützte Extraktion ist präzise, aber nicht vollständig]
-  \todo{Formulierung, Bezug zur Validierungsliteratur \parencite{bavaresco2025llms},
-  Operationalisierung über Precision und Recall je Verfahrensvariante.}
+  Die Hypothese trennt die beiden Fehlerrichtungen. Ein Sprachmodell erkennt eine Stelle, die
+  es findet, zuverlässig; es findet aber nicht systematisch alle Stellen. Die Literatur
+  stützt diese Erwartung in zwei Punkten: Sprachmodellgestützte Urteile weichen je nach
+  Aufgabe und Modell von menschlichen Urteilen ab und müssen deshalb validiert werden
+  \parencite{bavaresco2025llms}; und Widerspruchsmodelle scheitern an bestimmten sprachlichen
+  Formen, was sich im Gesamtergebnis als Recallverlust äußert \parencite{pielka2022}.
+  Operationalisiert wird über Precision und Recall dreier Varianten --- nur Sprachmodell, nur
+  Regeln, Hybrid aus beidem --- gegen denselben Goldstandard.
   \item[H3 --- Die meisten Abweichungen sind Zeitartefakte]
-  \todo{Formulierung, Begründung über Content Drift und die Änderungsfassungen der
-  Ordnung, Operationalisierung über die Abweichungstypologie.}
+  Die Hypothese behauptet, dass echte Widersprüche selten sind und der größere Teil der Funde
+  aus unterschiedlichen Fassungen oder Zielgruppen stammt. Sie ist im Korpus angelegt: Die
+  Spezielle Ordnung existiert in vier Fassungen mit vier Geltungszeiträumen, und die
+  Informationsschriften tragen eigene Redaktionsschlüsse. Hinzu kommt der Mechanismus, den
+  die Drift-Literatur beschreibt: Inhalte werden ersetzt, ohne dass alle Verweise darauf
+  nachgeführt werden \parencite{klein2014,jones2016}. Operationalisiert wird die Hypothese
+  über die Anteile der fünf Abweichungstypen an allen klassifizierten Funden.
 \end{description}
 
 \subsection{Was als Widerlegung gilt}
 
-\todo{Für jede Hypothese einen Satz: Welches Ergebnis würde sie kippen? Ohne diesen Absatz
-ist die Arbeit nicht falsifizierbar, und das fällt in der Bewertung auf.}
+H1 gilt als widerlegt, wenn die Abweichungsraten über die Typen hinweg statistisch nicht
+unterscheidbar sind --- dann ist Veraltung nicht der Mechanismus, und die Ursache liegt eher
+in Redaktionsprozessen oder in der Extraktion. H2 gilt als widerlegt, wenn die hybride
+Variante den Recall gegenüber dem reinen Sprachmodell nicht erhöht; dann war die
+Normalisierung wirkungslos, und der Bericht fällt kürzer aus. H3 gilt als widerlegt, wenn die
+Mehrheit der klassifizierten Abweichungen echte Widersprüche sind --- das wäre der stärkere
+Befund und die dringlichere Empfehlung an die Universität. In allen drei Fällen ist auch das
+Scheitern berichtbar; die Hypothesen sind so formuliert, dass es eine Aussage über den Korpus
+zulässt.

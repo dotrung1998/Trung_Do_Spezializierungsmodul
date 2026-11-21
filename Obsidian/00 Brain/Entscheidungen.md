@@ -127,3 +127,46 @@ statt einer). Bestätigung nur mündlich im Meilensteingespräch (zu spät). Das
 Mailtext schreiben statt als PDF (eine Seite PDF wird gelesen, vier Bildschirme Text nicht).
 **Form.** Drei nummerierte Fragen mit Alternative, beantwortbar in zwei Minuten. Kein
 Terminwunsch im Vordergrund; ein Gespräch wird angeboten, nicht verlangt.
+
+## 2026-11-21 — Textteil geschrieben, Messkapitel bleiben offen
+
+**Entscheidung.** Kapitel 1–5 sowie 7.3 und 7.4 sind ausformuliert. Kapitel 6, 7.1, 7.2, 8,
+die Zusammenfassung und fünf Anhangteile bleiben `\todo`.
+**Grund.** Diese Stellen verlangen Zahlen aus dem eigenen Lauf (Korpus, Goldstandard,
+Fehleranalyse) oder eine Teamfestlegung (Faktkatalog). Ein Bericht mit erfundenen
+Abweichungsraten wäre wertlos und ein Täuschungsversuch; die Bewertung setzt auf belegte
+Messung.
+**Verworfen.** Platzhalterzahlen `XX` (sieht fertig aus, ist es nicht); erfundene
+Beispielwerte (verletzt „keine Zahlen ohne Quelle“); Kapitel 6 als reine
+Auswertungsvorschrift umschreiben (ändert die Gliederung, ohne dass die Betreuung sie
+gesehen hat — das entscheidet die Betreuung).
+**Nebenbefund.** Das belegte Beispiel des Geltungsbeginns steht in Kapitel 1 und in
+Tabelle 2; beide Dokumente wurden am 21.11. erneut geöffnet.
+
+## 2026-11-21 — Zweiter Durchgang: Methodenartefakte statt Platzhalter
+
+**Entscheidung.** A.2 (Extraktionsschema), A.4 (Fehlertaxonomie) und A.5 (Code-Verzeichnis)
+sind als Entwurf ausformuliert; Kapitel 6, 7.1/7.2, 8 und die Zusammenfassung tragen Text,
+soweit er ohne Messung aussagbar ist. A.1 und A.3 bleiben unangetastet.
+**Grund.** Ein Schema und eine Fehlertaxonomie sind Methodenentscheidungen, keine
+Messergebnisse; sie lassen sich begründen, bevor Daten da sind. A.5 nennt nur Dateien, die
+wirklich existieren — ein Verzeichnis erfundener Module wäre eine Behauptung über das Repo.
+**Verworfen.** A.5 mit geplanten Verzeichnissen (`src/`, `data/`, `tests/`) füllen (sieht
+vollständiger aus, behauptet aber Existenz); Fehlertaxonomie mit Häufigkeiten (erfunden);
+Kapitel 6 mit Beispielzahlen (Täuschung).
+**Grenze.** Sieben Lücken bleiben messzahlgebunden: 6.1–6.3, 6.4/Fall 2, 7.2-Urteil,
+Fazit-Zahl, Zusammenfassungszahl. Sie sind in [[Status]] einzeln benannt.
+
+## 2026-11-21 — URL-Umbruch über ein eigenes Feldformat gelöst
+
+**Entscheidung.** `\DeclareFieldFormat{url}{URL\addcolon\space\mbox{\url{#1}}}`, gesetzt
+nach dem Laden von biblatex.
+**Grund.** Die Adresse darf nicht nach `https:` brechen. Die naheliegenden Hebel
+(`\UrlBreaks`, `\UrlBigBreaks`, eigenes `\biburlsetup`) greifen nicht, weil biblatex die
+Regeln je Eintrag neu setzt; das wurde am gerenderten PDF geprüft, nicht vermutet. Eine
+unteilbare Box löst das ohne Eingriff in biblatex.
+**Verworfen.** Break an beliebiger Stelle zulassen (der Fehler bleibt sichtbar); Protokoll
+aus der Anzeige entfernen (ändert den Inhalt der Angabe); `biber` erzwingen (Versionskonflikt
+mit biblatex 3.17).
+**Preis.** Für sehr lange URLs wäre die Box riskant (Overfull). Im aktuellen Verzeichnis sind
+nur zwei Adressen betroffen, beide passen; bei neuen Einträgen mit langen URLs prüfen.
