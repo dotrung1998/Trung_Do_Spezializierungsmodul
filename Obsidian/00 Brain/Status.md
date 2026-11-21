@@ -42,6 +42,19 @@ versandfertig. Vorlage: `E-Mail-2-versandfertig.txt` im Projektordner.
 - **Sperrdatum:** **nicht vor Fr 27.11.2026, 11:00** senden — erst nach der Zuteilung im
   Jour fixe. Anhang `expose.pdf` nicht vergessen.
 
+## Repository (21.11.2026)
+
+- **GitHub privat:** `dotrung1998/Trung_Do_Spezializierungsmodul`, Branch `main`,
+  erster Commit `aa763b2` (119 Dateien: Vault, `report/` mit beiden PDFs, Mail-Entwürfe,
+  `AGENTS.md`).
+- **Commit-Regel** in `AGENTS.md` festgehalten: **keine Bot-Attribution** — keine
+  `Co-Authored-By`-Zeile, kein „Generated with …“, keine Trailer. Gilt für jede Sitzung.
+- **Seitenprüfung:** alle 12 Seiten von `main.pdf` am 21.11. als Bild gerendert und
+  gelesen. Zwei stille Fehler gefunden und behoben: ß wurde als „SS“ gesetzt
+  (XeTeX/T1, jetzt über `newunicodechar` auf `\ss{}` umgebogen) und in Anhang A.1 fehlte
+  ein Leerzeichen („Änderungsrate,Quellen“). Danach 0 Overfull, 0 Missing character,
+  12 Seiten.
+
 ## Stand der Arbeitspakete
 
 | Paket | Stand | Notiz |
