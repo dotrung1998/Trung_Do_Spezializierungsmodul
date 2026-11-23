@@ -15,6 +15,13 @@
 \input{preamble/settings}
 \input{preamble/commands}
 
+% Titelblatt-Daten (Matrikelnummer) stehen lokal in private.tex und werden nie
+% versioniert. Fehlt die Datei -- etwa bei einem frischen Klon --, bleibt der
+% Platzhalter stehen und der Bau läuft trotzdem durch.
+\IfFileExists{private.tex}
+  {\input{private.tex}}
+  {\newcommand{\matrikelnummer}{[Matrikelnummer]}}
+
 \addbibresource{literatur.bib}
 
 \begin{document}

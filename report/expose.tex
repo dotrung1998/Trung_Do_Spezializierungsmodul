@@ -26,6 +26,12 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 
+% Titelblatt-Daten (Matrikelnummer) stehen lokal in private.tex und werden nie
+% versioniert. Fehlt die Datei, bleibt der Platzhalter stehen.
+\IfFileExists{private.tex}
+  {\input{private.tex}}
+  {\newcommand{\matrikelnummer}{[Matrikelnummer]}}
+
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2.5pt}
 \pagestyle{empty}
@@ -48,7 +54,7 @@
 {\normalsize Abweichungen zwischen Studieninformationen automatisch finden und bewerten\par}
 \vspace{2pt}
 {\footnotesize
-The Trung Do \textbullet{} M.Sc. Data Analytics, Matrikelnummer [Matrikelnummer] \textbullet{}
+The Trung Do \textbullet{} M.Sc. Data Analytics, Matrikelnummer \matrikelnummer{} \textbullet{}
 Projekt 29 (Team Gamma) \textbullet{} Betreuung: Dr. Sebastian Busse\\
 Stand: 21. November 2026 \textbullet{} Arbeitstitel \textbullet{} Prüfungsleistung: Bericht
 10--15 Seiten mit Programmcode, ohne Vortrag\par}

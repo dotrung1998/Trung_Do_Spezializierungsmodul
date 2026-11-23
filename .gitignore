@@ -29,3 +29,6 @@ Obsidian/10 Thema/Codekarte.md
 # Gebaute PDFs mit Titelblatt (enthalten Name und Matrikelnummer) — nicht versionieren
 report/main.pdf
 report/expose.pdf
+
+# Lokale Titelblatt-Daten: echte Matrikelnummer, nur auf diesem Rechner
+report/private.tex
