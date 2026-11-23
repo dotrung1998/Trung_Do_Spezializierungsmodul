@@ -44,9 +44,9 @@ versandfertig. Vorlage: `E-Mail-2-versandfertig.txt` im Projektordner.
 
 ## Repository (21.11.2026)
 
-- **GitHub privat:** `dotrung1998/Trung_Do_Spezializierungsmodul`, Branch `main`,
-  erster Commit `aa763b2` (119 Dateien: Vault, `report/` mit beiden PDFs, Mail-Entwürfe,
-  `AGENTS.md`).
+- **GitHub:** `dotrung1998/Trung_Do_Spezializierungsmodul`, Branch `main`. Seit
+  23.11.2026 **öffentlich** (vorher privat). Nach dem Rewrite heißt der Wurzel-Commit
+  `399febf`; die alten SHAs (`aa763b2` …) sind nur noch über direkte Abfrage erreichbar.
 - **Commit-Regel** in `AGENTS.md` festgehalten: **keine Bot-Attribution** — keine
   `Co-Authored-By`-Zeile, kein „Generated with …“, keine Trailer. Gilt für jede Sitzung.
 - **Seitenprüfung:** alle 12 Seiten von `main.pdf` am 21.11. als Bild gerendert und
@@ -223,17 +223,28 @@ neu geschrieben. Nicht von Hand bearbeiten — Änderungen gehören in `fristen.
 Board: 3 von 17 Karten erledigt; Quellenstand in [[Abgaben (auto)]].
 <!-- AUTO:END -->
 
-## Automatik und Scheduler (23.11.2026)
+## Automatik, Repo und Datenschutz (23.11.2026)
 
-- **GitHub Actions:** `.github/workflows/tageslauf.yml` und `author-guard.yml` sind
-  gepusht und registriert (`gh workflow list`: beide `active`). Der erste Lauf
-  (Run 45096751098) wurde **nicht gestartet**: „The job was not started because recent
-  account payments have failed or your spending limit needs to be increased.“ Bis das
-  im Konto unter *Billing & plans* geklärt ist, läuft um 08:00 nichts.
-- **Lokal:** Der LaunchAgent `com.projectjlu.daily` ist seit 23.11. entladen und
-  deaktiviert. Geplant findet damit derzeit **kein** automatischer Lauf statt.
-- **Discord:** `DISCORD_WEBHOOK` liegt als Repository-Secret, der Versand ist aber
-  **nicht bestätigt** — dafür braucht es einen gestarteten Runner. Lokal fehlt
-  `~/.config/projektjlu/discord-webhook`; vorhanden ist nur der Kanal des
-  Nachbarprojekts (`~/.config/projektplanung/discord-webhook`), der nicht ohne
-  Entscheidung bespielt wird.
+- **GitHub Actions läuft.** Run 45099269485 (Tageslauf, 23.11.) war erfolgreich:
+  10 Steps, echter Runner, `Bestätigt: Discord: gesendet (HTTP 204)`. Der Lauf hat
+  seinen Commit selbst gepusht (`Tageslauf 2026-11-23: Quellen eingelesen, Board
+  fortgeschrieben`). Der Author-Guard ist nach dem Fix für Force-Pushes grün
+  (`dd6d854`).
+- **Repo öffentlich.** `dotrung1998/Trung_Do_Spezializierungsmodul` ist seit 23.11.2026
+  public (vorher privat).
+- **Geschichte bereinigt.** Matrikelnummer und HRZ-Kennung stehen überall nur noch als
+  `[Matrikelnummer]` / `[HRZ-Kennung]`. Die beiden gebauten PDFs (das Titelblatt druckte
+  die Nummer) sind aus Baum und Geschichte entfernt, ebenso alle alten Commits per
+  Force-Push (`+ e65d683...4196ea8`). Geprüft über alle 13 Commits von `origin/main`:
+  **0 Treffer** für beide Werte, **0 PDF-Objekte**.
+  **Grenze:** Die alten SHAs antworten über die API weiterhin; restlos weg sind sie erst
+  nach einem Purge durch den GitHub-Support. Wegen der öffentlichen Phase ist die
+  HRZ-Kennung als bekannt zu behandeln.
+- **Titelblatt lokal.** `report/private.tex` (ignoriert, chmod 600) definiert
+  `\matrikelnummer`. `main.tex` und `expose.tex` binden die Datei nur ein, wenn sie
+  existiert; sonst bleibt der Platzhalter. Geprüft: mit Datei steht die Nummer im PDF,
+  ohne sie baut es mit Platzhalter (rc=0).
+- **Lokal.** Der LaunchAgent `com.projectjlu.daily` bleibt entladen und deaktiviert; es
+  läuft nur der Cron in Actions.
+- **Discord.** Das Secret `DISCORD_WEBHOOK` funktioniert (HTTP 204 im Run). Kommt im
+  Channel nichts an, zeigt der Webhook auf einen anderen Kanal als den beobachteten.

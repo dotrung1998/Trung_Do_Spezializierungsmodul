@@ -55,6 +55,10 @@ Danach `Brain.md` und `Status.md` lesen und erst dann arbeiten.
   oder Organisationseinheiten als Bewertungsobjekt (Vorgabe aus Steckbrief 3.1/3.2).
 - **Keine Zugangsdaten, Tokens oder Matrikelnummern** in den Vault schreiben.
   Platzhalter wie `[HRZ-Kennung]` bleiben Platzhalter.
+- **Titelblatt:** Name und Matrikelnummer stehen nur lokal in `report/private.tex`
+  (gitignoriert, chmod 600). Fehlt die Datei, baut der Bericht mit `[Matrikelnummer]`.
+  `report/main.pdf` und `report/expose.pdf` sind ebenfalls ignoriert, weil das
+  Titelblatt die Nummer druckt.
 - **Sprache:** Vault-Inhalte auf Deutsch (direkt in den Bericht übernehmbar).
   Chat-Antworten an die Person auf Vietnamesisch, mit deutschen Fachbegriffen.
 - Der Bericht wird **nicht** im Vault geschrieben, sondern im GitLab-Repo der Arbeit.
@@ -77,10 +81,11 @@ Europe/Berlin (`schedule` mit `timezone`), zusätzlich per `workflow_dispatch` s
 Der Workflow ruft `Obsidian/_tools/daily.sh`, committet das Ergebnis als „Trung Do“,
 prüft den eigenen Commit mit `author_guard.py` und pusht auf `main` zurück.
 
-Stand 23.11.2026: Beide Workflows sind registriert, GitHub startet aber **keine
-Runner** — das Konto meldet „recent account payments have failed or your spending
-limit needs to be increased“ (Run 45096751098). Bis das unter *Billing & plans*
-geklärt ist, findet um 08:00 kein Lauf statt; Einzelheiten in `Obsidian/00 Brain/Status.md`.
+Stand 23.11.2026: Der Lauf ist erprobt — Run 45099269485 lief mit echtem Runner durch
+(10 Steps, `Discord: gesendet (HTTP 204)`), und der Bot hat seinen Commit selbst
+gepusht. Das Repository ist **öffentlich**; ein Force-Push am 23.11. hat Matrikelnummer
+und HRZ-Kennung aus der gesamten Geschichte entfernt (Einzelheiten in
+`Obsidian/00 Brain/Status.md`).
 
 **Mac (von Hand oder optional):** derselbe `daily.sh`. Für Dauerbetrieb liegen
 `_tools/com.projectjlu.daily.plist` und `daily_guard.sh` bei.
@@ -146,7 +151,7 @@ Er steht nie im Repo, nie im Vault, nie im Log.
 ## Git und Commits
 
 - Remote: `https://github.com/dotrung1998/Trung_Do_Spezializierungsmodul.git`
-  (**privat**). Daneben bleibt das JLU-GitLab der Ort für die Abgabe.
+  (**öffentlich** seit 23.11.2026). Daneben bleibt das JLU-GitLab der Ort für die Abgabe.
 - **Keine Bot- oder Werkzeug-Attribution in Commits.** Keine `Co-Authored-By:`-Zeile,
   kein „Generated with …", keine Trailer, die ein Modell oder Werkzeug als Mitautor
   nennen. Die Commit-Message endet mit ihrem letzten inhaltlichen Satz. Das gilt für
