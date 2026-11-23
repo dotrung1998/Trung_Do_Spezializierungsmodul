@@ -1,0 +1,145 @@
+{
+  "stand": "2026-11-23 02:43",
+  "dateien": [
+    {
+      "pfad": "Project JLU/README.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Projektrahmen (Quelle).md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/gitlab-leitfaden.md",
+      "status": "notiz",
+      "ziel": "30 Plan/GitLab-Leitfaden (Quelle).md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/projektkarte.html",
+      "status": "manuell",
+      "ziel": "Thema 29 – Überblick",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/projektkarte.svg",
+      "status": "manuell",
+      "ziel": "Thema 29 – Überblick",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/protokolle/2026-11-20_kick-off.md",
+      "status": "notiz",
+      "ziel": "40 Protokolle/2026-11-20 kick-off (Quelle).md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/protokolle/README.md",
+      "status": "ausgeschlossen",
+      "ziel": "",
+      "grund": "Ablagehinweise der Betreuung für den Protokollordner, kein Protokoll und keine Vorgabe zur Arbeit"
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/1-1-ordnungen-pdf.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/1-1-ordnungen-pdf.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/1-2-webseiten-fb07.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/1-2-webseiten-fb07.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/1-3-bewerbung-zulassung.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/1-3-bewerbung-zulassung.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/1-4-internationales.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/1-4-internationales.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/1-5-kurs-und-serviceangebote.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/1-5-kurs-und-serviceangebote.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/2-1-modulgraph.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/2-1-modulgraph.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/2-2-regelgraph.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/2-2-regelgraph.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/2-3-zustaendigkeiten.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/2-3-zustaendigkeiten.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/2-4-entity-linking.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/2-4-entity-linking.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/2-5-ontologie-schema.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/2-5-ontologie-schema.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/3-1-konsistenz.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/3-1-konsistenz.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/3-2-aktualitaet.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/3-2-aktualitaet.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/3-3-auffindbarkeit.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/3-3-auffindbarkeit.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/3-4-verstaendlichkeit.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/3-4-verstaendlichkeit.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Project JLU/steckbriefe/3-5-mehrsprachigkeit.md",
+      "status": "notiz",
+      "ziel": "10 Thema/Steckbriefe/3-5-mehrsprachigkeit.md",
+      "grund": ""
+    },
+    {
+      "pfad": "Reservierung_Thema_29.txt",
+      "status": "notiz",
+      "ziel": "10 Thema/Reservierung (Quelle).md",
+      "grund": ""
+    }
+  ],
+  "unbekannt": [],
+  "ohne_text": [],
+  "zaehlung": {
+    "notiz": 19,
+    "manuell": 2,
+    "ausgeschlossen": 1,
+    "unbekannt": 0
+  }
+}

@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Optionaler lokaler Tageslauf. Wird NICHT installiert: der geplante Lauf ist
+  GitHub Actions (.github/workflows/tageslauf.yml). Wer diesen Agent stattdessen
+  installieren will, muss den Cron im Workflow entfernen — zwei Scheduler am selben
+  Tag erzeugen zwei Discord-Berichte (Entscheidungen.md).
+  Vor dem Laden: chmod +x Obsidian/_tools/daily.sh Obsidian/_tools/daily_guard.sh
+-->
 <plist version="1.0">
 <dict>
-    <key>Label</key>
-    <string>com.projectjlu.daily</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/bin/bash</string>
-        <string>/Applications/JLU Spezializierungsmodul/Obsidian/_tools/daily.sh</string>
-    </array>
-    <key>StartCalendarInterval</key>
-    <dict>
-        <key>Hour</key>
-        <integer>8</integer>
-        <key>Minute</key>
-        <integer>0</integer>
-    </dict>
-    <key>RunAtLoad</key>
-    <false/>
-    <key>StandardOutPath</key>
-    <string>/Applications/JLU Spezializierungsmodul/Obsidian/_tools/launchd.out.log</string>
-    <key>StandardErrorPath</key>
-    <string>/Applications/JLU Spezializierungsmodul/Obsidian/_tools/launchd.err.log</string>
+	<key>Label</key>
+	<string>com.projectjlu.daily</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/bash</string>
+		<string>/Applications/JLU Spezializierungsmodul/Obsidian/_tools/daily_guard.sh</string>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>/Applications/JLU Spezializierungsmodul</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StartInterval</key>
+	<integer>1800</integer>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Hour</key>
+		<integer>8</integer>
+		<key>Minute</key>
+		<integer>0</integer>
+	</dict>
+	<key>StandardOutPath</key>
+	<string>/Applications/JLU Spezializierungsmodul/Obsidian/_tools/launchd.out.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Applications/JLU Spezializierungsmodul/Obsidian/_tools/launchd.err.log</string>
 </dict>
 </plist>

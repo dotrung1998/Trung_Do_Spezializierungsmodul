@@ -1,0 +1,34 @@
+[
+  {
+    "id": "MAIL1",
+    "datum": "2026-11-26",
+    "titel": "Zwei Themenwünsche (P1, P2) per Mail an die Betreuung",
+    "wer": "person",
+    "detail": "Wer bis dahin nichts schickt, wird ohne eigene Stimme zugeteilt; Quelle: Project JLU/README.md, Zeitplan; Protokoll Kick-off 20.11.2026",
+    "quelle": "Project JLU/README.md"
+  },
+  {
+    "id": "ZUTEILUNG",
+    "datum": "2026-11-27T11:00",
+    "titel": "Zuteilung der Einzelarbeiten, erster Jour fixe (online)",
+    "wer": "team",
+    "detail": "11:00 Uhr, selber Meetingraum wie beim Kick-off; erst danach ist die Teilnahme verbindlich; Quelle: Project JLU/README.md, Zeitplan",
+    "quelle": "Project JLU/README.md"
+  },
+  {
+    "id": "START",
+    "datum": "2026-12-01",
+    "titel": "Offizieller Start des Bearbeitungszeitraums",
+    "wer": "team",
+    "detail": "Ein späterer Start ist nach Absprache möglich; Quelle: Project JLU/protokolle/2026-11-20_kick-off.md",
+    "quelle": "Project JLU/protokolle/2026-11-20_kick-off.md"
+  },
+  {
+    "id": "ABGABE",
+    "datum": "2027-04-01",
+    "titel": "Abgabe im Abgaberepo der Betreuung",
+    "wer": "person",
+    "detail": "Spätestens Do 01.04.2027; abgegeben ist, was bis zum Stichtag im Abgaberepo liegt; Stichtag selbst noch nicht bestätigt („[Datum folgt]“ im Leitfaden); Quelle: Protokoll Kick-off 20.11.2026",
+    "quelle": "Project JLU/protokolle/2026-11-20_kick-off.md"
+  }
+]

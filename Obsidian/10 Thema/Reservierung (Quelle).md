@@ -1,12 +1,13 @@
 ---
-titel: "Reservierung Thema 29 (Quelle)"
+titel: "Reservierung Thema 29"
 quelle: "Reservierung_Thema_29.txt"
 stand: 2026-11-03
 hash: 2268aadd23f7
 automatisch: true
 ---
 
-> Automatisch eingelesen aus `Reservierung_Thema_29.txt` am 2026-11-21.
+> Automatisch eingelesen aus `Reservierung_Thema_29.txt` am 2026-11-23. Nicht bearbeiten —
+> inhaltliche Arbeit gehört in die handgeschriebenen Notizen.
 
 ```
 Reservierungsbestätigung — Spezialisierungsmodul M.Sc. Data Analytics

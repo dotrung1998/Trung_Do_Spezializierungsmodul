@@ -6,9 +6,8 @@ hash: dd7216a0400b
 automatisch: true
 ---
 
-> Automatisch eingelesen aus `Project JLU/gitlab-leitfaden.md` am 2026-11-21.
-> Diese Notiz nicht bearbeiten — inhaltliche Arbeit gehört in die
-> handgeschriebenen Notizen, diese Datei wird beim nächsten Lauf überschrieben.
+> Automatisch eingelesen aus `Project JLU/gitlab-leitfaden.md` am 2026-11-23. Nicht bearbeiten —
+> inhaltliche Arbeit gehört in die handgeschriebenen Notizen.
 
 <!-- Quelle: Planungsmodul Project JLU WiSe 2026/27, Fassung v3, und Absprache vom 19.11.2026. Stand 19.11.2026. Entwurf zur Besprechung im Kick-off. -->
 

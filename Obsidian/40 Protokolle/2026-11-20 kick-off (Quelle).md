@@ -6,9 +6,8 @@ hash: eb54b2a5b171
 automatisch: true
 ---
 
-> Automatisch eingelesen aus `Project JLU/protokolle/2026-11-20_kick-off.md` am 2026-11-21.
-> Diese Notiz nicht bearbeiten — inhaltliche Arbeit gehört in die
-> handgeschriebenen Notizen, diese Datei wird beim nächsten Lauf überschrieben.
+> Automatisch eingelesen aus `Project JLU/protokolle/2026-11-20_kick-off.md` am 2026-11-23. Nicht bearbeiten —
+> inhaltliche Arbeit gehört in die handgeschriebenen Notizen.
 
 # Kick-off Project JLU
 

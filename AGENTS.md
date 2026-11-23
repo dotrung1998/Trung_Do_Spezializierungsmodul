@@ -16,6 +16,7 @@ Betreuung: Dr. Sebastian Busse, sebastian.busse@admin.uni-giessen.de.
 |-------------------------|--------------------------------------------------------------------------|
 | `Project JLU/`          | **Quelle.** Material der Betreuung (Steckbriefe, Protokolle, Leitfaden).  |
 | `Obsidian/`             | **Gedächtnis.** Vault mit Brain, Thema, Recherche, Plan, Kommunikation.   |
+| `Obsidian/_tools/`      | **Automatik.** ingest, graphify, board_sync, daily, discord_notify.        |
 | `Reservierung_Thema_29.txt` | Reservierungsbestätigung der SPZ-Plattform.                          |
 
 `Project JLU/` ist unverändert zu lassen. Es wird in den Vault **eingelesen**, nicht
@@ -66,6 +67,66 @@ Die Datei kommt in `Project JLU/` (gleiche Unterordnerlogik: `protokolle/`,
 Frontmatter (`quelle`, `stand`, `hash`) und trägt die Änderung ins `Ingest Log` ein.
 Inhaltliche Auswirkung bewerten: neue Frist? geänderte Fragestellung? neue Vorgabe
 zur Prüfungsleistung? → `Status.md` und `Entscheidungen.md` fortschreiben.
+
+## Automatik
+
+Ein Ablauf, zwei Startpunkte.
+
+**GitHub (der geplante Lauf):** `.github/workflows/tageslauf.yml`, täglich 08:00
+Europe/Berlin (`schedule` mit `timezone`), zusätzlich per `workflow_dispatch` startbar.
+Der Workflow ruft `Obsidian/_tools/daily.sh`, committet das Ergebnis als „Trung Do“,
+prüft den eigenen Commit mit `author_guard.py` und pusht auf `main` zurück.
+
+**Mac (von Hand oder optional):** derselbe `daily.sh`. Für Dauerbetrieb liegen
+`_tools/com.projectjlu.daily.plist` und `daily_guard.sh` bei — **nicht installiert**.
+Zwei Scheduler am selben Tag erzeugen zwei Discord-Berichte und konkurrierende Commits.
+Wer den Agent lädt, entfernt vorher den Cron im Workflow.
+
+Ablauf je Lauf: `ingest.py` (Quellen), `graphify.py` (Codekarte), `board_sync.py`
+(Board, Fristenblock), `discord_notify.py` (Bericht). Exit ≠ 0, wenn ein Kernschritt
+scheitert oder eine Quelle `unbekannt` bleibt.
+
+Der Lauf schreibt ausschließlich:
+
+- `…(Quelle).md`, `90 Anhänge/`, `30 Plan/Abgaben (auto).md`
+- `00 Brain/Ingest Log.md`, `00 Brain/Neu seit letztem Lauf.md`
+- den Block `<!-- AUTO:START --> … <!-- AUTO:END -->` in `Status.md`
+- Statusvermerke am Zeilenende der Board-Karten und `_tools/abdeckung.json`
+
+Handgeschriebene Notizen werden nie überschrieben. Ohne Änderung schreibt der Lauf
+nichts; ein zweiter Lauf am selben Tag ist identisch.
+
+### Prüfen, ohne zu schreiben
+
+```bash
+python3 Obsidian/_tools/ingest.py --check
+python3 Obsidian/_tools/board_sync.py --check
+python3 Obsidian/_tools/author_guard.py --config
+python3 Obsidian/_tools/discord_notify.py --dry-run
+```
+
+### Fristen und Abdeckung
+
+`Obsidian/_tools/fristen.json` ist die **einzige** Stelle mit Datumsangaben; jeder
+Eintrag trägt `quelle`. Eine neue Frist nur mit Beleg in `Project JLU/` oder in einer
+Notiz eintragen, sonst gar nicht. `abdeckung-regeln.json` begründet, warum eine Quelle
+keine Notiz bekommt; fehlt der Grund, bleibt sie `unbekannt` und der Lauf schlägt fehl.
+
+### Hooks und Secret
+
+`core.hooksPath` ist lokale Konfiguration und wird nicht committet. Nach dem Klonen:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+`pre-commit` und `commit-msg` prüfen jeden Commit, `pre-push` jeden Push gegen
+`author_guard.py` — ein erlaubter Autor, keine Trailer, keine Bot-Namen. Derselbe Prüfer
+läuft in `.github/workflows/author-guard.yml`.
+
+Der Discord-Webhook liegt als Repository-Secret `DISCORD_WEBHOOK` und lokal unter
+`~/.config/projektjlu/discord-webhook` (Rückfall `~/.config/projektplanung/discord-webhook`).
+Er steht nie im Repo, nie im Vault, nie im Log.
 
 ## Git und Commits
 

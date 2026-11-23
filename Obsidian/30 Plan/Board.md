@@ -1,21 +1,12 @@
 ---
+
 titel: Board
 stand: 2026-11-21
-kanban-plugin: basic
+kanban-plugin: board
+
 ---
 
-# Board — Project JLU
-
-> **Ziehen zwischen den Spalten** geht mit dem Community-Plugin **Kanban**
-> (Einstellungen → Community-Plugins → Durchsuchen → „Kanban" → Installieren, dann diese
-> Datei im Kanban-Modus öffnen). Ohne Plugin bleibt die Datei ein normales Protokoll.
->
-> **Automatik:** `_tools/board_sync.py` läuft täglich um 08:00 über
-> `_tools/daily.sh` (launchd `com.projectjlu.daily`). Das Skript liest die `\todo`-Stellen
-> im Bericht und verschiebt Karten: offen → **To Do**, erledigt → **Done**. Karten ohne
-> Berichts-ID (Mail, GitLab, Korpus) fasst es nicht an.
->
-> Letzter Abgleich: 2026-11-21
+## Board — Project JLU
 
 ## To Do
 
@@ -44,6 +35,6 @@ kanban-plugin: basic
 
 %% kanban:settings
 ```
-{"kanban-plugin":"basic"}
+{"kanban-plugin":"board"}
 ```
 %%

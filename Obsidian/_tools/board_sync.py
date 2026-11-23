@@ -15,10 +15,19 @@ Regeln
   * Karte in "Doing" mit offenem \\todo wird nie zurueckgeschoben
   * Ohne Aenderung wird keine Datei geschrieben (idempotent)
 
-Aufruf: python3 board_sync.py [--board PFAD] [--report PFAD] [--dry-run]
+Zusatz aus dem Automatikmuster
+  * Karten mit `#auto` und `beleg: "pfad/glob"` werden abgehakt, sobald der Beleg
+    existiert; verschwindet er, wird das Häkchen zurückgenommen.
+  * `fällig: 2026-11-26` an einer offenen Karte wird zu `· überfällig (N Tage)`.
+  * Der Block zwischen `<!-- AUTO:START -->` und `<!-- AUTO:END -->` in Status.md
+    wird aus fristen.json und dem Board neu geschrieben.
+  * Board-Struktur wird gegen das Kanban-Plugin geprüft.
+
+Aufruf: python3 board_sync.py [--board PFAD] [--report PFAD] [--dry-run] [--check]
 """
 
 import datetime
+import json
 import pathlib
 import re
 import sys
@@ -29,8 +38,11 @@ import jobs  # noqa: E402
 
 ROOT = HERE.parents[1]
 BOARD = ROOT / "Obsidian" / "30 Plan" / "Board.md"
+STATUS = ROOT / "Obsidian" / "00 Brain" / "Status.md"
 REPORT = ROOT / "report"
 LOG = HERE / "board.log"
+FRISTEN = HERE / "fristen.json"
+COVER = HERE / "abdeckung.json"
 
 # id, Datei, Anker (Textanfang des \todo), Rolle, Kartentitel, Kurzbeschreibung
 ITEMS = [
@@ -66,8 +78,15 @@ NOTE_RE = (
     r"|freigegeben durch [^·]+"
     r"|blockiert: [^·]+"
     r"|wartet: [^·]+"
-    r"|offen: [^·]+)"
+    r"|offen: [^·]+"
+    r"|überfällig \([^)]*\)"
+    r"|Beleg (?:vorhanden|fehlt))"
 )
+BELEG_RE = re.compile(r'beleg:\s*"([^"]+)"')
+DUE_RE = re.compile(r"fällig:?\s*(\d{4}-\d{2}-\d{2})")
+FACT_RE = re.compile(r"\s*·\s*(?:überfällig \([^)]*\)|Beleg (?:vorhanden|fehlt))")
+AUTO_START = "<!-- AUTO:START -->"
+AUTO_END = "<!-- AUTO:END -->"
 
 
 def clean(line):
@@ -97,6 +116,39 @@ def deps_of(line):
     if not m:
         return []
     return [d.strip() for d in m.group(1).split(",") if d.strip()]
+
+
+def load_fristen():
+    try:
+        return json.loads(FRISTEN.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+
+
+def days_until(datum):
+    return (datetime.date.fromisoformat(datum[:10]) - datetime.date.today()).days
+
+
+def beleg_exists(pattern):
+    try:
+        return any(ROOT.glob(pattern))
+    except (OSError, ValueError):
+        return False
+
+
+def with_facts(line):
+    """Setzt Überfälligkeit und Belegstand neu, ohne andere Vermerke anzutasten."""
+    base = FACT_RE.sub("", line).rstrip()
+    facts = ""
+    due = DUE_RE.search(base)
+    if due and not base.startswith("- [x]"):
+        delta = days_until(due.group(1))
+        if delta < 0:
+            facts += f" · überfällig ({-delta} Tag{'e' if -delta != 1 else ''})"
+    beleg = BELEG_RE.search(base)
+    if beleg:
+        facts += " · Beleg vorhanden" if beleg_exists(beleg.group(1)) else " · Beleg fehlt"
+    return base + facts
 
 
 def read(path):
@@ -182,14 +234,110 @@ def logged_today(today):
     return bool(lines) and lines[-1].startswith(f"[{today}")
 
 
+def status_block():
+    rows = []
+    for item in load_fristen():
+        try:
+            delta = days_until(item["datum"])
+        except (KeyError, ValueError):
+            continue
+        when = item["datum"].replace("T", ", ")
+        if delta < 0:
+            state = f"**überfällig seit {-delta} T.**"
+        elif delta == 0:
+            state = "**heute**"
+        elif delta == 1:
+            state = "morgen"
+        else:
+            state = f"in {delta} Tagen"
+        rows.append(f"| {when} | {item.get('titel', '?')} | {state} | {item.get('wer', '?')} |")
+
+    done = total = 0
+    if BOARD.exists():
+        for line in BOARD.read_text(encoding="utf-8").splitlines():
+            if line.startswith("- [x]"):
+                done += 1
+                total += 1
+            elif line.startswith("- [ ]"):
+                total += 1
+
+    offen = ""
+    try:
+        cov = json.loads(COVER.read_text(encoding="utf-8"))
+        if cov.get("unbekannt"):
+            offen = (
+                "\n**Quellen ohne Notiz:** " + ", ".join(f"`{u}`" for u in cov["unbekannt"])
+                + " — einlesen oder in `_tools/abdeckung-regeln.json` begründet ausschließen.\n"
+            )
+    except (OSError, ValueError):
+        pass
+
+    return (
+        AUTO_START + "\n"
+        f"**Fristen (automatisch, Stand {datetime.date.today().isoformat()})**\n\n"
+        "| Termin | Was | Abstand | Wer |\n|---|---|---|---|\n"
+        + "\n".join(rows)
+        + "\n\n"
+        f"Board: {done} von {total} Karten erledigt; Quellenstand in [[Abgaben (auto)]].\n"
+        + offen
+        + AUTO_END
+    )
+
+
+def sync_status():
+    if not STATUS.exists():
+        return False
+    text = STATUS.read_text(encoding="utf-8")
+    if AUTO_START not in text or AUTO_END not in text:
+        return False
+    new = re.sub(
+        re.escape(AUTO_START) + r".*?" + re.escape(AUTO_END),
+        lambda _: status_block(),
+        text,
+        flags=re.S,
+    )
+    if new == text:
+        return False
+    if not dry_run():
+        STATUS.write_text(new, encoding="utf-8")
+    return True
+
+
+def validate_board():
+    """Struktur prüfen, die das Obsidian-Kanban-Plugin erwartet."""
+    if not BOARD.exists():
+        return ["Board.md fehlt"]
+    text = BOARD.read_text(encoding="utf-8")
+    if not re.search(r"^kanban-plugin:\s*board\s*$", text, re.M):
+        return ["Frontmatter `kanban-plugin: board` fehlt"]
+    front, _pre, lanes, _tail = read(BOARD)
+    problems = []
+    names = [n for n, _ in lanes]
+    for name in ("To Do", "Doing", "Done"):
+        if names.count(name) != 1:
+            problems.append(f"Lane `{name}` fehlt oder ist doppelt")
+    for name, lines in lanes:
+        if name in ("To Do", "Doing", "Done"):
+            for line in lines:
+                if line.startswith("- [") and not CARD_RE.match(line):
+                    problems.append(f"{name}: Karte nicht im Format `- [ ] **ID · Titel**`: {line[:50]}")
+    if not re.search(r"%%\s*kanban:settings", text):
+        problems.append("kanban:settings-Block fehlt")
+    return problems
+
+
+def dry_run():
+    return "--dry-run" in sys.argv or "--check" in sys.argv
+
+
 def main(argv):
-    board, report, dry = BOARD, REPORT, False
+    board, report, dry = BOARD, REPORT, dry_run()
     for i, a in enumerate(argv):
         if a == "--board":
             board = pathlib.Path(argv[i + 1])
         elif a == "--report":
             report = pathlib.Path(argv[i + 1])
-        elif a == "--dry-run":
+        elif a in ("--dry-run", "--check"):
             dry = True
 
     original = board.read_text(encoding="utf-8")
@@ -248,6 +396,31 @@ def main(argv):
                     put_card(lanes, "Done", done_line(card, today))
                     events.append(f"{m.group(2)} abgehakt -> Done")
                     acted = True
+
+        # B2. #auto-Karten: der Beleg entscheidet, nie eine Person
+        ids = [CARD_RE.match(l).group(2) for _, lines in lanes for l in lines if CARD_RE.match(l)]
+        for cid in ids:
+            name, idx, checked = find_card(lanes, cid)
+            if name is None:
+                continue
+            line = next(ls for n, ls in lanes if n == name)[idx]
+            base = clean(line)
+            if "#auto" not in base:
+                continue
+            beleg = BELEG_RE.search(base)
+            if not beleg:
+                continue
+            has = beleg_exists(beleg.group(1))
+            if has and not checked and name != "Done":
+                _, card, _ = take_card(lanes, cid)
+                put_card(lanes, "Done", done_line(card, today))
+                events.append(f"{cid} Beleg vorhanden -> Done")
+                acted = True
+            elif not has and checked:
+                _, card, _ = take_card(lanes, cid)
+                put_card(lanes, "To Do", set_open(clean(card)))
+                events.append(f"{cid} Beleg fehlt -> Häkchen zurückgenommen")
+                acted = True
 
         # C. Abhaengigkeiten: blockiert markieren oder freigeben
         ids = [CARD_RE.match(l).group(2) for _, lines in lanes for l in lines if CARD_RE.match(l)]
@@ -325,11 +498,28 @@ def main(argv):
         if not acted:
             break
 
+    # E. Fakten aktualisieren: Frist und Belegstand
+    for _name, lines in lanes:
+        for i, line in enumerate(lines):
+            if CARD_RE.match(line):
+                lines[i] = with_facts(line)
+
     pre = [STAMP + today if l.startswith(STAMP) else l for l in pre]
     rendered = render(front, pre, lanes, tail)
     changed = rendered != original
     if changed and not dry:
         board.write_text(rendered, encoding="utf-8")
+
+    status_changed = sync_status()
+    print(f"Status: {'geändert' if status_changed else 'unverändert'}")
+
+    problems = validate_board()
+    if problems:
+        print("Board-Struktur: FEHLER")
+        for problem in problems:
+            print(f"  - {problem}")
+    else:
+        print("Board-Struktur: ok (Kanban-Plugin)")
 
     stamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     if events:
@@ -343,7 +533,7 @@ def main(argv):
     if write and not dry:
         with LOG.open("a", encoding="utf-8") as fh:
             fh.write(line + "\n")
-    return 0
+    return 1 if problems else 0
 
 
 if __name__ == "__main__":

@@ -1,0 +1,89 @@
+# Täglicher Lauf der Projekt-Automatik auf GitHub Actions.
+#
+# Entspricht dem Lauf auf dem Mac (daily.sh): ingest.py, graphify.py, board_sync.py
+# und der Discord-Bericht. Ein lokaler LaunchAgent ist bewusst nicht installiert —
+# zwei Scheduler am selben Tag erzeugen zwei Discord-Berichte und konkurrierende
+# Commits (siehe Obsidian/_tools/com.projectjlu.daily.plist).
+#
+# Der Discord-Webhook liegt als Repository-Secret DISCORD_WEBHOOK und niemals im Repo.
+# discord_notify.py liest zuerst $DISCORD_WEBHOOK.
+name: Tageslauf
+
+on:
+  schedule:
+    # 08:00 Berliner Zeit; der timezone-Schlüssel macht den Lauf sommer-/winterzeitfest
+    # (seit März 2026 von GitHub Actions unterstützt).
+    - cron: "0 8 * * *"
+      timezone: "Europe/Berlin"
+  # Manuell startbar, um den Workflow zu testen, ohne auf 08:00 zu warten.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tageslauf
+  cancel-in-progress: false
+
+jobs:
+  tageslauf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # Damit Zeitstempel in daily.log und im Discord-Bericht Berliner Zeit zeigen.
+      TZ: Europe/Berlin
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: PDF- und DOCX-Werkzeuge installieren
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends poppler-utils pandoc
+
+      - name: Tageslauf ausführen
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK" ]; then
+            echo "::warning::Secret DISCORD_WEBHOOK fehlt – der Bericht wird nicht gesendet."
+          fi
+          bash Obsidian/_tools/daily.sh
+
+      - name: Änderungen committen und zurückschreiben
+        run: |
+          git config user.name "Trung Do"
+          git config user.email "dotrung1998@gmail.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen – nichts zu committen."
+            exit 0
+          fi
+          git commit \
+            -m "Tageslauf $(date +%Y-%m-%d): Quellen eingelesen, Board fortgeschrieben" \
+            -m "- ingest.py, graphify.py und board_sync.py ausgeführt, Status- und Board-Blöcke aktualisiert"
+          # Autor/Trailer des eigenen Commits prüfen, bevor er das Repo verlässt.
+          python3 Obsidian/_tools/author_guard.py --commit HEAD
+          # Neueste Commits von main einbeziehen, damit der Push nicht abgewiesen wird.
+          git pull --rebase origin main || {
+            echo "::warning::git pull --rebase fehlgeschlagen – zweiter Versuch in 5 s."
+            sleep 5
+            git pull --rebase origin main
+          }
+          git push
+
+      - name: Discord-Versand prüfen
+        run: |
+          last=$(grep '^Discord:' Obsidian/_tools/daily.log | tail -1 || true)
+          case "$last" in
+            "Discord: gesendet"*) echo "Bestätigt: $last" ;;
+            *)
+              echo "::error::Discord-Bericht wurde nicht gesendet (Secret prüfen)."
+              exit 1
+              ;;
+          esac

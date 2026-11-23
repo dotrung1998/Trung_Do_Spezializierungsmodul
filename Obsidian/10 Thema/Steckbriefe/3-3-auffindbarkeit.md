@@ -6,9 +6,8 @@ hash: 858954bc48f5
 automatisch: true
 ---
 
-> Automatisch eingelesen aus `Project JLU/steckbriefe/3-3-auffindbarkeit.md` am 2026-11-21.
-> Diese Notiz nicht bearbeiten — inhaltliche Arbeit gehört in die
-> handgeschriebenen Notizen, diese Datei wird beim nächsten Lauf überschrieben.
+> Automatisch eingelesen aus `Project JLU/steckbriefe/3-3-auffindbarkeit.md` am 2026-11-23. Nicht bearbeiten —
+> inhaltliche Arbeit gehört in die handgeschriebenen Notizen.
 
 <!-- Quelle: Planungsmodul Project JLU WiSe 2026/27, Fassung v3. Stand 19.11.2026. -->
 # 3.3 Auffindbarkeit und Informationsarchitektur

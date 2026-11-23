@@ -1,0 +1,24 @@
+{
+  "ausgeschlossen": [
+    {
+      "muster": "Project JLU/protokolle/README.md",
+      "grund": "Ablagehinweise der Betreuung für den Protokollordner, kein Protokoll und keine Vorgabe zur Arbeit"
+    },
+    {
+      "muster": "*.DS_Store",
+      "grund": "macOS-Metadatei mit Fensterpositionen, kein fachlicher Inhalt"
+    }
+  ],
+  "manuell": [
+    {
+      "pfad": "Project JLU/projektkarte.svg",
+      "notiz": "Thema 29 – Überblick",
+      "grund": "Projektkarte als SVG (kein extrahierbarer Text). Aufbau und Einordnung stehen in [[Thema 29 – Überblick]]; die Datei liegt zusätzlich als Anhang in 90 Anhänge/projektkarte.svg"
+    },
+    {
+      "pfad": "Project JLU/projektkarte.html",
+      "notiz": "Thema 29 – Überblick",
+      "grund": "Projektkarte als HTML-Fassung derselben Grafik (kein Text extrahiert). Beschreibung in [[Thema 29 – Überblick]]; Anhang 90 Anhänge/projektkarte.html"
+    }
+  ]
+}

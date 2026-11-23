@@ -1,0 +1,5 @@
+#!/bin/sh
+# Lokale Sperre: kein Commit mit fremdem Autor oder Bot-/Tool-Konfiguration.
+set -eu
+root=$(git rev-parse --show-toplevel)
+exec python3 "$root/Obsidian/_tools/author_guard.py" --config

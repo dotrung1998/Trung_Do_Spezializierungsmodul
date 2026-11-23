@@ -4,6 +4,8 @@
 # Werkzeuge und temporäre Ablagen
 .freebuff/
 .cloud-attachments/
+__pycache__/
+*.pyc
 report/.render/
 
 # Doppelte Archivkopie der Quellen (der Ordner "Project JLU/" ist maßgeblich)
@@ -17,6 +19,8 @@ Obsidian/.obsidian/community-plugins.json
 # Protokolle des Tageslaufs und der Quelleneinlesung
 Obsidian/_tools/daily.log
 Obsidian/_tools/board.log
+Obsidian/_tools/launchd.out.log
+Obsidian/_tools/launchd.err.log
 
 # automatisch erzeugte Notizen (ingest.py, graphify.py)
 Obsidian/00 Brain/Neu seit letztem Lauf.md

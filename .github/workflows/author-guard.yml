@@ -1,0 +1,43 @@
+# Prüft bei jedem Push auf main und bei Pull Requests, dass Commits vom
+# erlaubten Autor stammen und keine Co-Author-/Bot-Trailer enthalten.
+# GitHub kann das bei benutzereigenen Repositories nicht als Ruleset erzwingen;
+# dieser Workflow macht Verstöße sichtbar (roter Lauf). Dieselben Regeln sperren
+# lokal die Hooks in .githooks/.
+name: Author-Guard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Autor und Trailer prüfen
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          SHA: ${{ github.sha }}
+          BASE_REF: ${{ github.base_ref }}
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if [ "$EVENT" = "pull_request" ]; then
+            python3 Obsidian/_tools/author_guard.py --range "origin/$BASE_REF..$PR_SHA"
+          elif [ "$EVENT" = "push" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            python3 Obsidian/_tools/author_guard.py --range "$BEFORE..$SHA"
+          else
+            python3 Obsidian/_tools/author_guard.py --commit HEAD
+          fi

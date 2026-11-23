@@ -13,7 +13,8 @@ Dieser Ordner **ist** der Vault. Öffnen mit Obsidian → „Ordner als Vault ö
 30 Plan/         Projektplan, Prüfungsleistung ohne Vortrag, Risiken, Automation
 40 Protokolle/   automatisch eingelesene Protokolle der Gesamtgruppe
 50 Kommunikation/ E-Mail-Entwürfe und Kommunikationsplan
-_tools/          ingest.py — liest Project JLU/ in den Vault ein
+_tools/          Automatik: ingest.py, graphify.py, board_sync.py, daily.sh,
+                 discord_notify.py, author_guard.py, fristen.json, abdeckung-regeln.json
 90 Anhänge/      automatisch kopierte PDFs und Binärdateien (zu lesen, nicht durchsuchbar)
 ```
 
@@ -35,3 +36,32 @@ python3 Obsidian/_tools/ingest.py
 
 Der Ingest überschreibt **nur** `10 Thema/Steckbriefe/`, `40 Protokolle/` und
 `90 Anhänge/`. Alle handgeschriebenen Notizen bleiben unberührt.
+
+## Tageslauf
+
+`_tools/daily.sh` liest die Quellen ein, schreibt die Codekarte, das Board und den
+Fristenblock in [[Status]] fort und schickt einen kurzen Bericht an Discord. Geplant
+läuft er in GitHub Actions (`.github/workflows/tageslauf.yml`, 08:00 Europe/Berlin);
+von Hand geht er jederzeit:
+
+```bash
+bash Obsidian/_tools/daily.sh
+```
+
+Prüfen ohne zu schreiben:
+
+```bash
+python3 Obsidian/_tools/ingest.py --check
+python3 Obsidian/_tools/board_sync.py --check
+python3 Obsidian/_tools/discord_notify.py --dry-run
+```
+
+Fristen stehen nur in `_tools/fristen.json` (mit Quelle), Ausschlüsse und manuell
+beschriebene Dateien in `_tools/abdeckung-regeln.json`. Der lokale LaunchAgent
+(`com.projectjlu.daily.plist`) ist nur eine Vorlage und wird nicht geladen.
+
+Nach dem Klonen einmalig die Hooks aktivieren:
+
+```bash
+git config core.hooksPath .githooks
+```

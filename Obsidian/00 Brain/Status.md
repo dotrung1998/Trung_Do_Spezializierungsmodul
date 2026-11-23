@@ -203,3 +203,21 @@ bleiben alle Messzahlen offen — die Kette ist scharf, aber ohne Daten tut sie 
 2. GitLab-Zugang real testen, nicht nur „sollte gehen" — SSH nur im Uninetz oder per VPN,
    sonst HTTPS mit persönlichem Token.
 3. Nichts weiter bauen. Vor der Zuteilung ist jede Codezeile Spekulation.
+
+## Automatisch (Fristen und Board)
+
+Dieser Block wird bei jedem Tageslauf aus `Obsidian/_tools/fristen.json` und dem Board
+neu geschrieben. Nicht von Hand bearbeiten — Änderungen gehören in `fristen.json`.
+
+<!-- AUTO:START -->
+**Fristen (automatisch, Stand 2026-11-23)**
+
+| Termin | Was | Abstand | Wer |
+|---|---|---|---|
+| 2026-11-26 | Zwei Themenwünsche (P1, P2) per Mail an die Betreuung | in 3 Tagen | person |
+| 2026-11-27, 11:00 | Zuteilung der Einzelarbeiten, erster Jour fixe (online) | in 4 Tagen | team |
+| 2026-12-01 | Offizieller Start des Bearbeitungszeitraums | in 8 Tagen | team |
+| 2027-04-01 | Abgabe im Abgaberepo der Betreuung | in 129 Tagen | person |
+
+Board: 3 von 17 Karten erledigt; Quellenstand in [[Abgaben (auto)]].
+<!-- AUTO:END -->
