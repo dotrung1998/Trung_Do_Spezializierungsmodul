@@ -25,3 +25,7 @@ Obsidian/_tools/launchd.err.log
 # automatisch erzeugte Notizen (ingest.py, graphify.py)
 Obsidian/00 Brain/Neu seit letztem Lauf.md
 Obsidian/10 Thema/Codekarte.md
+
+# Gebaute PDFs mit Titelblatt (enthalten Name und Matrikelnummer) — nicht versionieren
+report/main.pdf
+report/expose.pdf
