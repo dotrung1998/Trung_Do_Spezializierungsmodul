@@ -77,6 +77,11 @@ Europe/Berlin (`schedule` mit `timezone`), zusätzlich per `workflow_dispatch` s
 Der Workflow ruft `Obsidian/_tools/daily.sh`, committet das Ergebnis als „Trung Do“,
 prüft den eigenen Commit mit `author_guard.py` und pusht auf `main` zurück.
 
+Stand 23.11.2026: Beide Workflows sind registriert, GitHub startet aber **keine
+Runner** — das Konto meldet „recent account payments have failed or your spending
+limit needs to be increased“ (Run 45096751098). Bis das unter *Billing & plans*
+geklärt ist, findet um 08:00 kein Lauf statt; Einzelheiten in `Obsidian/00 Brain/Status.md`.
+
 **Mac (von Hand oder optional):** derselbe `daily.sh`. Für Dauerbetrieb liegen
 `_tools/com.projectjlu.daily.plist` und `daily_guard.sh` bei.
 

@@ -222,3 +222,18 @@ neu geschrieben. Nicht von Hand bearbeiten — Änderungen gehören in `fristen.
 
 Board: 3 von 17 Karten erledigt; Quellenstand in [[Abgaben (auto)]].
 <!-- AUTO:END -->
+
+## Automatik und Scheduler (23.11.2026)
+
+- **GitHub Actions:** `.github/workflows/tageslauf.yml` und `author-guard.yml` sind
+  gepusht und registriert (`gh workflow list`: beide `active`). Der erste Lauf
+  (Run 45096751098) wurde **nicht gestartet**: „The job was not started because recent
+  account payments have failed or your spending limit needs to be increased.“ Bis das
+  im Konto unter *Billing & plans* geklärt ist, läuft um 08:00 nichts.
+- **Lokal:** Der LaunchAgent `com.projectjlu.daily` ist seit 23.11. entladen und
+  deaktiviert. Geplant findet damit derzeit **kein** automatischer Lauf statt.
+- **Discord:** `DISCORD_WEBHOOK` liegt als Repository-Secret, der Versand ist aber
+  **nicht bestätigt** — dafür braucht es einen gestarteten Runner. Lokal fehlt
+  `~/.config/projektjlu/discord-webhook`; vorhanden ist nur der Kanal des
+  Nachbarprojekts (`~/.config/projektplanung/discord-webhook`), der nicht ohne
+  Entscheidung bespielt wird.
