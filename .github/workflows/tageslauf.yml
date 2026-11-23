@@ -1,7 +1,8 @@
 # Täglicher Lauf der Projekt-Automatik auf GitHub Actions.
 #
 # Entspricht dem Lauf auf dem Mac (daily.sh): ingest.py, graphify.py, board_sync.py
-# und der Discord-Bericht. Ein lokaler LaunchAgent ist bewusst nicht installiert —
+# und der Discord-Bericht. Der lokale LaunchAgent ist seit 23.11.2026 entladen und
+# deaktiviert (launchctl bootout/disable) —
 # zwei Scheduler am selben Tag erzeugen zwei Discord-Berichte und konkurrierende
 # Commits (siehe Obsidian/_tools/com.projectjlu.daily.plist).
 #

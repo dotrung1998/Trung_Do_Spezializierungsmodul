@@ -60,31 +60,28 @@ Zwei Dinge müssen täglich passieren: neue Unterlagen der Betreuung einlesen, u
 Codekarte neu erzeugen.
 
 `_tools/daily.sh` macht beides und schreibt ein Protokoll nach `_tools/daily.log`.
-Gestartet wird es von einem launchd-Job, täglich um 08:00 Uhr; schläft der Rechner,
-holt macOS den Lauf beim Aufwachen nach.
+Gestartet wird es von **GitHub Actions** (`.github/workflows/tageslauf.yml`), täglich
+08:00 Europe/Berlin — der Rechner muss dafür nicht laufen. Von Hand jederzeit:
 
 ```bash
-# Status des Jobs
-launchctl print gui/$(id -u)/com.projectjlu.daily | head -20
-
-# sofort einmal laufen lassen
-launchctl kickstart -k gui/$(id -u)/com.projectjlu.daily
-
-# Protokoll ansehen
+bash Obsidian/_tools/daily.sh
 tail -20 "Obsidian/_tools/daily.log"
 ```
 
-**Abschalten** (vollständig rückgängig):
+**Lokaler LaunchAgent (seit 23.11.2026 aus).** Bis 22.11.2026 lief `com.projectjlu.daily`
+über launchd, seit dem Umzug auf Actions ist er entladen und deaktiviert — sonst gäbe es
+zwei Läufe, zwei Discord-Berichte und konkurrierende Commits. Die Datei liegt weiter
+unter `~/Library/LaunchAgents/`. Zurückholen nur mit entferntem Workflow-Cron:
 
 ```bash
-launchctl bootout gui/$(id -u)/com.projectjlu.daily
-rm ~/Library/LaunchAgents/com.projectjlu.daily.plist
+launchctl enable gui/$(id -u)/com.projectjlu.daily
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.projectjlu.daily.plist
 ```
 
-**Nachteil, den man kennen muss:** Der Job enthält den absoluten Pfad
-`/Applications/JLU Spezializierungsmodul`. Wird der Projektordner verschoben oder
-umbenannt, läuft er ins Leere. Dann die plist neu erzeugen (Vorlage:
-`_tools/com.projectjlu.daily.plist`) und neu laden.
+**Nachteil des Agents:** Er enthält den absoluten Pfad
+`/Applications/JLU Spezializierungsmodul`. Wird der Ordner verschoben oder umbenannt,
+läuft er ins Leere; dann die plist neu erzeugen (Vorlage:
+`_tools/com.projectjlu.daily.plist`).
 
 ## Was die Codekarte ist
 

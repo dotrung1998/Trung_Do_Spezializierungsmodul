@@ -55,8 +55,8 @@ Abhängigkeit bekommen keine solche Angabe.
 **Kette.** KORPUS → GOLD, 6.1, 6.3, 6.4 · GOLD → 6.2 · 6.1 und 6.2 → 7.2 · 7.2 → 8 ·
 8 → ZUS.
 
-Der Lauf (`_tools/daily.sh`, 08:00, launchd `com.projectjlu.daily`) ruft `board_sync.py`
-und darin `jobs.py`:
+Der Lauf (`_tools/daily.sh`, 08:00 über GitHub Actions; der lokale launchd-Job ist seit
+23.11.2026 entladen und deaktiviert) ruft `board_sync.py` und darin `jobs.py`:
 
 - `\todo` offen ⇒ Karte nicht Done; ist die Stelle im Bericht gefüllt, wird die Karte Done.
 - `#person` und `#team` werden nie automatisch entschieden, nur als freigegeben oder

@@ -2,9 +2,9 @@
 # Taeglicher Lauf: Quellen einlesen, Codekarte, Board und Fristen fortschreiben,
 # kurzer Bericht an Discord.
 # Startet in GitHub Actions (.github/workflows/tageslauf.yml) und von Hand.
-# Der lokale LaunchAgent (com.projectjlu.daily.plist) liegt nur als Datei bei und
-# wird nicht installiert — zwei Scheduler am selben Tag erzeugen zwei Berichte und
-# konkurrierende Commits.
+# Der lokale LaunchAgent (com.projectjlu.daily.plist) ist seit 23.11.2026 entladen und
+# deaktiviert — zwei Scheduler am selben Tag erzeugen zwei Berichte und konkurrierende
+# Commits.
 set -uo pipefail
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

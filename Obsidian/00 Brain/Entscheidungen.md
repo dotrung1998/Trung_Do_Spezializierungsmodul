@@ -170,3 +170,18 @@ aus der Anzeige entfernen (ändert den Inhalt der Angabe); `biber` erzwingen (Ve
 mit biblatex 3.17).
 **Preis.** Für sehr lange URLs wäre die Box riskant (Overfull). Im aktuellen Verzeichnis sind
 nur zwei Adressen betroffen, beide passen; bei neuen Einträgen mit langen URLs prüfen.
+
+## 2026-11-23 — Nur ein Scheduler: GitHub Actions, nicht launchd
+
+**Entscheidung.** Den LaunchAgent `com.projectjlu.daily` am 23.11.2026 entladen
+(`launchctl bootout`) und deaktiviert (`launchctl disable`). Geplant läuft nur noch
+`.github/workflows/tageslauf.yml` um 08:00 Europe/Berlin.
+**Grund.** Der Agent war seit dem 21.11. geladen und lief am 21. und 22.11. um 08:00
+(Beleg: `Obsidian/_tools/daily.log`). Mit dem neuen Workflow hätte es zwei Läufe pro Tag
+gegeben: zwei Discord-Berichte und konkurrierende Commits auf `main`.
+**Verworfen.** Agent geladen lassen und den Cron im Workflow auf eine andere Uhrzeit legen
+(verschiebt das Problem nur); die plist-Datei löschen (nicht nötig, `disable` ist
+umkehrbar und lässt den Rückweg offen); den Agent als einzigen Scheduler behalten (der
+Rechner müsste dafür wach sein und der Lauf hinge an einem Gerät).
+**Preis.** Der Lauf hängt jetzt an GitHub; ein fehlgeschlagener Run fällt nur im
+Actions-Tab und im Discord-Bericht auf.

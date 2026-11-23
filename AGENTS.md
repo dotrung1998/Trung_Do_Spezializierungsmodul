@@ -78,9 +78,19 @@ Der Workflow ruft `Obsidian/_tools/daily.sh`, committet das Ergebnis als „Trun
 prüft den eigenen Commit mit `author_guard.py` und pusht auf `main` zurück.
 
 **Mac (von Hand oder optional):** derselbe `daily.sh`. Für Dauerbetrieb liegen
-`_tools/com.projectjlu.daily.plist` und `daily_guard.sh` bei — **nicht installiert**.
-Zwei Scheduler am selben Tag erzeugen zwei Discord-Berichte und konkurrierende Commits.
-Wer den Agent lädt, entfernt vorher den Cron im Workflow.
+`_tools/com.projectjlu.daily.plist` und `daily_guard.sh` bei.
+
+Stand 23.11.2026: Der Agent `com.projectjlu.daily` **war** geladen und lief am 21. und
+22.11. um 08:00 (Beleg: `_tools/daily.log`). Er wurde am 23.11. entladen
+(`launchctl bootout`) und deaktiviert (`launchctl disable`); seitdem läuft nur der Cron
+in Actions. Die Kopie in `~/Library/LaunchAgents/` bleibt liegen, ist aber deaktiviert.
+Wieder einschalten nur, wenn der Workflow-Cron vorher entfernt wird — zwei Scheduler am
+selben Tag erzeugen zwei Discord-Berichte und konkurrierende Commits:
+
+```bash
+launchctl enable gui/$(id -u)/com.projectjlu.daily
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.projectjlu.daily.plist
+```
 
 Ablauf je Lauf: `ingest.py` (Quellen), `graphify.py` (Codekarte), `board_sync.py`
 (Board, Fristenblock), `discord_notify.py` (Bericht). Exit ≠ 0, wenn ein Kernschritt

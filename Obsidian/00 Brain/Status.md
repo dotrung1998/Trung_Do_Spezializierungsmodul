@@ -138,7 +138,8 @@ Abhängigkeit bekommen keine solche Angabe. Jede Karte verweist am Zeilenende mi
 | 8 | ZUS |
 
 Regeln im Lauf (`Obsidian/_tools/board_sync.py`, gestartet über `_tools/daily.sh`,
-launchd `com.projectjlu.daily`, 08:00):
+08:00 über GitHub Actions; der lokale launchd-Job `com.projectjlu.daily` ist seit
+23.11.2026 entladen und deaktiviert):
 
 - `\todo` offen → Karte nicht in Done; `\todo` verschwunden → Done mit Datum.
 - Blocker offen → Vermerk `· blockiert: X offen`. Blocker erledigt → `#ai` wandert von

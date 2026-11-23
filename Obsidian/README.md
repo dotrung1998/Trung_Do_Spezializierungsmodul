@@ -58,7 +58,8 @@ python3 Obsidian/_tools/discord_notify.py --dry-run
 
 Fristen stehen nur in `_tools/fristen.json` (mit Quelle), Ausschlüsse und manuell
 beschriebene Dateien in `_tools/abdeckung-regeln.json`. Der lokale LaunchAgent
-(`com.projectjlu.daily.plist`) ist nur eine Vorlage und wird nicht geladen.
+(`com.projectjlu.daily.plist`) ist seit 23.11.2026 entladen und deaktiviert; geplant
+läuft nur GitHub Actions.
 
 Nach dem Klonen einmalig die Hooks aktivieren:
 
