@@ -13,6 +13,7 @@ Workflow `.github/workflows/author-guard.yml`.
 Verwendung:
     python3 Obsidian/_tools/author_guard.py --commit HEAD
     python3 Obsidian/_tools/author_guard.py --range origin/main..HEAD
+    python3 Obsidian/_tools/author_guard.py --all      # gesamte Geschichte von HEAD
     python3 Obsidian/_tools/author_guard.py --config
     python3 Obsidian/_tools/author_guard.py --message-file .git/COMMIT_EDITMSG --config
 """
@@ -116,6 +117,7 @@ def main() -> int:
     parser.add_argument("--range", dest="rev_range")
     parser.add_argument("--commit")
     parser.add_argument("--message-file")
+    parser.add_argument("--all", action="store_true", help="alle Commits von HEAD prüfen")
     parser.add_argument("--config", action="store_true")
     args = parser.parse_args()
 
@@ -129,6 +131,12 @@ def main() -> int:
         errors += check_message("Nachricht", message)
     if args.config:
         errors += check_config()
+    if args.all:
+        shas, err = commits_in_range("HEAD")
+        if err:
+            errors.append(f"git rev-list HEAD fehlgeschlagen: {err}")
+        for sha in shas:
+            errors += check_commit(sha)
     if args.rev_range:
         shas, err = commits_in_range(args.rev_range)
         if err:
@@ -137,7 +145,7 @@ def main() -> int:
             errors += check_commit(sha)
     elif args.commit:
         errors += check_commit(args.commit)
-    elif not args.message_file and not args.config:
+    elif not args.message_file and not args.config and not args.all:
         errors += check_commit("HEAD")
 
     if errors:

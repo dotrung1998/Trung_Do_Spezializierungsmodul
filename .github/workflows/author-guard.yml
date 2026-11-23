@@ -36,8 +36,12 @@ jobs:
         run: |
           if [ "$EVENT" = "pull_request" ]; then
             python3 Obsidian/_tools/author_guard.py --range "origin/$BASE_REF..$PR_SHA"
-          elif [ "$EVENT" = "push" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
+          elif [ "$EVENT" = "push" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] \
+               && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
             python3 Obsidian/_tools/author_guard.py --range "$BEFORE..$SHA"
           else
-            python3 Obsidian/_tools/author_guard.py --commit HEAD
+            # Nach einem Force-Push zeigt BEFORE auf einen Commit, den der Klon nicht
+            # mehr kennt. Dann ist die ganze neue Geschichte die geprüfte Menge.
+            echo "::notice::Kein gültiger Vorher-Commit (Force-Push oder Erstlauf) – prüfe die gesamte Geschichte."
+            python3 Obsidian/_tools/author_guard.py --all
           fi
