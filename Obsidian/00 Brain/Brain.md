@@ -56,7 +56,7 @@ Schreib-, aber weniger Redeanteil und passt zum Ziel „höchste Note mit belegt
   für die Messkapitel. Budget in [[Prüfungsleistung ohne Vortrag]]. Die Themen-Mail ist am
   24.11.2026 **gesendet**: zwei Themenwünsche, Variante A, HRZ-Kennung, ZAD-Workspace als
   Rückfallebene; Wortlaut in [[Korrespondenz mit Busse]]. Nächstes Ereignis: Zuteilung am
-  Fr 27.11., 11:00.
+  Fr 27.11., 11:00; Vorbereitung mit beiden Fragen in [[Jour fixe 2026-11-27]].
 - Offen: Themenwünsche absenden (Frist Do 26.11.), GitLab-Zugang, Team-Gamma-Absprache zum
   gemeinsamen Quellenstand nach der Zuteilung am 27.11.
 

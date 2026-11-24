@@ -40,9 +40,11 @@ Der Ingest überschreibt **nur** `10 Thema/Steckbriefe/`, `40 Protokolle/` und
 ## Tageslauf
 
 `_tools/daily.sh` liest die Quellen ein, schreibt die Codekarte, das Board und den
-Fristenblock in [[Status]] fort und schickt einen kurzen Bericht an Discord. Geplant
-läuft er in GitHub Actions (`.github/workflows/tageslauf.yml`, 08:00 Europe/Berlin);
-von Hand geht er jederzeit:
+Fristenblock in [[Status]] fort und schickt einen ausführlichen Bericht an Discord:
+Lage und Quellen, alle Fristen mit Begründung, offene Karten und Entscheidungen sowie
+jede Mail als Codeblock mit Kopierknopf. Der Bericht umfasst mehrere Nachrichten, weil
+Discord 2000 Zeichen je Nachricht erlaubt. Geplant läuft er in GitHub Actions
+(`.github/workflows/tageslauf.yml`, 08:00 Europe/Berlin); von Hand geht er jederzeit:
 
 ```bash
 bash Obsidian/_tools/daily.sh

@@ -25,8 +25,8 @@ Bezugsdatum: Sa 21.11.2026. Tage in Klammern ab Bezugsdatum.
 Variante A, HRZ-Kennung, ZAD-Workspace als Rückfallebene. Wortlaut: [[Korrespondenz mit Busse]].
 
 **Jetzt:** Antwort abwarten. Am **Fr 27.11.2026, 11:00** Zuteilung und erster Jour fixe
-(online, selber Raum). Dort die Frage zur Kombination 3.1/3.2 stellen, die aus der Mail
-gestrichen wurde.
+(online, selber Raum). Ablauf, beide Fragen und der Vorschlag an Team Gamma stehen in
+[[Jour fixe 2026-11-27]].
 
 **Danach:** [[E-Mail 2 – Kurzexposé]] mit `expose.pdf` senden, sobald zugeteilte Dimension
 und Datum des Jour fixe feststehen. Vorlage: `E-Mail-2-versandfertig.txt` im Projektordner.

@@ -18,7 +18,7 @@ stand: 2026-11-21
 | # | Wann | An | Inhalt | Entwurf |
 |---|---|---|---|---|
 | 1 | **bis Do 26.11.2026** | Busse | zwei Themenwünsche, Prüfungsleistung, HRZ-Kennung, drei Fragen | [[E-Mail 1 – Themenwünsche]] |
-| 2 | Fr 27.11.2026, 11:00 | — | Zuteilung im Jour fixe; Teilnahme bestätigen | — |
+| 2 | Fr 27.11.2026, 11:00 | — | Zuteilung im Jour fixe; Teilnahme bestätigen | [[Jour fixe 2026-11-27]] |
 | 3 | 27.–30.11.2026 | Team Gamma | gemeinsamer Korpus, Faktkatalog | [[E-Mail an Team Gamma]] |
 | 4 | nach der Zuteilung, Anfang Dezember | Busse | Kurzexposé (1 Seite): Fragestellung, Daten, Methode, Zeitplan — Bestätigung vor Kapitel 5–6 | [[E-Mail 2 – Kurzexposé]] |
 | 5 | Mitte Dezember | Busse | Hypothesen, nur falls im Exposé nicht beantwortet (Vorrat) | [[E-Mail 2 – Hypothesen]] |

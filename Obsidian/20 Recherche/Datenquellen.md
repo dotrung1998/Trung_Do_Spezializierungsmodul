@@ -88,8 +88,10 @@ Deploy-Zeit statt Inhaltszeit). Im Bericht als „Proxy" kennzeichnen, nicht als
 ## Arbeitsumgebung
 
 - **GitLab der JLU:** <https://gitlab.ub.uni-giessen.de>
-  Öffentliche Seiten erreichbar; **SSH nur im Uninetz oder per VPN**, sonst HTTPS mit
-  persönlichem Token. 50 Projekte à 1 GB je Person, Git LFS für große Dateien.
+  Am 23.11.2026 von außen **nicht erreichbar** (DNS korrekt, TCP 443 Timeout); nur im
+  Uninetz oder per VPN, für Studierende nur mit Antrag einer Lehrperson. Git über HTTPS
+  mit persönlichem Token, SSH nur im Uninetz oder per VPN. 50 Projekte à 1 GB je Person,
+  Git LFS für große Dateien. Ablauf: [[GitLab-Zugang und Repo-Anlage]].
 - **Repo-Name der eigenen Arbeit** nach Leitfaden: `gamma-3-1-konsistenz`.
 
 ## Höflichkeitsregeln beim Abruf (Vorgabe aus den Steckbriefen)

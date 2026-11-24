@@ -1,6 +1,6 @@
 #!/bin/bash
 # Taeglicher Lauf: Quellen einlesen, Codekarte, Board und Fristen fortschreiben,
-# kurzer Bericht an Discord.
+# ausfuehrlicher Bericht an Discord (Fristen, Aufgaben, Mails als Kopierblock).
 # Startet in GitHub Actions (.github/workflows/tageslauf.yml) und von Hand.
 # Der lokale LaunchAgent (com.projectjlu.daily.plist) ist seit 23.11.2026 entladen und
 # deaktiviert — zwei Scheduler am selben Tag erzeugen zwei Berichte und konkurrierende

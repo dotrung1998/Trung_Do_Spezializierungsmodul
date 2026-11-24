@@ -308,3 +308,27 @@ nicht klappt, in der Antwort an die Betreuung korrigieren.
 **Verworfen.** Bis zum 26.11. warten (kein Vorteil, jede Verzögerung erhöht das Risiko,
 ohne eigene Stimme zugeteilt zu werden). Die Frage nach dem Workspace als Bitte um
 Entscheidung formulieren (die Mail soll keine Rückfrage erzeugen).
+
+## 2026-11-24 — Jour fixe mit drei Punkten vorbereitet, Berichtsumfang im README korrigiert
+
+**Entscheidung.** Für den Jour fixe am Fr 27.11.2026, 11:00 stehen vier Punkte in dieser
+Reihenfolge fest ([[Jour fixe 2026-11-27]]): Zuteilung, Kombination 3.1/3.2, VPN und
+GitLab, Vorschlag an Team Gamma. Die Frage zur Kombination wird als geschlossene
+Alternative gestellt („trägt die Kombination, oder ist eine zu viel?" und „welche fehlt
+dem Team mehr?"). Der Team-Vorschlag kommt als drei verabredbare Punkte: ein Stichtag,
+ein Projekt `team-gamma`, ein Katalog von zwölf Sachverhalten.
+**Grund.** Zwei der drei Themen wurden bewusst aus Mail 1 herausgehalten, damit die Mail
+keine Rückfrage erzeugt. Der Jour fixe ist der nächste Kanal, nicht eine zweite Mail.
+Regel 2 des [[Kommunikationsplan]]s verlangt geschlossene Fragen, deshalb die Alternative
+statt „Wie soll ich vorgehen?".
+**Zweitens.** `report/README.md` nannte als Umfang noch 12 Seiten. Richtig sind 22 Seiten
+gesamt mit 13 Textseiten; Titelblatt, Inhaltsverzeichnis, Literaturverzeichnis und Anhang
+zählen nicht mit (Antwort der Betreuung vom 24.11.2026). Die alte Zahl widersprach
+[[Prüfungsleistung ohne Vortrag]] und dem Kopfkommentar der Kapitel.
+**Folge.** Nach dem Termin: Zuteilung eintragen, Zusammenfassungsmail schreiben, Team-Mail
+anpassen, Projekt anlegen sobald der Login geht, Exposé vorbereiten.
+**Offen.** Die Themenmail behauptet einen erfolgten GitLab-Login. Wenn er nicht aufging,
+wird das im Termin korrigiert und nicht per Mail nachgeschoben.
+**Verworfen.** Die Kombinationsfrage vor dem 27.11. per Mail nachschieben (zweite Mail,
+zweite Rückfrage, Frist war der 26.11.). Die Zahl im README stehen lassen, bis der Bericht
+gebaut wird (der Widerspruch wäre bis zur Abgabe mitgeschleppt worden).
