@@ -369,3 +369,27 @@ gewachsen. Ein Widerspruch bleibt also nicht stehen, sondern eine datierte Messu
 Die Kapitelbudgets (13 im Stand, 15 als Ziel) bleiben unverändert gültig.
 **Offen.** Eine Overfull-Zeile von 56 pt im Literaturverzeichnis, ein DOI bricht nicht um.
 Kosmetisch, vor der Abgabe beheben (`\sloppy` lokal oder `url`-Umbruch).
+
+## 2026-11-24 — Overfull-Zeile im Literaturverzeichnis behoben
+
+**Entscheidung.** URLs im Literaturverzeichnis dürfen umbrechen. In
+`report/preamble/packages.tex` fällt die unteilbare Box um die Adresse weg
+(`\DeclareFieldFormat{url}{URL\addcolon\space\url{#1}}`), dazu die drei biblatex-Zähler
+`biburlnumpenalty`, `biburlucpenalty` und `biburllcpenalty` auf 100. Damit bricht eine
+Adresse notfalls zwischen Ziffern oder Buchstaben, ohne Trennstrich.
+**Grund.** Die Ursache war nicht die Adresse, sondern die Formatierung: `\mbox` machte
+jede URL zu einer unteilbaren Box. Die längste Adresse im Korpus hat 84 Zeichen und
+überschreitet damit die Satzbreite von 441 pt, sie kann so nie in eine Zeile passen.
+Folge waren 56,4 pt Überlauf im Bau vom 24.11.2026.
+**Ergebnis.** Neuer Bau: **22 Seiten, 13 Textseiten (Seite 1–13)**, Anhang 14–16,
+Literatur 17, Erklärung 18 — unverändert. Warnungen: **0 Overfull, 0 Underfull,
+0 Missing character**, keine offenen Verweise.
+**Nebenbefund, offen.** Eine lange ISO-Adresse bricht jetzt vor dem Doppelpunkt, „https“
+steht allein am Zeilenende. Ein Versuch, die Trennstellen über `\UrlBreaks` und
+`\UrlBigBreaks` zu steuern, blieb wirkungslos, weil `url` seine Trennliste beim Laden
+festlegt; die Definitionen wurden wieder entfernt, damit kein toter Code bleibt.
+Kosmetisch. Wer es sauber will, setzt die betroffene Adresse in eine eigene Zeile oder
+nimmt ein Paket, das die Trennstellen nach dem Laden ändert.
+**Verworfen.** `\sloppy` für das ganze Dokument (weitet alle Absätze, um ein Problem in
+zwei Zeilen zu lösen). Kürzen der Adressen in `literatur.bib` (eine Quelle wird nicht
+gekürzt, damit sie in eine Zeile passt).

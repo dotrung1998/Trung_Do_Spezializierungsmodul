@@ -75,9 +75,10 @@ Lehrperson beim HRZ. Befund, Mailtext und alle Schritte stehen in
   (XeTeX/T1, jetzt über `newunicodechar` auf `\ss{}` umgebogen) und in Anhang A.1 fehlte
   ein Leerzeichen („Änderungsrate,Quellen“). Danach 0 Overfull, 0 Missing character,
   12 Seiten. **Gegenprobe am 24.11.2026** mit `./build.sh`: 22 Seiten gesamt, davon
-  13 Textseiten (Seite 1–13), Anhang 14–16, Literatur 17, Erklärung 18; eine
-  Overfull-Zeile von 56 pt im Literaturverzeichnis. Die 22/13 sind damit gemessen,
-  nicht geschätzt.
+  13 Textseiten (Seite 1–13), Anhang 14–16, Literatur 17, Erklärung 18; **0 Overfull,
+  0 Underfull, 0 Missing character**. Die 22/13 sind damit gemessen, nicht geschätzt.
+  Die frühere Overfull-Zeile von 56 pt im Literaturverzeichnis ist behoben, URLs
+  dürfen umbrechen (`report/preamble/packages.tex`).
 
 ## Quellenprüfung (21.11.2026)
 

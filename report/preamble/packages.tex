@@ -51,6 +51,11 @@
 
 \usepackage[hidelinks]{hyperref}
 
-% URL nicht nach dem Schema trennen: als unteilbare Box setzen,
-% damit sie geschlossen in die naechste Zeile rutscht.
-\DeclareFieldFormat{url}{URL\addcolon\space\mbox{\url{#1}}}
+% Lange URLs und DOIs muessen umbrechen duerfen. Als unteilbare Box lief eine
+% Adresse im Literaturverzeichnis 56 pt ueber den Rand (Bau vom 24.11.2026).
+% biblatex erlaubt Umbrueche an Ziffern, Gross- und Kleinbuchstaben, ohne ein
+% Trennzeichen zu setzen.
+\DeclareFieldFormat{url}{URL\addcolon\space\url{#1}}
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
