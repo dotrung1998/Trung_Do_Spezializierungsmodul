@@ -27,24 +27,38 @@ tragen:
 Das ist ein Vorteil, wenn es gut gemacht ist: Ein Bericht, der seine eigene Schwäche
 benennt, wirkt souveräner als ein Vortrag, der sie überspielt.
 
-## Seitenbudget (Ziel: 13 Seiten ohne Literatur und Anhang)
+## Seitenbudget (Stand 24.11.2026)
 
-| Abschnitt | Seiten | Inhalt |
-|---|---|---|
-| 1 Einleitung | 1,5 | Problem, Relevanz, Beitrag, Aufbau |
-| 2 Hintergrund und verwandte Arbeiten | 2,5 | Informationsqualität (ISO 25012, Wang & Strong), Widerspruchserkennung, Content Drift, Abgrenzung zu 2.2/2.4 |
-| 3 Forschungsfrage und Hypothesen | 1 | Fragestellung, H1–H3, was als Widerlegung gilt |
-| 4 Daten und Korpus | 1,5 | Quellen, Faktkatalog, Stichtag, Ausschlüsse, Höflichkeitsregeln |
-| 5 Methode | 3 | Pipeline, Zitatpflicht, Normalisierung, Abweichungstypologie, Goldstandard, Metriken |
-| 6 Ergebnisse | 3 | Abweichungsraten je Typ mit KI, Verfahrensvergleich, Fehleranalyse, zwei Beispiele |
-| 7 Diskussion | 1,5 | Interpretation, Hypothesenprüfung, Grenzen, Anschluss an Team Beta |
-| 8 Fazit | 0,5 | Drei Sätze, keine Wiederholung |
+Geklärt: **Die 10 bis 15 Seiten gelten für den Textteil.** Titelblatt, Inhaltsverzeichnis,
+Literaturverzeichnis, Anhang und Selbstständigkeitserklärung zählen nicht mit
+([[Entscheidungen]]).
 
-**Anhang** (zählt nicht als Seiten): Faktkatalog, Extraktionsschema, Prompt-Version,
-Fehlertaxonomie, Abbildungsverzeichnis, Code-Verzeichnis.
+Folge: Der Stand vom 21.11. — 13 Textseiten bei 22 Seiten gesamt — liegt **im Rahmen**.
+Zwei Seiten Polster bleiben nach oben. Es wird nichts aus Platzgründen gekürzt.
 
-Vor dem Schreiben klären: Zählt das Literaturverzeichnis in die 10–15 Seiten? Annahme:
-nein. Steht als Frage in der Mail — eine Zeile, die später Zeit spart.
+| Teil | Seiten (Stand 21.11.) | Ziel | Inhalt |
+|---|---|---|---|
+| 1 Einleitung | 1,5 | 1,5 | Problem, Relevanz, Beitrag, Aufbau |
+| 2 Hintergrund und verwandte Arbeiten | 2 | 2 | Informationsqualität (ISO 25012, Wang & Strong), Widerspruchserkennung, Content Drift, Abgrenzung zu 2.2/2.4 |
+| 3 Forschungsfrage und Hypothesen | 1 | 1 | Fragestellung, H1–H3, was als Widerlegung gilt |
+| 4 Daten und Korpus | 1,5 | 1,5 | Quellen, Faktkatalog, Stichtag, Ausschlüsse, Höflichkeitsregeln |
+| 5 Methode | 2,5 | 2,5 | Pipeline, Zitatpflicht, Normalisierung, Abweichungstypologie, Goldstandard, Metriken |
+| 6 Ergebnisse | 2,5 | 4 | Abweichungsraten je Typ mit KI, Verfahrensvergleich, Fehleranalyse, zwei Beispiele |
+| 7 Diskussion | 1,5 | 2 | Interpretation, Hypothesenprüfung, Grenzen, Anschluss an Team Beta |
+| 8 Fazit | 0,5 | 0,5 | Drei Sätze, keine Wiederholung |
+| **Summe Text** | **13** | **15** | Rahmen 10 bis 15 eingehalten |
+
+**Wohin das Polster geht.** Kapitel 6 bekommt die Messzahlen mit Unsicherheitsintervallen
+und den Verfahrensvergleich; Kapitel 7 das Urteil je Hypothese. Beides fehlt heute noch,
+weil die Läufe nicht existieren — deshalb ist das Polster für diese zwei Kapitel
+reserviert, nicht für neue Abschnitte.
+
+**Anhang und Literatur.** Sie zählen nicht in den Rahmen, bleiben aber knapp: Der Anhang
+belegt, was der Text behauptet, und führt nichts auf, was im Repo besser prüfbar ist.
+Fehlertaxonomie und Code-Verzeichnis können deshalb im Bericht bleiben, wenn die
+Fehleranalyse sie braucht; entbehrlich sind sie trotzdem, sobald `docs/` sie führt.
+
+**Nicht sparen an:** Unsicherheitsangaben, verworfene Alternativen, Grenzen.
 
 ## Was den Unterschied zwischen „gut" und „sehr gut" macht
 

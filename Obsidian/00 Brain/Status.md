@@ -1,6 +1,6 @@
 ---
 titel: Status
-stand: 2026-11-21
+stand: 2026-11-24
 ---
 
 # Status
@@ -11,9 +11,9 @@ Bezugsdatum: Sa 21.11.2026. Tage in Klammern ab Bezugsdatum.
 
 | Wann | Was | Tage | Erledigt |
 |---|---|---|---|
-| sofort | Einmal im JLU-GitLab anmelden, HRZ-Kennung per Mail an die Betreuung | — | ☐ |
-| Do 26.11.2026 | Zwei Themenwünsche (P1, P2) per Mail an die Betreuung | 5 | ☐ |
-| vor Di 01.12.2026 | Prüfungsleistung mitteilen: **Bericht 10–15 S. + Code, kein Vortrag** | 10 | ☐ |
+| sofort | Einmal im JLU-GitLab anmelden, HRZ-Kennung per Mail an die Betreuung | — | ☑ 24.11. (Kennung in Mail 1) |
+| Do 26.11.2026 | Zwei Themenwünsche (P1, P2) per Mail an die Betreuung | 5 | ☑ 24.11. gesendet |
+| vor Di 01.12.2026 | Prüfungsleistung mitteilen: **Bericht 10–15 S. + Code, kein Vortrag** | 10 | ☑ 24.11. (in Mail 1) |
 | Fr 27.11.2026, 11:00 | Zuteilung der Einzelarbeiten + erster Jour fixe (online, selber Raum) | 6 | ☐ |
 | Di 01.12.2026 | Offizieller Start | 10 | — |
 | KW 1–2 / Januar | Grober Projektplan + Meilensteingespräch (Termin folgt) | — | ☐ |
@@ -21,13 +21,34 @@ Bezugsdatum: Sa 21.11.2026. Tage in Klammern ab Bezugsdatum.
 
 ## Nächste Aktion
 
-**Heute:** [[E-Mail 1 – Themenwünsche]] ausfüllen (Name, Matrikelnummer, HRZ-Kennung)
-und senden. Danach GitLab-Anmeldung, falls noch nicht geschehen — die Kennung steht in
-derselben Mail.
+**Erledigt am 24.11.2026:** [[E-Mail 1 – Themenwünsche]] ist gesendet — zwei Themenwünsche,
+Variante A, HRZ-Kennung, ZAD-Workspace als Rückfallebene. Wortlaut: [[Korrespondenz mit Busse]].
 
-**Danach (nach der Zuteilung am 27.11.):** [[E-Mail 2 – Kurzexposé]] mit `expose.pdf`
-senden. Zwei Platzhalter ausfüllen (zugeteilte Arbeit, Datum des Jour fixe), Rest ist
-versandfertig. Vorlage: `E-Mail-2-versandfertig.txt` im Projektordner.
+**Jetzt:** Antwort abwarten. Am **Fr 27.11.2026, 11:00** Zuteilung und erster Jour fixe
+(online, selber Raum). Dort die Frage zur Kombination 3.1/3.2 stellen, die aus der Mail
+gestrichen wurde.
+
+**Danach:** [[E-Mail 2 – Kurzexposé]] mit `expose.pdf` senden, sobald zugeteilte Dimension
+und Datum des Jour fixe feststehen. Vorlage: `E-Mail-2-versandfertig.txt` im Projektordner.
+
+**VPN (blockiert den GitLab-Zugang):** Studierende erhalten VPN nur auf Antrag einer
+Lehrperson beim HRZ. Befund, Mailtext und alle Schritte stehen in
+[[GitLab-Zugang und Repo-Anlage]].
+
+## Formatvorgaben geklärt (24.11.2026)
+
+- **Berichtssprache: Deutsch.** Steht so in der Mail; `report/` bleibt deutsch.
+- **Seitenrahmen: 10 bis 15 Seiten für den Textteil.** Titelblatt, Inhaltsverzeichnis,
+  Literaturverzeichnis und Anhang zählen nicht mit (Antwort der Betreuung, 24.11.2026).
+  Der Stand vom 21.11. — **13 Textseiten** bei 22 Seiten gesamt — liegt damit **im Rahmen**,
+  mit zwei Seiten Polster für die Messkapitel. Die zwischenzeitlich geplante Kürzung um
+  sieben Seiten entfällt. Budget: [[Prüfungsleistung ohne Vortrag]].
+- **Themen-Mail geht ohne Rückfragen raus.** Frage 1 (Kombination) entfällt und wandert in
+  den Jour fixe am 27.11. Pflichtangabe ist nur die Variante. Die Seitenangabe ist nach der
+  Antwort der Betreuung aus der Mail entfallen, die Berichtssprache steht als ein Satz
+  darin. Grund: [[Entscheidungen]].
+- **Kick-off am 20.11.2026 nicht besucht** (familiäre Gründe). Protokoll und Unterlagen
+  gelesen; die Abwesenheit steht offen in der Mail.
 
 ## E-Mail 2 — layoutgeprüft und versandfertig (21.11.2026)
 
@@ -194,7 +215,7 @@ bleiben alle Messzahlen offen — die Kette ist scharf, aber ohne Daten tut sie 
 | Datenquellen | Adressen und Fassungen erfasst | [[Datenquellen]] |
 | Hypothesen | drei Kandidaten, falsifizierbar | [[Hypothesen 3.1]] |
 | Projektplan | 17-Wochen-Raster | [[Projektplan]] |
-| GitLab-Repo | noch nicht angelegt | [[Prüfungsleistung ohne Vortrag]] |
+| GitLab-Repo | noch nicht angelegt; Zugang nur per VPN, Antrag der Betreuung nötig (23.11. geprüft) | [[GitLab-Zugang und Repo-Anlage]] |
 | Kommunikation | E-Mail 1 versandfertig; **E-Mail 2 inkl. Exposé layoutgeprüft und versandfertig** (2 Platzhalter, Sperrdatum 27.11.) | [[Kommunikationsplan]] · [[E-Mail 2 – Kurzexposé]] |
 | Satz | `report/` baut mit tectonic: Bericht 22 Seiten (13 Textseiten), Exposé 1 Seite; **9 `\todo` offen** (7 Messzahlen, 2 Entscheidungen) | [[LaTeX-Bericht]] |
 
@@ -248,3 +269,23 @@ Board: 3 von 17 Karten erledigt; Quellenstand in [[Abgaben (auto)]].
   läuft nur der Cron in Actions.
 - **Discord.** Das Secret `DISCORD_WEBHOOK` funktioniert (HTTP 204 im Run). Kommt im
   Channel nichts an, zeigt der Webhook auf einen anderen Kanal als den beobachteten.
+
+## Discord-Bericht (24.11.2026)
+
+`_tools/discord_notify.py` sendet seit dem 24.11. mehrere Nachrichten statt einer:
+Lage (Quellen, Board, Änderungen), alle Fristen mit Begründung, offene Karten und
+Entscheidungen, danach jede fällige Mail als **ein** Codeblock mit Kopierknopf.
+Discord setzt an Codeblöcke einen Kopierknopf; Betreff und Mailtext stehen deshalb
+zusammen in einem Block.
+
+Geprüft mit `--dry-run`: 4 Nachrichten, längste 1953 von 2000 Zeichen; mit `--all`
+6 Nachrichten (alle drei Mails). Matrikelnummer und HRZ-Kennung bleiben Platzhalter,
+`shield()` entfernt lange Zahlenfolgen vor dem Senden. Die Quellen-Notiz wird nur bei
+Änderung neu geschrieben; ältere „Geändert“-Listen erscheinen deshalb nicht als heutige
+Änderung.
+
+**Webhook (24.11.2026).** Der Kanal wurde gewechselt. Das GitHub-Secret
+`DISCORD_WEBHOOK` trägt den Stand 24.11., 18:56; die lokale Datei
+`~/.config/projektjlu/discord-webhook` wurde am Abend aus der Zwischenablage neu gesetzt
+(chmod 600, Wert nicht im Vault). Testversand an den neuen Kanal: 4 Nachrichten,
+HTTP 204 je Nachricht. Beide Wege — Actions und Mac — sind damit aktualisiert.

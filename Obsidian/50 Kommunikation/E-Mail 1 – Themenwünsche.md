@@ -1,83 +1,71 @@
 ---
 titel: E-Mail 1 – Themenwünsche
-stand: 2026-11-21
+stand: 2026-11-24
 frist: 2026-11-26
-status: Entwurf
+status: gesendet am 2026-11-24
 ---
 
 # E-Mail 1 — Themenwünsche
 
 **An:** sebastian.busse@admin.uni-giessen.de
-**Frist:** Do 26.11.2026
-**Zu ersetzen:** `[Vorname Nachname]`, `[HRZ-Kennung]`.
+**Gesendet:** Di 24.11.2026
+**Antwort:** offen
 
-**Versandfertig:** `E-Mail-1-versandfertig.txt` im Projektordner (außerhalb des Vaults).
-Dort ist die Matrikelnummer eingetragen; hier im Vault steht sie bewusst nicht —
-Personendaten gehören nicht in ein Repo, das später als Ablage dient. Die Datei nicht
-ins GitLab-Repo übernehmen.
-
-Betreff und Text sind fertig. Nichts ergänzen, was nicht gefragt ist — die Mail ist
-bewusst knapp, damit sie in einem Zug gelesen und beantwortet werden kann.
+Der Wortlaut steht unten und in [[Korrespondenz mit Busse]]. Dieselbe Fassung liegt als
+`E-Mail-1-versandfertig.txt` im Projektordner — der Dateiname ist historisch, der Inhalt
+ist die gesendete Fassung.
 
 ---
 
-**Betreff:** Themenwünsche Spezialisierungsmodul, Projekt 29 (Team Gamma) — [Vorname Nachname], [Matrikelnummer]
-
+```text
 Sehr geehrter Herr Dr. Busse,
 
-vielen Dank für den Kick-off am 20.11.2026. Ich habe das Projekt 29 (Team Gamma,
-JLU-Informationsqualität) am 03.11.2026 auf der SPZ-Plattform reserviert und nenne Ihnen
-wie vereinbart meine beiden Themenwünsche.
+am Kick-off am 20.11.2026 konnte ich aus familiären Gründen nicht teilnehmen. Ich bitte das zu entschuldigen. Das Protokoll und die Unterlagen habe ich vollständig gelesen. Ich habe das Projekt 29 (Team Gamma, JLU-Informationsqualität) am 03.11.2026 auf der SPZ-Plattform reserviert. Wie vorgesehen nenne ich Ihnen meine beiden Themenwünsche.
 
-**Priorität 1: 3.1 Konsistenz über Quellen**
-**Priorität 2: 3.2 Aktualität und Veraltung**
+Priorität 1: 3.1 Konsistenz über Quellen
+Priorität 2: 3.2 Aktualität und Veraltung
 
-Beide Arbeiten lassen sich auf demselben Quellenstand messen und ergänzen sich methodisch:
-3.1 fragt, ob verschiedene Quellen denselben Sachverhalt gleich darstellen, 3.2, ob die
-Darstellung noch gilt. Ich würde in den ersten drei Wochen mit dem Team den Korpus und
-einen Katalog von rund zwölf Sachverhalten aufbauen, damit alle fünf Dimensionen auf
-derselben Grundlage messen. Der Abgleich von Fassungen — etwa der Änderungsfassungen der
-Speziellen Ordnung — käme beiden Arbeiten zugute.
+Beide Arbeiten lassen sich auf demselben Quellenstand messen und ergänzen sich methodisch. 3.1 fragt, ob verschiedene Quellen denselben Sachverhalt gleich darstellen. 3.2 fragt, ob die Darstellung noch gilt. In den ersten drei Wochen möchte ich mit dem Team den Korpus und einen Katalog von rund zwölf Sachverhalten aufbauen. Dann messen alle fünf Dimensionen auf derselben Grundlage. Der Abgleich von Fassungen hilft beiden Arbeiten, zum Beispiel bei den Änderungsfassungen der Speziellen Ordnung.
 
-Zur Prüfungsleistung: Ich wähle die Variante ohne Vortrag, also den Bericht von 10 bis 15
-Seiten mit Programmcode.
+Zur Prüfungsleistung: Ich wähle die Variante ohne Vortrag, also den Bericht von 10 bis 15 Seiten mit Programmcode. Der Bericht wird auf Deutsch verfasst.
 
-Meine HRZ-Kennung lautet [HRZ-Kennung]; ich habe mich einmal unter
-https://gitlab.ub.uni-giessen.de angemeldet.
+Meine HRZ-Kennung lautet [HRZ-Kennung]. Ich habe mich einmal unter https://gitlab.ub.uni-giessen.de angemeldet.
 
-Drei Fragen, die mir die Planung erleichtern würden:
-
-1. Ist die Kombination 3.1 und 3.2 aus Ihrer Sicht sinnvoll, oder empfehlen Sie eine
-   andere Priorisierung?
-2. In welcher Sprache soll der Bericht verfasst sein — Deutsch oder Englisch?
-3. Zählen bei den 10 bis 15 Seiten Literaturverzeichnis und Anhang mit?
-
-Für die Extraktion arbeite ich mit Sprachmodellen und prüfe die Ergebnisse an einem
-eigenen Goldstandard. Falls dafür aus Ihrer Sicht die KI des HRZ oder ein Workspace auf
-dem ZAD-Cluster vorzuziehen ist, richte ich mich danach.
+Für die Extraktion rechne ich mit meinem eigenen Rechner (Apple M4, 24 GB). Da es um öffentliche Webseiten geht, sehe ich keinen zwingenden Bedarf an einem ZAD-Workspace. Ich würde das Angebot aber gern als Rückfallebene annehmen, damit ich im Januar nicht warten muss, falls ein größeres Modell oder mehr Rechenzeit nötig wird. Falls Sie das anders einschätzen, richte ich mich danach.
 
 Vielen Dank und freundliche Grüße
-[Vorname Nachname]
+Trung Do
+Matrikelnummer: [Matrikelnummer]
+```
 
----
+## Was gegenüber dem Entwurf geändert wurde
 
-## Warum diese Fassung
+| Punkt | Entwurf | gesendet |
+|---|---|---|
+| Unterschrift | The Trung Do | **Trung Do**, Matrikelnummer darunter |
+| Matrikelnummer | im Betreff | **in der Signaturzeile**, Betreff ohne Nummer |
+| Rechenumgebung | „kein Bedarf" | **„kein zwingender Bedarf"** plus ZAD-Workspace als **Rückfallebene** |
+| Goldstandard | eigener Satz | **gestrichen**, um die Mail kürzer zu halten |
+| Seitenzählung | Annahme im Text | **gestrichen**, weil von der Betreuung geklärt |
 
-- **Prioritäten zuerst**, klar fett — die Betreuung muss nicht suchen.
-- **Ein Satz Begründung**, kein Absatz. Zeigt, dass die Wahl überlegt ist, ohne zu dozieren.
-- **Teambezug** im zweiten Absatz: Wer den gemeinsamen Korpus vorschlägt, hat den Rahmen
-  verstanden. Das ist der Satz, der im Gedächtnis bleibt.
-- **Prüfungsleistung ausdrücklich**, weil sie vor dem 01.12. mitgeteilt werden muss.
-- **Drei Fragen mit Nummer.** Eine nummerierte Frage wird beantwortet; ein Fließtext-
-  Absatz mit fünf Anliegen nicht.
-- **Kein Lebenslauf, keine Motivationsrede.** Die Zuteilung entscheidet nicht über Sympathie,
-  sondern über Verteilung.
+## Was Pflicht war und was nicht
 
-## Falls die Antwort ausbleibt
+| Punkt | Quelle | Pflicht? |
+|---|---|---|
+| Zwei Themenwünsche mit P1/P2 bis Do 26.11. | Projektrahmen, Zeitplan | **ja** — erfüllt |
+| HRZ-Kennung nach dem ersten Login | Protokoll 20.11., Tabelle | **ja** — erfüllt |
+| Wahl der Prüfungsvariante vor dem 01.12. | Protokoll 20.11. | **ja** — erfüllt |
+| Berichtssprache | keine Vorgabe gefunden | nein, als Satz mitgeteilt |
+| Seitenzählung | am 24.11. geklärt (Textteil) | nein, entfällt |
 
-Nach fünf Werktagen kurz nachfassen, mit einer Ja/Nein-Frage, nicht mit „wie ist der
-Stand". Beispiel: „Ich möchte nur sichergehen, dass meine Wünsche angekommen sind —
-genügt Ihnen die Angabe zur Prüfungsleistung so, oder brauchen Sie sie in einem Formular?"
+## Offen nach dem Senden
+
+- Die Mail nennt einen erfolgreichen GitLab-Login. Der Befund vom 23.11. (TCP 443 ohne VPN
+  in einen Timeout) widerspricht dem nicht zwingend, belegt es aber auch nicht
+  ([[GitLab-Zugang und Repo-Anlage]]). Beim ersten eigenen Login prüfen.
+- Antwort der Betreuung abwarten, dann [[Korrespondenz mit Busse]] ergänzen.
+- Frage zur Kombination 3.1/3.2, die aus der Mail gestrichen wurde, gehört in den Jour fixe
+  am Fr 27.11.2026, 11:00.
 
 ## Bezug
 

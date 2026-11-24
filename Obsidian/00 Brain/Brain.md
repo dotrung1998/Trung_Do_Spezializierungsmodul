@@ -43,8 +43,22 @@ Schreib-, aber weniger Redeanteil und passt zum Ziel „höchste Note mit belegt
   dann die Folgearbeit (`jobs.py` setzt nur belegte Messwerte ein), `#person` wird nie
   entschieden. Ohne `report/data/ergebnisse.json` bleibt jedes `\todo` stehen. Täglich
   08:00 über `_tools/daily.sh`. Details: [[Status]].
-- Offen: Themenwünsche, GitLab-Anmeldung + Kennung, Prüfungsvarianten-Erklärung,
-  Team-Gamma-Absprache zum gemeinsamen Quellenstand.
+- 23.11.2026: **GitLab-Zugang geprüft.** Der Host ist von außen gesperrt (DNS korrekt,
+  TCP 443 Timeout, `www.uni-giessen.de` im selben Netz erreichbar); der Cisco-Client
+  5.1.17 ist installiert, hat aber kein Profil. Studierende bekommen VPN nur auf Antrag
+  einer Lehrperson. Ablauf und Repo-Namen: [[GitLab-Zugang und Repo-Anlage]].
+- 24.11.2026: **Discord-Bericht ausgebaut** — Fristen mit Begründung, offene Karten und
+  Entscheidungen, jede fällige Mail als ein Codeblock mit Kopierknopf. Aufbau:
+  [[Status]]; Entscheidung: [[Entscheidungen]].
+- 24.11.2026: **Formatvorgaben geklärt.** Bericht auf Deutsch. Die 10 bis 15 Seiten gelten
+  für den Textteil; Titelblatt, Inhaltsverzeichnis, Literaturverzeichnis und Anhang zählen
+  nicht mit. Der Stand von 13 Textseiten ist damit im Rahmen, zwei Seiten Polster bleiben
+  für die Messkapitel. Budget in [[Prüfungsleistung ohne Vortrag]]. Die Themen-Mail ist am
+  24.11.2026 **gesendet**: zwei Themenwünsche, Variante A, HRZ-Kennung, ZAD-Workspace als
+  Rückfallebene; Wortlaut in [[Korrespondenz mit Busse]]. Nächstes Ereignis: Zuteilung am
+  Fr 27.11., 11:00.
+- Offen: Themenwünsche absenden (Frist Do 26.11.), GitLab-Zugang, Team-Gamma-Absprache zum
+  gemeinsamen Quellenstand nach der Zuteilung am 27.11.
 
 ## Board
 
@@ -95,6 +109,7 @@ Stand 21.11.2026: 9 `\todo` offen; alle Messkarten hängen mittelbar an KORPUS. 
 | [[LaTeX-Bericht]] | Satzordner `report/`: Aufbau, Bauen, Stand |
 | [[Person]] · [[Korrespondenz mit Busse]] | Stammdaten und Mailverlauf |
 | [[Codekarte]] | automatische Mermaid-Karte des Codes (ab Repo-Anlage) |
+| [[GitLab-Zugang und Repo-Anlage]] | VPN, Anmeldung, Projektname, Struktur, Push |
 
 ## Arbeitsrhythmus
 

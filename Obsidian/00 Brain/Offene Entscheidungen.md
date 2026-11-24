@@ -18,15 +18,23 @@ wichtiger ist als die stärkere Messfrage.
 ## 2. Prüfungsleistung bestätigen
 
 **Empfehlung: Bericht 10–15 Seiten mit Code, kein Vortrag.**
-Zu entscheiden: bestätigen. Muss vor dem 01.12. mitgeteilt werden und steht in
+**Erledigt am 24.11.2026.** Bestätigt; steht so in der Mail, Mitteilung vor dem 01.12.
 [[E-Mail 1 – Themenwünsche]].
+
+## 2a. Seitenzählung
+
+**Geklärt am 24.11.2026: Die 10 bis 15 Seiten gelten für den Textteil.** Titelblatt,
+Inhaltsverzeichnis, Literaturverzeichnis und Anhang zählen nicht mit (Antwort der
+Betreuung auf die Rückfrage der Person).
+Folge: **13 Textseiten liegen im Rahmen**, das Polster von zwei Seiten bleibt für die
+Messkapitel. Keine Kürzung nötig; Budget in [[Prüfungsleistung ohne Vortrag]].
 
 ## 3. Berichtssprache
 
 **Empfehlung: Deutsch**, weil Steckbrief, Protokoll und Betreuung deutsch sind und die
 Fachbegriffe (Verständlichkeit, Aktualität, Konsistenz) deutsch geprägt sind.
-Zu entscheiden: Deutsch beibehalten oder Englisch anfragen. Die Frage steht als Frage 2
-in der Mail — sie kostet nichts und klärt eine Formatvorgabe.
+**Erledigt am 24.11.2026.** Deutsch. Die Mail schreibt es als Feststellung; die Frage
+entfällt. Eintrag in [[Entscheidungen]].
 
 ## 4. Rechenumgebung: eigener Rechner oder ZAD-Workspace
 
@@ -35,7 +43,9 @@ lokale Sprachmodelle oder Speicher knapp werden.** Die Daten sind öffentliche W
 es gibt keinen Datenschutzgrund für die VM. Wichtig zu wissen: Die Administration des
 Clusters hat technisch Einblick in die Workspaces — bei öffentlichen Daten unkritisch,
 bei Zugangsdaten und Entwürfen unschön.
-Zu entscheiden: anfragen (ja/nein). Steht als Frage 3 in der Mail.
+**Entschieden am 24.11.2026 und gesendet.** Eigener Rechner ist die Messumgebung; der
+ZAD-Workspace wird als **Rückfallebene** angenommen, damit im Januar keine Wartezeit
+entsteht. Alle Zahlen im Bericht stammen aus einer Umgebung, die Anhang A.3 nennt.
 
 ## 5. Team-Gamma-Absprache
 

@@ -185,3 +185,126 @@ umkehrbar und lässt den Rückweg offen); den Agent als einzigen Scheduler behal
 Rechner müsste dafür wach sein und der Lauf hinge an einem Gerät).
 **Preis.** Der Lauf hängt jetzt an GitHub; ein fehlgeschlagener Run fällt nur im
 Actions-Tab und im Discord-Bericht auf.
+
+## 2026-11-24 — Discord-Bericht wird die Arbeitsfläche, nicht nur ein Signal
+
+**Entscheidung.** `_tools/discord_notify.py` sendet mehrere Nachrichten: Lage und
+Quellen, alle Fristen mit Begründung, offene Karten und Entscheidungen, danach jede
+fällige Mail als **ein** Codeblock mit Kopierknopf — Betreff und Text zusammen.
+**Grund.** Der bisherige Bericht nannte nur Zahlen; für die nächste Handlung musste
+trotzdem der Vault geöffnet werden. Discord ist auf dem Telefon der zuverlässig
+erreichbare Kanal. Ein Codeblock ist dort die einzige Form, die sich mit einem Klick
+vollständig kopieren lässt.
+**Verworfen.** Eine einzelne Nachricht (2000-Zeichen-Grenze; eine Mail würde mitten im
+Text abschneiden). Mailtexte als Fließtext (kein Kopierknopf, Zeilenumbrüche gehen
+verloren). Embed-Felder (1024 Zeichen je Feld, zu klein für eine Mail).
+**Grenze.** Matrikelnummer und HRZ-Kennung bleiben Platzhalter; `shield()` ersetzt lange
+Zahlenfolgen vor dem Senden. Versandfertig wird die Mail erst mit den persönlichen
+Angaben, die bewusst nur lokal stehen.
+
+## 2026-11-24 — Bericht auf Deutsch
+
+**Entscheidung.** Der Bericht wird auf Deutsch verfasst.
+**Grund.** Steckbrief, Protokoll und Leitfaden sind deutsch, die Fachbegriffe (Konsistenz,
+Aktualität, Verständlichkeit) sind im Deutschen geprägt, und die Betreuung liest und
+prüft auf Deutsch. Ein englischer Bericht müsste diese Begriffe erst definitorisch
+einholen und die Zitate doppelt führen.
+**Verworfen.** Englisch. Kein Zusatznutzen für die Bewertung, dafür Übersetzungsarbeit an
+Begriffen, Tabellen und Zitaten.
+**Stand.** Angabe der Person am 24.11.2026; die Frage entfällt damit aus der Mail und
+steht dort als Feststellung.
+
+## 2026-11-24 — Die 10 bis 15 Seiten umfassen Literaturverzeichnis und Anhang
+
+**Entscheidung.** Literaturverzeichnis und Anhang zählen in den Seitenrahmen von 10 bis 15
+Seiten hinein. Titelblatt und Inhaltsverzeichnis sind nicht mitgezählt; falls die Betreuung
+das anders sieht, wird dieser Eintrag durch einen neuen ersetzt.
+**Grund.** Angabe der Person am 24.11.2026. Der Rahmen ist damit deutlich enger als am
+21.11. angenommen, als der Textteil mit 13 Seiten plus 9 Seiten Front- und Backmatter
+geplant wurde.
+**Folge.** Der Satz steht bei 22 Seiten gesamt und damit rund sieben Seiten über dem Limit.
+Einzige belastbare Reaktion: Anhang auf das Notwendige kürzen (Fehlertaxonomie und
+Code-Verzeichnis gehören ins Repo, nicht in den Bericht), Text auf 12 Seiten verdichten,
+Tabellen sparsamer setzen. Neues Budget in [[Prüfungsleistung ohne Vortrag]], Stand in
+[[Status]].
+**Verworfen.** Seitenzahl klein setzen oder Anhang als „nicht zum Bericht gehörig“
+deklarieren. Das ist eine Umgehung des Rahmens und fällt bei der Prüfung auf.
+
+## 2026-11-24 — Themen-Mail ohne Rückfragen, einfachere Sprache
+
+**Entscheidung.** Die Mail an die Betreuung geht ohne die drei Fragen raus. Frage 1
+(Kombination 3.1/3.2) entfällt, Fragen 2 und 3 sind geklärt und stehen als Feststellung im
+Text. Die Rechenumgebung wird als Einschätzung formuliert, nicht als Frage. Sprachlich:
+kurze Sätze, keine Gedankenstriche, keine Semikolons.
+**Grund.** P1/P2 ist ein Wunsch, keine Verhandlung; die Zuteilung passiert am 27.11. im
+Gespräch, dort ist die Rückfrage billiger. Jede Frage in einer Mail kostet eine
+Antwort-Runde, und die Betreuung verwaltet 15 Arbeiten. Frage 1 hätte zudem wie die Bitte
+um Bestätigung geklungen, obwohl die Begründung schon im Text stand.
+**Verworfen.** Drei Fragen behalten (drei Antwortpunkte statt null). Frage 1 in der Mail
+lassen (liest sich als „kann ich beide Themen bekommen?“). Gedankenstriche und Semikolons
+als Stilmittel behalten (die Mail wird am Bildschirm überflogen, nicht studiert).
+**Grenze.** Frage 1 wandert in den Jour fixe am 27.11.; wenn sie dort nicht beantwortet
+wird, bleibt die Priorisierung wie gewählt.
+
+## 2026-11-24 — Pflichtangabe ist nur die Variante, Sprache und Seiten sind Annahme
+
+**Entscheidung.** Die Mail nennt die Prüfungsvariante als Pflichtangabe. Berichtssprache
+und Seitenzählung stehen als Annahme im Text, mit der Bitte um Korrektur in einer Zeile,
+aber ohne Fragezeichen. Die Abwesenheit beim Kick-off am 20.11.2026 wird offen genannt.
+**Grund.** Im Protokoll vom 20.11. steht nur eine Mitteilungspflicht: „Die Wahl teilt jede
+Person vor dem offiziellen Start mit.“ Für Sprache und Seitenzählung gibt es keine
+Vorgabe in Protokoll, Rahmen oder Leitfaden. Beides bleibt trotzdem in der Mail, weil die
+Seitenzählung über rund sieben Seiten Umbau entscheidet; eine Zeile der Betreuung ist
+billiger als ein Befund im März.
+**Nachtrag (24.11.2026).** Die Betreuung hat die Zählweise am selben Tag beantwortet:
+Titelblatt, Inhaltsverzeichnis, Literaturverzeichnis und Anhang zählen nicht mit. Die
+Seitenangabe ist damit aus der Mail gestrichen. Maßgeblich ist der Eintrag „10 bis 15
+Seiten ohne Titelblatt, Inhaltsverzeichnis, Literatur und Anhang“.
+**Zur Abwesenheit.** Der Kick-off fand ohne die Person statt. Eine Mail, die sich für den
+Kick-off bedankt, behauptet eine Teilnahme, die es nicht gab. Zwei Sätze, die das klären,
+verhindern die Rechtfertigung später.
+**Verworfen.** „Der Bericht wird auf Deutsch verfasst“ als Feststellung ohne Rückkanal
+(keine Quelle für die Vorgabe). Die beiden Formatsätze ganz streichen (dann fehlt die
+Absicherung für das Seitenbudget). Teilnahme am Kick-off stillschweigend übergehen.
+
+## 2026-11-24 — 10 bis 15 Seiten ohne Titelblatt, Inhaltsverzeichnis, Literatur und Anhang
+
+**Entscheidung.** Die 10 bis 15 Seiten beziehen sich auf den Textteil. Titelblatt,
+Inhaltsverzeichnis, Literaturverzeichnis, Anhang und Selbstständigkeitserklärung zählen
+nicht mit.
+**Grund.** Antwort der Betreuung auf die Rückfrage der Person am 24.11.2026. Damit ist der
+Eintrag „Die 10 bis 15 Seiten umfassen Literaturverzeichnis und Anhang“ vom selben Tag
+**überholt**; er bleibt als Verlauf stehen und wird nicht umgeschrieben.
+**Folge.** Der Satz steht mit **13 Textseiten** innerhalb des Rahmens von 10 bis 15. Die
+geplante Kürzung um rund sieben Seiten entfällt. Es bleibt ein Polster von zwei Seiten nach
+oben, das in Kapitel 6 und 7 gebraucht wird, sobald die Messzahlen da sind. Anhang und
+Literatur werden nicht mehr aus Platzgründen gekürzt, sondern nur noch aus Qualitätsgründen
+(Fehlertaxonomie und Code-Verzeichnis gehören weiterhin ins Repo, weil sie dort prüfbar sind).
+Budget in [[Prüfungsleistung ohne Vortrag]].
+**Verworfen.** Die frühere Annahme „Anhang zählt mit“ beibehalten (hätte sieben Seiten
+Text gekostet, die niemand verlangt). Die Formatsätze in der Mail stehen lassen (die
+Seitenangabe wäre jetzt falsch und würde eine Rückfrage erzeugen, die es nicht braucht).
+
+## 2026-11-24 — Themen-Mail gesendet
+
+**Entscheidung.** [[E-Mail 1 – Themenwünsche]] ist am Di 24.11.2026 an die Betreuung
+gesendet. Inhalt: Abwesenheit beim Kick-off, zwei Themenwünsche P1/P2, Variante A mit
+Deutsch als Berichtssprache, HRZ-Kennung, eigener Rechner als Messumgebung mit dem
+ZAD-Workspace als Rückfallebene.
+**Grund.** Frist für die Themenwünsche ist Do 26.11. Wer bis dahin nichts schickt, wird
+ohne eigene Stimme zugeteilt (Projektrahmen). Die Zuteilung findet am Fr 27.11., 11:00
+statt, also zwei Tage nach der Frist — die Mail ist der einzige Kanal vorher.
+**Was gegenüber dem Entwurf geändert wurde.** Unterschrift „Trung Do“ mit der
+Matrikelnummer in der Signaturzeile statt im Betreff. „Kein zwingender Bedarf“ statt „kein
+Bedarf“, dazu die Bitte um den Workspace als Rückfallebene (Grund: kein Warten im Januar).
+Der Satz zum Goldstandard gestrichen, der Satz zur Seitenzählung entfällt, weil geklärt.
+**Folge.** Antwort und Zuteilung abwarten, dann [[Korrespondenz mit Busse]] ergänzen und
+[[E-Mail 2 – Kurzexposé]] senden. Die aus der Mail gestrichene Frage zur Kombination
+3.1/3.2 gehört in den Jour fixe am 27.11.
+**Offen.** Die Mail nennt einen erfolgten GitLab-Login. Der Befund vom 23.11. (TCP 443
+läuft ohne VPN in einen Timeout) widerspricht dem nicht zwingend, belegt es aber auch
+nicht ([[GitLab-Zugang und Repo-Anlage]]). Beim ersten eigenen Login prüfen und, falls er
+nicht klappt, in der Antwort an die Betreuung korrigieren.
+**Verworfen.** Bis zum 26.11. warten (kein Vorteil, jede Verzögerung erhöht das Risiko,
+ohne eigene Stimme zugeteilt zu werden). Die Frage nach dem Workspace als Bitte um
+Entscheidung formulieren (die Mail soll keine Rückfrage erzeugen).
