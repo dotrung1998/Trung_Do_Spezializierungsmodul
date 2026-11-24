@@ -1,12 +1,12 @@
 ---
 titel: Abgaben (auto)
-stand: 2026-11-23
+stand: 2026-11-24
 automatisch: true
 ---
 
 # Abgaben (automatisch)
 
-Lauf: 2026-11-23 03:20. Quelle: die Dateien im Projektordner.
+Lauf: 2026-11-24 19:33. Quelle: die Dateien im Projektordner.
 
 | Artefakt | Datei | Größe | Stand | Frist |
 |---|---|---|---|---|
