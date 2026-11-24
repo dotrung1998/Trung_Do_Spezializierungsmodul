@@ -354,3 +354,18 @@ dann die Kapitelköpfe nach.
 Übersicht war selbst die falsche Fassung). Die Zahl der Textseiten neu messen (ohne
 gebautes `main.pdf` gäbe es dafür keinen Beleg; der Stand vom 21.11. bleibt bis zum
 nächsten Bau die Referenz).
+
+## 2026-11-24 — 22 Seiten und 13 Textseiten sind gemessen, nicht geschätzt
+
+**Entscheidung.** Die Zahlen bleiben, wie sie sind: **22 Seiten gesamt, 13 Textseiten**.
+`cd report && ./build.sh` (tectonic 0.17.0) hat sie am 24.11.2026 bestätigt: Vorspann
+4 Seiten (Titelblatt ohne Nummer, Zusammenfassung i, Inhaltsverzeichnis ii–iii), Textteil
+Seite 1–13, Anhang 14–16, Literaturverzeichnis 17, Selbstständigkeitserklärung 18.
+**Grund.** Die Zahl stand vorher ohne Beleg im Vault, und die Statusnotiz vom 21.11.
+nennt 12 Seiten für denselben Bau-Nachweis. Beides ist vereinbar: der Stand vom 21.11.
+war ein früherer Bau; der Textteil ist seither um Vorspann, Anhang und Literatur
+gewachsen. Ein Widerspruch bleibt also nicht stehen, sondern eine datierte Messung.
+**Folge.** Wer die Zahl im Bericht oder im Vault nennt, nennt den Bau vom 24.11.2026.
+Die Kapitelbudgets (13 im Stand, 15 als Ziel) bleiben unverändert gültig.
+**Offen.** Eine Overfull-Zeile von 56 pt im Literaturverzeichnis, ein DOI bricht nicht um.
+Kosmetisch, vor der Abgabe beheben (`\sloppy` lokal oder `url`-Umbruch).

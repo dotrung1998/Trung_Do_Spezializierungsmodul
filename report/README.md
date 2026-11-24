@@ -28,7 +28,7 @@ benötigten Pakete nachlädt. Kein MacTeX nötig.
 | Fehler | keine |
 | Offene Zitate/Verweise | keine (`main.log` sauber) |
 | Literaturverzeichnis | 13 von 13 zitierten Schlüsseln gerendert |
-| Umfang | 22 Seiten gesamt, davon 13 Textseiten; Titelblatt, Inhaltsverzeichnis, Literaturverzeichnis und Anhang zählen nicht mit |
+| Umfang | 22 Seiten gesamt, davon 13 Textseiten (am 24.11.2026 am gebauten PDF gezählt); Titelblatt, Inhaltsverzeichnis, Literaturverzeichnis und Anhang zählen nicht mit |
 | Inhalt | **nur Gerüst** — die `\todo`-Platzhalter stehen noch drin |
 
 Das PDF ist ein **Bau-Nachweis**, kein Abgabestand.

@@ -15,12 +15,18 @@ Der Vault ist Denkablage, `report/` ist Satz und später Abgabe.
 |---|---|
 | Engine | **tectonic 0.17.0** (XeTeX), auf diesem Rechner installiert und gelaufen |
 | Befehl | `cd report && ./build.sh` → intern `tectonic -X compile --keep-logs main.tex` |
-| Ergebnis | `main.pdf`, **22 Seiten gesamt / 13 Textseiten**, **0 Fehler** |
+| Ergebnis | `main.pdf`, **22 Seiten gesamt / 13 Textseiten** (am 24.11.2026 am gebauten PDF gezählt), **0 Fehler** |
 | Offene Zitate/Verweise | **keine** — `main.log` ohne `undefined`, kein `??`, kein `[?]` |
 | Literaturverzeichnis | **13 von 13** zitierten Schlüsseln gerendert |
 | Inhalt | **Textteil geschrieben** (Kap. 1–8, A.2, A.4, A.5); **9 `\todo`** offen (6.1–6.4, 7.2, 8, Zusammenfassung, A.1, A.3) |
 | Titel | Arbeitstitel, noch nicht abgestimmt |
 | Selbstständigkeitserklärung | Platzhalter, Wortlaut aus Modulvorlage nötig |
+
+**Seitenaufteilung, am 24.11.2026 aus dem PDF gezählt.** Vorspann 4 Seiten: Titelblatt
+ohne Nummer, Zusammenfassung i, Inhaltsverzeichnis ii und iii. Textteil **Seite 1 bis 13**.
+Anhang A Seite 14 bis 16, Literaturverzeichnis Seite 17, Selbstständigkeitserklärung
+Seite 18. Zusammen 22 Seiten, davon 13 im Rahmen von 10 bis 15. Offen dabei: eine
+Overfull-Zeile von 56 pt im Literaturverzeichnis, ein langer DOI bricht nicht um.
 
 **Der Text ist geschrieben, die Messzahlen fehlen.** Kapitel 1–8 tragen Argument, Methode
 und Auswertungslogik; A.2, A.4 und A.5 sind als Entwurf ausformuliert. Rot bleiben neun
