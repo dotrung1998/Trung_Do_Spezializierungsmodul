@@ -96,18 +96,22 @@ report/
 └── .gitignore            Build-Artefakte, main.pdf bleibt
 ```
 
-## Seitenbudget (13 Seiten ohne Literatur und Anhang)
+## Seitenbudget (13 Textseiten, Ziel 15; ohne Literatur und Anhang)
 
-| Kapitel | Seiten |
-|---|---|
-| 1 Einleitung | 1,5 |
-| 2 Hintergrund | 2,5 |
-| 3 Forschungsfrage und Hypothesen | 1 |
-| 4 Daten und Korpus | 1,5 |
-| 5 Methode | 3 |
-| 6 Ergebnisse | 3 |
-| 7 Diskussion | 1,5 |
-| 8 Fazit | 0,5 |
+Verbindlich ist die Tabelle in [[Prüfungsleistung ohne Vortrag]] (Stand 24.11.2026).
+Diese hier gibt denselben Stand wieder und ist nur die Kapitelaufteilung davon:
+
+| Kapitel | Seiten (Stand 21.11.) | Ziel |
+|---|---|---|
+| 1 Einleitung | 1,5 | 1,5 |
+| 2 Hintergrund | 2 | 2 |
+| 3 Forschungsfrage und Hypothesen | 1 | 1 |
+| 4 Daten und Korpus | 1,5 | 1,5 |
+| 5 Methode | 2,5 | 2,5 |
+| 6 Ergebnisse | 2,5 | 4 |
+| 7 Diskussion | 1,5 | 2 |
+| 8 Fazit | 0,5 | 0,5 |
+| **Summe Text** | **13** | **15** |
 
 Das Budget steht als Kommentar am Kopf jeder Kapiteldatei. Es stammt aus
 [[Prüfungsleistung ohne Vortrag]]; die Aufteilung ist ein Vorschlag, keine Vorgabe.

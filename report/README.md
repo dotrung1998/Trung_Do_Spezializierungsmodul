@@ -90,4 +90,5 @@ Nicht hinein: Build-Artefakte, Rohdaten, `.env`, Zugangsdaten.
 
 - Titel ist ein Arbeitstitel.
 - Wortlaut der Selbstständigkeitserklärung ist ein Platzhalter.
-- Sprache (Deutsch/Englisch) hängt an der Antwort der Betreuung.
+- Sprache: **Deutsch**, entschieden und in der Mail an die Betreuung mitgeteilt
+  (24.11.2026). Keine offene Frage mehr.

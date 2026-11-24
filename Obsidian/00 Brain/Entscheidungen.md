@@ -332,3 +332,25 @@ wird das im Termin korrigiert und nicht per Mail nachgeschoben.
 **Verworfen.** Die Kombinationsfrage vor dem 27.11. per Mail nachschieben (zweite Mail,
 zweite Rückfrage, Frist war der 26.11.). Die Zahl im README stehen lassen, bis der Bericht
 gebaut wird (der Widerspruch wäre bis zur Abgabe mitgeschleppt worden).
+
+## 2026-11-24 — Kapitelbudgets an die verbindliche Tabelle angeglichen
+
+**Entscheidung.** Verbindlich für den Seitenumfang ist allein die Tabelle in
+[[Prüfungsleistung ohne Vortrag]]: 13 Textseiten im Stand vom 21.11., Ziel 15, Rahmen 10
+bis 15 ohne Titelblatt, Inhaltsverzeichnis, Literaturverzeichnis und Anhang. Die
+Kapitelköpfe in `report/chapters/` und die Übersicht in [[LaTeX-Bericht]] geben genau
+diesen Stand wieder: Kapitel 2 mit 2 statt 2,5, Kapitel 5 mit 2,5 statt 3, Kapitel 6 mit
+Ziel 4 statt 3, Kapitel 7 mit Ziel 2 statt 1,5. Die Summe der Ziele ergibt 15.
+**Grund.** Beim Durchsuchen des Repos nach abweichenden Seitenzahlen kamen drei Fassungen
+desselben Budgets zum Vorschein: die verbindliche Tabelle mit 13, die Übersicht in
+[[LaTeX-Bericht]] mit 14,5 und die Kapitelköpfe, die teils der einen, teils der anderen
+folgten. Drei Zahlen für eine Sache sind ein Fehler, der beim Schreiben Zeit kostet.
+**Drittens.** In `report/README.md` stand unter „Offen“ noch, die Sprache hänge an der
+Antwort der Betreuung. Sie ist seit dem 24.11. entschieden (Deutsch) und in der Mail
+mitgeteilt.
+**Folge.** Wer das Budget ändert, ändert zuerst [[Prüfungsleistung ohne Vortrag]] und zieht
+dann die Kapitelköpfe nach.
+**Verworfen.** Die Kapitelköpfe an der Übersicht in [[LaTeX-Bericht]] ausrichten (die
+Übersicht war selbst die falsche Fassung). Die Zahl der Textseiten neu messen (ohne
+gebautes `main.pdf` gäbe es dafür keinen Beleg; der Stand vom 21.11. bleibt bis zum
+nächsten Bau die Referenz).
