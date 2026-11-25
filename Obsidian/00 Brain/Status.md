@@ -240,12 +240,11 @@ neu geschrieben. Nicht von Hand bearbeiten — Änderungen gehören in `fristen.
 
 | Termin | Was | Abstand | Wer |
 |---|---|---|---|
-| 2026-11-26 | Zwei Themenwünsche (P1, P2) per Mail an die Betreuung | morgen | person |
 | 2026-11-27, 11:00 | Zuteilung der Einzelarbeiten, erster Jour fixe (online) | in 2 Tagen | team |
 | 2026-12-01 | Offizieller Start des Bearbeitungszeitraums | in 6 Tagen | team |
 | 2027-04-01 | Abgabe im Abgaberepo der Betreuung | in 127 Tagen | person |
 
-Board: 3 von 17 Karten erledigt; Quellenstand in [[Abgaben (auto)]].
+Board: 4 von 17 Karten erledigt; Quellenstand in [[Abgaben (auto)]].
 <!-- AUTO:END -->
 
 ## Automatik, Repo und Datenschutz (23.11.2026)

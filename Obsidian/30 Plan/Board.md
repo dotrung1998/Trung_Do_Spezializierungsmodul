@@ -12,7 +12,6 @@ kanban-plugin: board
 
 - [ ] **A.1 · Faktkatalog: zwölf Sachverhaltstypen festlegen** #person — Entscheidung mit Team Gamma, Grundlage für Kapitel 4.2 und Anhang A.1 · → [[Offene Entscheidungen]] · [[Methodik]]
 - [ ] **A.3 · Modell, Prompt-Version und Umgebung festlegen** #person — Entscheidung, danach Anhang A.3 und der Lauf · → [[Offene Entscheidungen]] · [[LaTeX-Bericht]]
-- [ ] **MAIL1 · Themenwünsche P1/P2 an die Betreuung senden** #person · fällig 2026-11-26 · → [[E-Mail 1 – Themenwünsche]]
 - [ ] **GITLAB · Im JLU-GitLab anmelden und HRZ-Kennung melden** #person · → [[GitLab-Leitfaden (Quelle)]]
 - [ ] **MAIL2 · Kurzexposé mit expose.pdf senden** #person — erst nach der Zuteilung am 27.11., 11:00 · → [[E-Mail 2 – Kurzexposé]]
 - [ ] **KORPUS · Korpus einfrieren und Datenblatt v1 anlegen** #team — Stichtag, Hashes, Ausschlüsse; blockiert die sieben Messkarten · → [[Datenquellen]] · [[Methodik]]
@@ -29,6 +28,7 @@ kanban-plugin: board
 
 ## Done
 
+- [x] **MAIL1 · Themenwünsche P1/P2 an die Betreuung senden** #person — gesendet 24.11.2026 an Dr. Busse (P1 3.1 Konsistenz, P2 3.2 Aktualität, Variante A, Deutsch) · → [[E-Mail 1 – Themenwünsche]] · [[Korrespondenz mit Busse]]
 - [x] **LIT · 13 zitierte Quellen am Original geprüft** #ai — zwei Fehlzuschreibungen korrigiert · → [[Literatur]]
 - [x] **TEXT · Berichtstext 29 von 38 Lücken geschlossen** #ai — Kapitel 1–8, A.2, A.4, A.5 · → [[LaTeX-Bericht]]
 - [x] **URL · Umbruch nach „https:" behoben** #ai — Feldformat mit unteilbarer Box · → [[LaTeX-Bericht]]

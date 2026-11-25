@@ -1,13 +1,5 @@
 [
   {
-    "id": "MAIL1",
-    "datum": "2026-11-26",
-    "titel": "Zwei Themenwünsche (P1, P2) per Mail an die Betreuung",
-    "wer": "person",
-    "detail": "Wer bis dahin nichts schickt, wird ohne eigene Stimme zugeteilt; Quelle: Project JLU/README.md, Zeitplan; Protokoll Kick-off 20.11.2026",
-    "quelle": "Project JLU/README.md"
-  },
-  {
     "id": "ZUTEILUNG",
     "datum": "2026-11-27T11:00",
     "titel": "Zuteilung der Einzelarbeiten, erster Jour fixe (online)",
